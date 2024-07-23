@@ -1,93 +1,37 @@
-# Rails Template
+# CityFinder Functional Specification
 
-This is a base Ruby on Rails repository configured for learning with Codespaces (and Gitpod).
+**Project Name**: CityFinder
 
-- Ruby version: `3.2.1`
-- Rails version: `7.1.3.3`
+**1-liner:** A comprehensive city ranking and comparison tool to help users find the best cities based on their preferences.
 
+**Pain Point:** Users need an efficient way to evaluate and compare cities based on various factors such as school ranking, crime rate, and apprciation rate to make informed relocation decisions.
 
-We've added additional Ruby gems and other software that aren't automatically available in a new Rails app, and configured 
+## Previews:
+Curious about why CityFinder is needed, how it works, and what it can bring to the table?
+Please check out the presentation [here](https://www.figma.com/deck/SNeSCG6YlucojnHRUjtgdq/CityFinder-Presentation?node-id=54-348&viewport=126%2C-42%2C0.42&t=E6SNfdt6LnWBOvW6-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1).
 
-### UJS and Turbo
+![search](https://linked-in-img-site-dmlt.vercel.app/static/Search.jpeg)
+![result](https://linked-in-img-site-dmlt.vercel.app/static/Result.jpeg)
 
-In Rails version 7, support for Unobtrusive JavaScript (UJS) is not the default. Rather, [this has been replaced with Turbo](https://guides.rubyonrails.org/working_with_javascript_in_rails.html#turbo).
+## User Stories:
 
-However, in AppDev, we typically want to first demonstrate UJS and then enable Turbo manually when we want it.
+**1. Search for Cities**
+Story: As a user, I want to search for cities based on specific criteria such as school ranking, crime rate, and house price so that I can find a city that meets my needs.
+Impact: High
+Effort: Medium
 
-Therefore, UJS has been pre-configured here with these steps: 
+**2. User Reviews and Ratings**
+Story: As a user, I want to read and leave reviews and ratings for cities so that I can benefit from the experiences of other users.
+Impact: Medium
+Effort: Medium
 
-- Pin UJS + jQuery in `config/importmap.rb` by running:
+**3. Interactive Map View**
+Story: As a user, I want to view cities on an interactive map so that I can get a better understanding of their locations and surroundings.
+Impact: High
+Effort: High
 
-    ```
-    % ./bin/importmap pin @rails/ujs
-    % ./bin/importmap pin jquery
-    ```
+## Domain Model and Associations:
+![domain](https://linked-in-img-site-dmlt.vercel.app/static/DataModel.jpeg)
 
-- Add UJS + jQuery via:
-
-    ```js
-    // app/javascript/application.js
-    import jquery from "jquery";
-    window.jQuery = jquery;
-    window.$ = jquery;
-    import Rails from "@rails/ujs"
-    Rails.start();
-    ```
-
-UJS and Turbo can co-exist side-by-side with [these instructions, which we already implemented here](https://github.com/hotwired/turbo-rails/blob/main/UPGRADING.md#upgrading-from-rails-ujs--turbolinks-to-turbo).
-
-By default, Turbo is disabled via:
-
-```js
-// app/javascript/application.js
-import { Turbo } from "@hotwired/turbo-rails"
-Turbo.session.drive = false
-```
-
-Set it to `true` to enable Turbo everywhere, or you can use `data-turbo="true"` to enable Drive on a per-element basis while leaving it globally `false`.
-
-### Additional gems:
-
-- [`appdev_support`](https://github.com/firstdraft/appdev_support)
-- [`annotate`](https://github.com/ctran/annotate_models)
-- [`awesome_print`](https://github.com/awesome-print/awesome_print)
-- [`better_errors`](https://github.com/BetterErrors/better_errors)
-- [`binding_of_caller`](https://github.com/banister/binding_of_caller)
-- [`dotenv-rails`](https://github.com/bkeepers/dotenv)
-- [`draft_generators`](https://github.com/firstdraft/draft_generators/)
-- [`draft_matchers`](https://github.com/jelaniwoods/draft_matchers/)
-- [`devise`](https://github.com/heartcombo/devise)
-- [`faker`](https://github.com/faker-ruby/faker)
-- [`grade_runner`](https://github.com/firstdraft/grade_runner/)
-- [`htmlbeautifier`](https://github.com/threedaymonk/htmlbeautifier/)
-- [`http`](https://github.com/httprb/http)
-- [`pry_rails`](https://github.com/pry/pry-rails)
-- [`rails_db`](https://github.com/igorkasyanchuk/rails_db)
-- [`rails-erd`](https://github.com/voormedia/rails-erd)
-- [`rspec-html-matchers`](https://github.com/kucaahbe/rspec-html-matchers)
-- [`rspec-rails`](https://github.com/rspec/rspec-rails)
-- [`rufo`](https://github.com/ruby-formatter/rufo)
-- [`specs_to_readme`](https://github.com/firstdraft/specs_to_readme)
-- [`table_print`](https://github.com/arches/table_print)
-- [`web_git`](https://github.com/firstdraft/web_git)
-- [`webmock`](https://github.com/bblimke/webmock)
-
-### Additional software:
-- OS Ubuntu 20.04.5 LTS
-- Chromedriver
-- Fly.io's `flyctl`
-- Google Chrome (headless browser)
-- Graphviz
-- Node JS 18
-- NPM 8.19.3
-- Postgresql 12
-- Redis
-- Yarn
-
-### VS Code extensions:
-- vortizhe.simple-ruby-erb
-- mbessey.vscode-rufo
-- aliariff.vscode-erb-beautify
-- eamodio.gitlens
-- setobiralo.erb-commenter
-# city-finder-web-app
+## Live Development Log:
+https://quaint-slip-844.notion.site/CityFinder-Development-Log-b18d1576c2c144b08a8fb440ef586362
