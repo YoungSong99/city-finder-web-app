@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      City #<%= @the_city.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/cities">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_city/<%= @the_city.id %>">
+          Delete city
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        City name
+      </dt>
+      <dd>
+        <%= @the_city.city_name %>
+      </dd>
+
+      <dt>
+        State
+      </dt>
+      <dd>
+        <%= @the_city.state %>
+      </dd>
+
+      <dt>
+        Longitude
+      </dt>
+      <dd>
+        <%= @the_city.longitude %>
+      </dd>
+
+      <dt>
+        Latitude
+      </dt>
+      <dd>
+        <%= @the_city.latitude %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_city.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_city.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit city
+    </h2>
+
+    <form action="/modify_city/<%= @the_city.id %>"  method="post" >
+      <div>
+        <label for="city_name_box">
+          City name
+        </label>
+
+        <input type="text" id="city_name_box" name="query_city_name" value="<%= @the_city.city_name %>">
+      </div>
+
+      <div>
+        <label for="state_box">
+          State
+        </label>
+
+        <input type="text" id="state_box" name="query_state" value="<%= @the_city.state %>">
+      </div>
+
+      <div>
+        <label for="longitude_box">
+          Longitude
+        </label>
+
+        <input type="text" id="longitude_box" name="query_longitude" value="<%= @the_city.longitude %>">
+      </div>
+
+      <div>
+        <label for="latitude_box">
+          Latitude
+        </label>
+
+        <input type="text" id="latitude_box" name="query_latitude" value="<%= @the_city.latitude %>">
+      </div>
+
+      <button>
+        Update city
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
