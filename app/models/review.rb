@@ -17,4 +17,5 @@ class Review < ApplicationRecord
   belongs_to :user, required: true, class_name: "User", foreign_key: "user_id"
   belongs_to :city, required: true, class_name: "City", foreign_key: "city_id"
 
+  validates :ratings, inclusion: { in: 1..5 }
 end

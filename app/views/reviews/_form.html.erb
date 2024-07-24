@@ -31,6 +31,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :ratings %>
+    <%= form.select :ratings, options_for_select(1..5) %>
+  </div>
+
+  <div class="field">
     <%= form.label :zipcode %>
     <%= form.number_field :zipcode %>
   </div>
