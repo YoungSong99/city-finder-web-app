@@ -4,13 +4,9 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
   post 'dashboard', to: 'dashboard#index'
 
-  # Routes for the Review resource:
-  # CREATE
-  post("/insert_review", { :controller => "reviews", :action => "create" })
-  get("/reviews", { :controller => "reviews", :action => "index" })
-  get("/reviews/:path_id", { :controller => "reviews", :action => "show" })
-  # UPDATE
-  post("/modify_review/:path_id", { :controller => "reviews", :action => "update" })
-  # DELETE
-  get("/delete_review/:path_id", { :controller => "reviews", :action => "destroy" })
+  resources :cities do
+    resources :reviews, only: [:new, :create, :index, :show]
+  end
+
+  resources :reviews, only: [:edit, :update, :destroy]
 end
