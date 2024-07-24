@@ -5,6 +5,18 @@
 
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
+    <%= f.input :username %>
+
+    <%= f.label :user_family_type, "Family Type" %>
+    <div>
+      <%= f.check_box :user_family_type, { multiple: true }, 'single', nil %> Single<br>
+      <%= f.check_box :user_family_type, { multiple: true }, 'married', nil %> Married<br>
+      <%= f.check_box :user_family_type, { multiple: true }, 'pet', nil %> Pet<br>
+      <%= f.check_box :user_family_type, { multiple: true }, 'with kid', nil %> With Kid<br>
+      <%= f.check_box :user_family_type, { multiple: true }, 'retired', nil %> Retired<br>
+      <%= f.check_box :user_family_type, { multiple: true }, 'remote worker', nil %> Remote Worker<br>
+      <%= f.check_box :user_family_type, { multiple: true }, 'commuter', nil %> Commuter<br>
+    </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
