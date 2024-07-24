@@ -1,161 +1,27 @@
-<div>
-  <div>
-    <h1>
-      Review #<%= @the_review.id %> details
-    </h1>
+<p>
+  <strong>Pros:</strong>
+  <%= @review.pros %>
+</p>
 
-    <div>
-      <div>
-        <a href="/reviews">
-          Go back
-        </a>
-      </div>
+<p>
+  <strong>Cons:</strong>
+  <%= @review.cons %>
+</p>
 
-      <div>
-        <a href="/delete_review/<%= @the_review.id %>">
-          Delete review
-        </a>
-      </div>
-    </div>
+<p>
+  <strong>Ratings:</strong>
+  <%= @review.ratings %>
+</p>
 
-    <dl>
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @the_review.user_id %>
-      </dd>
+<p>
+  <strong>Recommend Family Type:</strong>
+  <%= @review.recommend_family_type %>
+</p>
 
-      <dt>
-        City
-      </dt>
-      <dd>
-        <%= @the_review.city_id %>
-      </dd>
+<p>
+  <strong>Zipcode:</strong>
+  <%= @review.zipcode %>
+</p>
 
-      <dt>
-        Pros
-      </dt>
-      <dd>
-        <%= @the_review.pros %>
-      </dd>
-
-      <dt>
-        Cons
-      </dt>
-      <dd>
-        <%= @the_review.cons %>
-      </dd>
-
-      <dt>
-        Recommend family type
-      </dt>
-      <dd>
-        <%= @the_review.recommend_family_type %>
-      </dd>
-
-      <dt>
-        Ratings
-      </dt>
-      <dd>
-        <%= @the_review.ratings %>
-      </dd>
-
-      <dt>
-        Zipcode
-      </dt>
-      <dd>
-        <%= @the_review.zipcode %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_review.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_review.updated_at) %> ago
-      </dd>
-    </dl>
-  </div>
-</div>
-
-<hr>
-
-
-<div>
-  <div>
-    <h2>
-      Edit review
-    </h2>
-
-    <form action="/modify_review/<%= @the_review.id %>"  method="post" >
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_review.user_id %>">
-      </div>
-
-      <div>
-        <label for="city_id_box">
-          City
-        </label>
-
-        <input type="text" id="city_id_box" name="query_city_id" value="<%= @the_review.city_id %>">
-      </div>
-
-      <div>
-        <label for="pros_box">
-          Pros
-        </label>
-
-        <textarea id="pros_box" name="query_pros"><%= @the_review.pros %></textarea>
-      </div>
-
-      <div>
-        <label for="cons_box">
-          Cons
-        </label>
-
-        <textarea id="cons_box" name="query_cons"><%= @the_review.cons %></textarea>
-      </div>
-
-      <div>
-        <label for="recommend_family_type_box">
-          Recommend family type
-        </label>
-
-        <textarea id="recommend_family_type_box" name="query_recommend_family_type"><%= @the_review.recommend_family_type %></textarea>
-      </div>
-
-      <div>
-        <label for="ratings_box">
-          Ratings
-        </label>
-
-        <input type="text" id="ratings_box" name="query_ratings" value="<%= @the_review.ratings %>">
-      </div>
-
-      <div>
-        <label for="zipcode_box">
-          Zipcode
-        </label>
-
-        <input type="text" id="zipcode_box" name="query_zipcode" value="<%= @the_review.zipcode %>">
-      </div>
-
-      <button>
-        Update review
-      </button>
-    </form>
-  </div>
-</div>
-
-<hr>
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Back', city_reviews_path(@review.city) %>

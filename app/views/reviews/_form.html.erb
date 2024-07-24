@@ -1,0 +1,41 @@
+<%= form_with(model: [ @city, @review ], local: true) do |form| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <ul>
+        <% @review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :pros %>
+    <%= form.text_area :pros %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cons %>
+    <%= form.text_area :cons %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ratings %>
+    <%= form.number_field :ratings %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recommend_family_type %>
+    <%= form.text_field :recommend_family_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zipcode %>
+    <%= form.number_field :zipcode %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
