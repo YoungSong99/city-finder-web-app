@@ -1,9 +1,9 @@
 <h1>Dashboard</h1>
-<%= search_form_for @q, url:dashboard_path do |form| %>
+<%= search_form_for @q, url: dashboard_path do |form| %>
   <div class="form-group">
     <%= form.label :search_by_city_name %>
     <%= form.text_field :city_name_cont %>
-    <%= form.submit 'Search City'%>
+    <%= form.submit 'Search City' %>
   </div>
 <% end %>
 
@@ -71,6 +71,7 @@
     <th><%= sort_link(@q, :last_2years, "Last 2 Years Appreciation") %></th>
     <th><%= sort_link(@q, :last_5years, "Last 5 Years Appreciation") %></th>
     <th><%= sort_link(@q, :since_2000, "Since 2000 Appreciation") %></th>
+    <th>Ratings</th>
     <th>Reviews</th>
   </tr>
   </thead>
@@ -117,8 +118,14 @@
         <td>-</td>
       <% end %>
       <td>
-        <%= link_to 'View Reviews', city_reviews_path(city) %> |
-        <%= link_to 'Add Review', new_city_review_path(city) %>
+        <% if city.reviews.any? %>
+          <%= city.average_rating&.round(2) %> (<%= city.reviews_count %>)
+        <% else %>
+          No ratings
+        <% end %>
+      </td>
+      <td>
+        <%= link_to 'View Reviews', city_reviews_path(city) %>
       </td>
     </tr>
   <% end %>
