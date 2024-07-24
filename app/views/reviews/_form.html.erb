@@ -21,13 +21,16 @@
   </div>
 
   <div class="field">
-    <%= form.label :ratings %>
-    <%= form.number_field :ratings %>
-  </div>
-
-  <div class="field">
-    <%= form.label :recommend_family_type %>
-    <%= form.text_field :recommend_family_type %>
+    <%= form.label :recommend_family_type, "Recommend Family Type" %>
+    <div>
+      <%= form.check_box :recommend_family_type, { multiple: true }, 'single', nil %> Single<br>
+      <%= form.check_box :recommend_family_type, { multiple: true }, 'married', nil %> Married<br>
+      <%= form.check_box :recommend_family_type, { multiple: true }, 'pet', nil %> Pet<br>
+      <%= form.check_box :recommend_family_type, { multiple: true }, 'with kid', nil %> With Kid<br>
+      <%= form.check_box :recommend_family_type, { multiple: true }, 'retired', nil %> Retired<br>
+      <%= form.check_box :recommend_family_type, { multiple: true }, 'remote worker', nil %> Remote Worker<br>
+      <%= form.check_box :recommend_family_type, { multiple: true }, 'commuter', nil %> Commuter<br>
+    </div>
   </div>
 
   <div class="field">

@@ -51,6 +51,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:pros, :cons, :ratings, :recommend_family_type, :zipcode)
+    params.require(:review).permit(:pros, :cons, :ratings, { recommend_family_type: [] }, :zipcode)
   end
 end
