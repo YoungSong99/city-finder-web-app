@@ -1,0 +1,3 @@
+<h1>Edit Review for <%= @review.city.city_name %></h1>
+<%= render 'form', city: @review.city, review: @review %>
+<%= link_to 'Back', city_review_path(@review.city, @review) %>
