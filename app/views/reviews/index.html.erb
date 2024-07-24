@@ -1,0 +1,182 @@
+<div>
+  <div>
+    <h1>
+      List of all reviews
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new review
+    </h2>
+
+    <form action="/insert_review" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="city_id_box">
+          City
+        </label>
+
+        <input type="text" id="city_id_box" name="query_city_id">
+      </div>
+
+      <div>
+        <label for="pros_box">
+          Pros
+        </label>
+
+        <textarea id="pros_box" name="query_pros" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="cons_box">
+          Cons
+        </label>
+
+        <textarea id="cons_box" name="query_cons" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="recommend_family_type_box">
+          Recommend family type
+        </label>
+
+        <textarea id="recommend_family_type_box" name="query_recommend_family_type" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="ratings_box">
+          Ratings
+        </label>
+
+        <input type="text" id="ratings_box" name="query_ratings">
+      </div>
+
+      <div>
+        <label for="zipcode_box">
+          Zipcode
+        </label>
+
+        <input type="text" id="zipcode_box" name="query_zipcode">
+      </div>
+
+      <button>
+        Create review
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          City
+        </th>
+
+        <th>
+          Pros
+        </th>
+
+        <th>
+          Cons
+        </th>
+
+        <th>
+          Recommend family type
+        </th>
+
+        <th>
+          Ratings
+        </th>
+
+        <th>
+          Zipcode
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_reviews.each do |a_review| %>
+      <tr>
+        <td>
+          <%= a_review.id %>
+        </td>
+
+        <td>
+          <%= a_review.user_id %>
+        </td>
+
+        <td>
+          <%= a_review.city_id %>
+        </td>
+
+        <td>
+          <%= a_review.pros %>
+        </td>
+
+        <td>
+          <%= a_review.cons %>
+        </td>
+
+        <td>
+          <%= a_review.recommend_family_type %>
+        </td>
+
+        <td>
+          <%= a_review.ratings %>
+        </td>
+
+        <td>
+          <%= a_review.zipcode %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_review.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_review.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/reviews/<%= a_review.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

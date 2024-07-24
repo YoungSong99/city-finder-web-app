@@ -16,6 +16,7 @@ class City < ApplicationRecord
   has_many  :appreciation_values, class_name: "AppreciationValue", foreign_key: "city_id", dependent: :destroy
   has_many  :school_grades, class_name: "SchoolGrade", foreign_key: "city_id", dependent: :destroy
 
+
   # Ransack configuration
   def self.ransackable_associations(auth_object = nil)
     ["appreciation_values", "crime_rates", "school_grades"]
