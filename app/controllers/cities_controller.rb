@@ -8,13 +8,7 @@ class CitiesController < ApplicationController
   end
 
   def show
-    the_id = params.fetch("path_id")
-
-    matching_cities = City.where({ :id => the_id })
-
-    @the_city = matching_cities.at(0)
-
-    render({ :template => "cities/show" })
+    @the_city =  City.find(params[:id])
   end
 
   def create
