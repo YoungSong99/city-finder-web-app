@@ -8,6 +8,9 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
+    <%= f.input :username,
+                required: true,
+                input_html: { autocomplete: "username" }%>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -15,6 +18,16 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+    <%= f.label :user_family_type, "user_family_type" %>
+    <div>
+      <%= f.check_box :user_family_type, { multiple: true }, 'single', nil %> Single<br>
+      <%= f.check_box :user_family_type, { multiple: true }, 'married', nil %> Married<br>
+      <%= f.check_box :user_family_type, { multiple: true }, 'pet', nil %> Pet<br>
+      <%= f.check_box :user_family_type, { multiple: true }, 'with kid', nil %> With Kid<br>
+      <%= f.check_box :user_family_type, { multiple: true }, 'retired', nil %> Retired<br>
+      <%= f.check_box :user_family_type, { multiple: true }, 'remote worker', nil %> Remote Worker<br>
+      <%= f.check_box :user_family_type, { multiple: true }, 'commuter', nil %> Commuter<br>
+    </div>
   </div>
 
   <div class="form-actions">
