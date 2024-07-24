@@ -6,20 +6,71 @@
     <%= form.submit 'Search City'%>
   </div>
 <% end %>
+
+<div class="priority_search">
+  <form action="/dashboard" method="post">
+    <label for="priority_1">1st Priority
+      <select name="order[]" id="priority_1">
+        <option value="crime_rates.crime_index">Crime Index</option>
+        <option value="violent_crime_rate">Violent Crime Rate</option>
+        <option value="property_crime_rate">Property Crime Rate</option>
+        <option value="school_grades.score_compared_to_il">School Score Compared to IL</option>
+        <option value="school_grades.score_compared_to_us">School Score Compared to US</option>
+        <option value="appreciation_values.latest_quarter">Latest Quarter Appreciation</option>
+        <option value="appreciation_values.last_12months">Last 12 Months Appreciation</option>
+        <option value="appreciation_values.last_2years">Last 2 Years Appreciation</option>
+        <option value="appreciation_values.last_5years">Last 5 Years Appreciation</option>
+        <option value="appreciation_values.since_2000">Since 2000 Appreciation</option>
+      </select>
+    </label>
+    <label for="priority_2">2nd Priority
+      <select name="order[]" id="priority_2">
+        <option value="crime_rates.crime_index">Crime Index</option>
+        <option value="violent_crime_rate">Violent Crime Rate</option>
+        <option value="property_crime_rate">Property Crime Rate</option>
+        <option value="school_grades.score_compared_to_il">School Score Compared to IL</option>
+        <option value="school_grades.score_compared_to_us">School Score Compared to US</option>
+        <option value="appreciation_values.latest_quarter">Latest Quarter Appreciation</option>
+        <option value="appreciation_values.last_12months">Last 12 Months Appreciation</option>
+        <option value="appreciation_values.last_2years">Last 2 Years Appreciation</option>
+        <option value="appreciation_values.last_5years">Last 5 Years Appreciation</option>
+        <option value="appreciation_values.since_2000">Since 2000 Appreciation</option>
+      </select>
+    </label>
+    <label for="priority_3">3rd Priority
+      <select name="order[]" id="priority_3">
+        <option value="crime_rates.crime_index">Crime Index</option>
+        <option value="violent_crime_rate">Violent Crime Rate</option>
+        <option value="property_crime_rate">Property Crime Rate</option>
+        <option value="school_grades.score_compared_to_il">School Score Compared to IL</option>
+        <option value="school_grades.score_compared_to_us">School Score Compared to US</option>
+        <option value="appreciation_values.latest_quarter">Latest Quarter Appreciation</option>
+        <option value="appreciation_values.last_12months">Last 12 Months Appreciation</option>
+        <option value="appreciation_values.last_2years">Last 2 Years Appreciation</option>
+        <option value="appreciation_values.last_5years">Last 5 Years Appreciation</option>
+        <option value="appreciation_values.since_2000">Since 2000 Appreciation</option>
+      </select>
+    </label>
+    <button type="submit">Sort</button>
+  </form>
+</div>
+
+
+
 <table>
   <thead>
   <tr>
-    <th><%= link_to "City Name", :sort => "city_name" %></th>
-    <th><%= link_to "Crime Index", :sort => "crime_index" %></th>
-    <th><%= link_to "Violent Crime Rate", :sort => "violent_crime_rate" %></th>
-    <th><%= link_to "Property Crime Rate", :sort => "property_crime_rate" %></th>
-    <th><%= link_to "School Score Compared to IL", :sort => "score_compared_to_il" %></th>
-    <th><%= link_to "School Score Compared to US", :sort => "score_compared_to_us" %></th>
-    <th><%= link_to "Latest Quarter Appreciation", :sort => "latest_quarter" %></th>
-    <th><%= link_to "Last 12 Months Appreciation", :sort => "last_12months" %></th>
-    <th><%= link_to "Last 2 Years Appreciation", :sort => "last_2years" %></th>
-    <th><%= link_to "Last 5 Years Appreciation", :sort => "last_5years" %></th>
-    <th><%= link_to "Since 2000 Appreciation", :sort => "since_2000" %></th>
+    <th><%= sort_link(@q, :city_name, "City") %></th>
+    <th><%= sort_link(@q, :crime_index, "Crime Index") %></th>
+    <th><%= sort_link(@q, :violent_crime_rate, "Violent Crime Rate") %></th>
+    <th><%= sort_link(@q, :property_crime_rate, "Property Crime Rate") %></th>
+    <th><%= sort_link(@q, :score_compared_to_il, "School Score Compared to IL") %></th>
+    <th><%= sort_link(@q, :score_compared_to_us, "School Score Compared to US") %></th>
+    <th><%= sort_link(@q, :latest_quarter, "Latest Quarter Appreciation") %></th>
+    <th><%= sort_link(@q, :last_12months, "Last 12 Months Appreciation") %></th>
+    <th><%= sort_link(@q, :last_2years, "Last 2 Years Appreciation") %></th>
+    <th><%= sort_link(@q, :last_5years, "Last 5 Years Appreciation") %></th>
+    <th><%= sort_link(@q, :since_2000, "Since 2000 Appreciation") %></th>
   </tr>
   </thead>
   <tbody>
