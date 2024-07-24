@@ -61,17 +61,16 @@
   <thead>
   <tr>
     <th><%= sort_link(@q, :city_name, "City") %></th>
-    <th><%= sort_link(@q, :crime_index, "Crime Index") %></th>
-    <th><%= sort_link(@q, :violent_crime_rate, "Violent Crime Rate") %></th>
-    <th><%= sort_link(@q, :property_crime_rate, "Property Crime Rate") %></th>
-    <th><%= sort_link(@q, :score_compared_to_il, "School Score Compared to IL") %></th>
-    <th><%= sort_link(@q, :score_compared_to_us, "School Score Compared to US") %></th>
-    <th><%= sort_link(@q, :latest_quarter, "Latest Quarter Appreciation") %></th>
-    <th><%= sort_link(@q, :last_12months, "Last 12 Months Appreciation") %></th>
-    <th><%= sort_link(@q, :last_2years, "Last 2 Years Appreciation") %></th>
-    <th><%= sort_link(@q, :last_5years, "Last 5 Years Appreciation") %></th>
-    <th><%= sort_link(@q, :since_2000, "Since 2000 Appreciation") %></th>
-    <th>Ratings</th>
+    <th><%= sort_link(@q, 'crime_rates_crime_index', "Crime Index") %></th>
+    <th><%= sort_link(@q, 'crime_rates_violent_crime_rate', "Violent Crime Rate") %></th>
+    <th><%= sort_link(@q, 'crime_rates_property_crime_rate', "Property Crime Rate") %></th>
+    <th><%= sort_link(@q, 'school_grades_score_compared_to_il', "School Score(IL)") %></th>
+    <th><%= sort_link(@q, 'school_grades_score_compared_to_us', "School Score(US)") %></th>
+    <th><%= sort_link(@q, 'appreciation_values_latest_quarter', "Latest Quarter Appreciation") %></th>
+    <th><%= sort_link(@q, 'appreciation_values_last_12months', "Last 12 Months Appreciation") %></th>
+    <th><%= sort_link(@q, 'appreciation_values_last_2years', "Last 2 Years Appreciation") %></th>
+    <th><%= sort_link(@q, 'appreciation_values_last_5years', "Last 5 Years Appreciation") %></th>
+    <th><%= sort_link(@q, 'appreciation_values__since_2000', "Since 2000 Appreciation") %></th>
     <th>Reviews</th>
   </tr>
   </thead>

@@ -12,4 +12,8 @@
 #
 class CrimeRate < ApplicationRecord
   belongs_to :city, required: true, class_name: "City", foreign_key: "city_id"
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["crime_index", "property_crime_rate", "violent_crime_rate"]
+  end
 end
