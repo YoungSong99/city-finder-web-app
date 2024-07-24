@@ -1,0 +1,71 @@
+<h1>Dashboard</h1>
+<%= search_form_for @q, url:dashboard_path do |form| %>
+  <div class="form-group">
+    <%= form.label :search_by_city_name %>
+    <%= form.text_field :city_name_cont %>
+    <%= form.submit 'Search City'%>
+  </div>
+<% end %>
+<table>
+  <thead>
+  <tr>
+    <th><%= link_to "City Name", :sort => "city_name" %></th>
+    <th><%= link_to "Crime Index", :sort => "crime_index" %></th>
+    <th><%= link_to "Violent Crime Rate", :sort => "violent_crime_rate" %></th>
+    <th><%= link_to "Property Crime Rate", :sort => "property_crime_rate" %></th>
+    <th><%= link_to "School Score Compared to IL", :sort => "score_compared_to_il" %></th>
+    <th><%= link_to "School Score Compared to US", :sort => "score_compared_to_us" %></th>
+    <th><%= link_to "Latest Quarter Appreciation", :sort => "latest_quarter" %></th>
+    <th><%= link_to "Last 12 Months Appreciation", :sort => "last_12months" %></th>
+    <th><%= link_to "Last 2 Years Appreciation", :sort => "last_2years" %></th>
+    <th><%= link_to "Last 5 Years Appreciation", :sort => "last_5years" %></th>
+    <th><%= link_to "Since 2000 Appreciation", :sort => "since_2000" %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @cities.each do |city| %>
+    <tr>
+      <td><%= city.city_name %></td>
+
+      <% if city.crime_rates.any? %>
+        <% city.crime_rates.each do |crime| %>
+          <td><%= crime.crime_index %></td>
+          <td><%= crime.violent_crime_rate %></td>
+          <td><%= crime.property_crime_rate %></td>
+        <% end %>
+      <% else %>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      <% end %>
+
+      <% if city.school_grades.any? %>
+        <% city.school_grades.each do |school| %>
+          <td><%= school.score_compared_to_il %></td>
+          <td><%= school.score_compared_to_us %></td>
+        <% end %>
+      <% else %>
+        <td>-</td>
+        <td>-</td>
+      <% end %>
+
+      <% if city.appreciation_values.any? %>
+        <% city.appreciation_values.each do |value| %>
+          <td><%= value.latest_quarter %></td>
+          <td><%= value.last_12months %></td>
+          <td><%= value.last_2years %></td>
+          <td><%= value.last_5years %></td>
+          <td><%= value.since_2000 %></td>
+        <% end %>
+      <% else %>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      <% end %>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>
