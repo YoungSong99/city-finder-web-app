@@ -11,4 +11,8 @@
 #
 class SchoolGrade < ApplicationRecord
   belongs_to :city, required: true, class_name: "City", foreign_key: "city_id"
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["score_compared_to_il", "score_compared_to_us"]
+  end
 end

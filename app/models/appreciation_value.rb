@@ -15,4 +15,8 @@
 #
 class AppreciationValue < ApplicationRecord
   belongs_to :city, required: true, class_name: "City", foreign_key: "city_id"
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["last_10years", "last_12months", "last_2years","last_5years", "latest_quarter", "since_2000"]
+  end
 end
