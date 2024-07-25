@@ -3,10 +3,6 @@
 ## Overview
 **CityFinder** is a tool designed to make the home-finding process easier. It allows users to compare cities based on current property prices, crime rates, school quality, and property value appreciation rates, enabling them to make informed decisions.
 
-## Previews:
-![preview.png](preview.png)
-
-
 ## Usage Instructions:
 
 **Step 1: Fetch Data for Desired Cities**
@@ -40,6 +36,10 @@ rails db:migrate
 ```bash
 rails server
 ```
+
+## Previews:
+![preview.png](preview.png)
+
 
 ## Feedback
 Thank you for using CityFinder! We hope it helps you find the perfect city to call home.
