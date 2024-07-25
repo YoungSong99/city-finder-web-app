@@ -1,37 +1,46 @@
-# CityFinder Functional Specification
+# CityFinder
 
-**Project Name**: CityFinder
-
-**1-liner:** A comprehensive city ranking and comparison tool to help users find the best cities based on their preferences.
-
-**Pain Point:** Users need an efficient way to evaluate and compare cities based on various factors such as school ranking, crime rate, and apprciation rate to make informed relocation decisions.
+## Overview
+**CityFinder** is a tool designed to make the home-finding process easier. It allows users to compare cities based on current property prices, crime rates, school quality, and property value appreciation rates, enabling them to make informed decisions.
 
 ## Previews:
-Curious about why CityFinder is needed, how it works, and what it can bring to the table?
-Please check out the presentation [here](https://www.figma.com/deck/SNeSCG6YlucojnHRUjtgdq/CityFinder-Presentation?node-id=54-348&viewport=126%2C-42%2C0.42&t=E6SNfdt6LnWBOvW6-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1).
+![preview.png](preview.png)
 
-![search](https://linked-in-img-site-dmlt.vercel.app/static/Search.jpeg)
-![result](https://linked-in-img-site-dmlt.vercel.app/static/Result.jpeg)
 
-## User Stories:
+## Usage Instructions:
 
-**1. Search for Cities**
-Story: As a user, I want to search for cities based on specific criteria such as school ranking, crime rate, and house price so that I can find a city that meets my needs.
-Impact: High
-Effort: Medium
+**Step 1: Fetch Data for Desired Cities**
 
-**2. User Reviews and Ratings**
-Story: As a user, I want to read and leave reviews and ratings for cities so that I can benefit from the experiences of other users.
-Impact: Medium
-Effort: Medium
+Use my web scraping code(https://github.com/YoungSong99/city-finder-web-scraping) which is using Python's BeautifulSoup to scrape information from NeighborhoodScout.
+Open the Excel file in this repository and enter the names of the cities you want to fetch data for.
 
-**3. Interactive Map View**
-Story: As a user, I want to view cities on an interactive map so that I can get a better understanding of their locations and surroundings.
-Impact: High
-Effort: High
+**Step 2: ETL City Data**
+Load the data obtained in Step 1 to the server using Pentaho Data Integration.
+Run the transformations file from https://github.com/YoungSong99/city-finder-data-ETL
 
-## Domain Model and Associations:
-![domain](https://linked-in-img-site-dmlt.vercel.app/static/DataModel.jpeg)
 
-## Live Development Log:
-https://quaint-slip-844.notion.site/CityFinder-Development-Log-b18d1576c2c144b08a8fb440ef586362
+**Step 3: Connect Web App and Database**
+Connect this web app to the database to enjoy the data on an interactive map.
+1) Clone the repository:
+```bash
+git clone https://github.com/YoungSong99/city-finder-web-app.git
+cd cityfinder
+```
+2) Install dependencies:
+
+```bash
+bundle install
+```
+3) Set up the database:
+```bash
+rails db:create
+rails db:migrate
+```
+4) Run the application:
+```bash
+rails server
+```
+
+## Feedback
+Thank you for using CityFinder! We hope it helps you find the perfect city to call home.
+If you have any questions or suggestions for improvement, feel free to contact me on [LinkedIn](https://www.linkedin.com/in/youngsong-us/)
