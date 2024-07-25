@@ -7,10 +7,12 @@
 ## Usage Instructions
 
 **Step 1: Fetch Data for Desired Cities**
-Use the web scraping code available [here]((https://github.com/YoungSong99/city-finder-web-scraping)), which utilizes Python's BeautifulSoup to scrape information from NeighborhoodScout.
+
+Use the web scraping code available [here](https://github.com/YoungSong99/city-finder-web-scraping), which utilizes Python's BeautifulSoup to scrape information from NeighborhoodScout.
 Open the Excel file in the repository and enter the names of the cities you want to fetch data for.
 
 **Step 2: ETL City Data**
+
 Load the data obtained in Step 1 to the server using Pentaho Data Integration.
 Run the transformation files available [here]( https://github.com/YoungSong99/city-finder-data-ETL).
 
