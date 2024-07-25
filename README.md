@@ -3,20 +3,18 @@
 ## Overview
 **CityFinder** is a tool designed to make the home-finding process easier. It allows users to compare cities based on current property prices, crime rates, school quality, and property value appreciation rates, enabling them to make informed decisions.
 
-## Usage Instructions:
+
+## Usage Instructions
 
 **Step 1: Fetch Data for Desired Cities**
-
-Use my web scraping code(https://github.com/YoungSong99/city-finder-web-scraping) which is using Python's BeautifulSoup to scrape information from NeighborhoodScout.
-Open the Excel file in this repository and enter the names of the cities you want to fetch data for.
+Use the web scraping code available [here]((https://github.com/YoungSong99/city-finder-web-scraping)), which utilizes Python's BeautifulSoup to scrape information from NeighborhoodScout.
+Open the Excel file in the repository and enter the names of the cities you want to fetch data for.
 
 **Step 2: ETL City Data**
 Load the data obtained in Step 1 to the server using Pentaho Data Integration.
-Run the transformations file from https://github.com/YoungSong99/city-finder-data-ETL
-
+Run the transformation files available [here]( https://github.com/YoungSong99/city-finder-data-ETL).
 
 **Step 3: Connect Web App and Database**
-Connect this web app to the database to enjoy the data on an interactive map.
 1) Clone the repository:
 ```bash
 git clone https://github.com/YoungSong99/city-finder-web-app.git
@@ -37,7 +35,19 @@ rails db:migrate
 rails server
 ```
 
-## Previews:
+## Main Features
+
+1. **City Information**
+   - **Simple Search by City Name**: Users can search for data by entering a city name.
+   - **Sequential Search by User Preferences**: Users can search for cities based on their preferences.
+   - **Download City Data**: Users can select cities they want to compare and download the data as an Excel file.
+
+2. **Review Feature**
+   - **City Reviews**: Users can read reviews about the pros and cons of living in a city and see the recommended family type for that city.
+   - **Write Reviews**: Users can write reviews about cities they have lived in.
+
+
+## Previews
 ![preview.png](preview.png)
 
 
