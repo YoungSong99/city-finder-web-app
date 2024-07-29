@@ -17,10 +17,16 @@ class City < ApplicationRecord
   has_many :school_grades, class_name: "SchoolGrade", foreign_key: "city_id", dependent: :destroy
 
   def average_rating
+    unless self.reviews.any?
+      0
+    end
     reviews.average(:ratings).to_f.round(2)
   end
 
   def reviews_count
+    unless self.reviews.any?
+      0
+    end
     reviews.count
   end
 
@@ -30,6 +36,6 @@ class City < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["city_name"] # Add other attributes you want to be searchable
+    ["city_name", "self.average_rating", "reviews_count"]
   end
 end

@@ -71,6 +71,7 @@
     <th><%= sort_link(@q, 'appreciation_values_last_2years', "Last 2 Years Appreciation") %></th>
     <th><%= sort_link(@q, 'appreciation_values_last_5years', "Last 5 Years Appreciation") %></th>
     <th><%= sort_link(@q, 'appreciation_values__since_2000', "Since 2000 Appreciation") %></th>
+    <th><%= sort_link(@q, 'average_rating', "Rating") %></th>
     <th>Reviews</th>
   </tr>
   </thead>
@@ -117,11 +118,7 @@
         <td>-</td>
       <% end %>
       <td>
-        <% if city.reviews.any? %>
-          <%= city.average_rating&.round(2) %> (<%= city.reviews_count %>)
-        <% else %>
-          No ratings
-        <% end %>
+        <%= city.average_rating&.round(2) %> (<%= city.reviews_count %>)
       </td>
       <td>
         <%= link_to 'View Reviews', city_reviews_path(city) %>
