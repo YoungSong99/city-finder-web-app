@@ -25,6 +25,7 @@
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -125,6 +126,7 @@
     <orderEntry type="library" scope="PROVIDED" name="puma (v6.4.2, asdf: 3.2.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="racc (v1.8.0, asdf: 3.2.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v3.0.11, asdf: 3.2.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack-cors (v2.0.2, asdf: 3.2.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-session (v2.0.0, asdf: 3.2.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-test (v2.1.0, asdf: 3.2.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rackup (v2.1.0, asdf: 3.2.1) [gem]" level="application" />
