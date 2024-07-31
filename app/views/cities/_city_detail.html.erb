@@ -1,0 +1,54 @@
+<div class="city">
+  <div class="row">
+    <h6>City name</h6>
+    <h3>
+      <span>🇺🇸</span> <%= city.city_name %>
+    </h3>
+  </div>
+
+  <div class="row">
+    <h6>School Grading</h6>
+    <% if city.school_grades.any? %>
+      <p><%= city.school_grades.first.score_compared_to_il %> in
+        Illinois, <%= city.school_grades.first.score_compared_to_us %> in the US</p>
+    <% else %>
+      <p>There is No school data yet</p>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <h6>Crime Rate</h6>
+    <% if city.crime_rates.any? %>
+      <p><%= city.crime_rates.first.crime_index %></p>
+      <p>(Violent Crime: <%= city.crime_rates.first.violent_crime_rate %>, Property
+        Crime: <%= city.crime_rates.first.property_crime_rate %>)</p>
+    <% else %>
+      <p>There is No Crime data yet</p>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <h6>Appreciation Value</h6>
+    <% if city.appreciation_values.any? %>
+      <p>Over the year <%= city.appreciation_values.first.last_12months %>, Since 2000 average <%= city.appreciation_values.first.since_2000 %></p>
+    <% else %>
+      <p>There is No Appreciation data yet</p>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <h6>Residence Ratings</h6>
+    <% if city.appreciation_values.any? %>
+      <p>Over the year <%= city.appreciation_values.first.last_12months %>, Since 2000 average <%= city.appreciation_values.first.since_2000 %></p>
+    <% else %>
+      <p>There is No Appreciation data yet</p>
+    <% end %>
+  </div>
+
+  <div>
+    <div class="buttons">
+      <%=  link_to 'Add Review', review_path,class: 'btn primary' %>
+      <%= link_to 'Back', root_path, class: 'btn back' %>
+    </div>
+  </div>
+</div>
