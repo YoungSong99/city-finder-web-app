@@ -28,7 +28,7 @@
         </div>
 
         <div id="coffee-options-<%= index %>" class="grid" style="display: none;">
-          <% ["Starbucks", "Dunkin'", "Peet's Coffee", "McCafé", "Caribou Coffee", "Intelligentsia Coffee", "Philz Coffee", "Big Shoulders Coffee", "Foxtrot", "Tim Hortons"].each do |coffee| %>
+          <% ["Starbucks", "Dunkin'", "McCafé", "Philz Coffee", "Big Shoulders Coffee", "Foxtrot", "Tim Hortons"].each do |coffee| %>
             <div>
               <%= form.check_box :coffee, { name: "coffee_#{index}[]" }, coffee, nil %>
               <%= form.label coffee, coffee %>

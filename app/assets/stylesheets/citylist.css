@@ -47,7 +47,14 @@
     font-size: 1.7rem;
     font-weight: 600;
     margin-right: auto;
+    text-decoration: none;
 }
+
+.name a{
+    color: inherit;
+    text-decoration: none;
+}
+
 
 .date {
     font-size: 1.5rem;
