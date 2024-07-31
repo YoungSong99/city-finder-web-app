@@ -2,14 +2,14 @@
   <div class="row">
     <h6>City name</h6>
     <h3>
-      <%= @the_city.city_name %>
+      <span>🇺🇸</span> <%= @the_city.city_name %>
     </h3>
   </div>
 
   <div class="row">
     <h6>School Grading</h6>
     <% if @the_city.school_grades.any? %>
-      <p><span class="emoji">🏫</span><%= @the_city.school_grades.first.score_compared_to_il %> in
+      <p><%= @the_city.school_grades.first.score_compared_to_il %> in
         Illinois, <%= @the_city.school_grades.first.score_compared_to_us %> in the US</p>
     <% else %>
       <p>There is No school data yet</p>
@@ -19,7 +19,7 @@
   <div class="row">
     <h6>Crime Rate</h6>
     <% if @the_city.crime_rates.any? %>
-      <p><span class="emoji">👮‍</span><%= @the_city.crime_rates.first.crime_index %> / 100</p>
+      <p><%= @the_city.crime_rates.first.crime_index %></p>
       <p>(Violent Crime: <%= @the_city.crime_rates.first.violent_crime_rate %>, Property
         Crime: <%= @the_city.crime_rates.first.property_crime_rate %>)</p>
     <% else %>
@@ -30,70 +30,24 @@
   <div class="row">
     <h6>Appreciation Value</h6>
     <% if @the_city.appreciation_values.any? %>
-      <p>
-        <span class="emoji">📈</span>
-        In the past year, the appreciation value is <%= @the_city.appreciation_values.first.last_12months %>.
-        Since 2000, the average appreciation value is <%= @the_city.appreciation_values.first.since_2000 %>.
-      </p>
+      <p>Over the year <%= @the_city.appreciation_values.first.last_12months %>, Since 2000 average <%= @the_city.appreciation_values.first.since_2000 %></p>
     <% else %>
-      <p>No appreciation values available for this city.</p>
+      <p>There is No Appreciation data yet</p>
     <% end %>
   </div>
 
   <div class="row">
-    <h6>convenience</h6>
-    <div class="grid">
-      <p><span>🛒</span> 3 Grocery Stores</p>
-      <p><span>☕️</span> 2 Coffee Shops</p>
-      <p><span>🏋</span> 1 Gym</p>
-      <p><span>🚊</span> <%= @the_city.city_name %> station</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <h6>community</h6>
-    <p class="tag-color">
-      <span class="tag-label">Spanish</span>
-      <span class="tag-label">Korean️️</span>
-      <span class="tag-label">Langs. of India</span>
-      <span class="tag-label">Slavic languages</span>
-    </p>
-  </div>
-
-  <div class="row">
     <h6>Residence Ratings</h6>
-    <div class="flex-div">
-      <div id="star-rating" class="rating-group"></div>
-      <p>
-        <% if @the_city.reviews_count > 0 %>
-          From (<%= @the_city.reviews_count %>) People
-        <% else %>
-          Be the First Reviewer!
-        <% end %>
-      </p>
-    </div>
-    <div>
-      <div class="buttons">
-        <%= link_to 'Add Review', new_city_review_path(@the_city), class: 'btn primary' %>
-        <%= link_to 'Back', root_path, class: 'btn back' %>
-      </div>
+    <% if @the_city.appreciation_values.any? %>
+      <p>Over the year <%= @the_city.appreciation_values.first.last_12months %>, Since 2000 average <%= @the_city.appreciation_values.first.since_2000 %></p>
+    <% else %>
+      <p>There is No Appreciation data yet</p>
+    <% end %>
+  </div>
+  <div>
+    <div class="buttons">
+      <%=  link_to 'Add Review', review_path,class: 'btn primary' %>
+      <%= link_to 'Back', root_path, class: 'btn back' %>
     </div>
   </div>
 </div>
-<script>
-    function renderStars(rating) {
-        const starContainer = document.getElementById('star-rating');
-        starContainer.innerHTML = '';
-
-        for (let i = 1; i <= 5; i++) {
-            if (i <= rating) {
-                starContainer.innerHTML += '<span class="fa fa-star checked star-icon"></span>';
-            } else {
-                starContainer.innerHTML += '<span class="fa fa-star star-icon"></span>';
-            }
-        }
-    }
-
-    const rating = <%= @the_city.average_rating %>; // Replace with the actual rating from your @the_city object
-    renderStars(rating);
-</script>

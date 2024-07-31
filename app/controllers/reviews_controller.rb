@@ -6,7 +6,6 @@ class ReviewsController < ApplicationController
     @reviews = @city.reviews
   end
 
-
   def show
   end
 
@@ -16,8 +15,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @city.reviews.new(review_params)
-    # temp
-    @review.user_id = 1
+    @review.user = current_user
 
     if @review.save
       redirect_to city_reviews_path(@city), notice: 'Review was successfully created.'

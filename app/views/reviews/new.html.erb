@@ -1,4 +1,3 @@
-<div class="app">
-  <%= render 'sidebar' %>
-  <%= render 'map' %>
-</div>
+<h1>New Review for <%= @city.city_name %></h1>
+<%= render 'form', city: @city, review: @review %>
+<%= link_to 'Back', city_reviews_path(@city) %>
