@@ -1,0 +1,24 @@
+<ul class="cityList">
+  <% @cities.each do |city| %>
+    <li class="cityItem">
+        <span class="emoji">🇺🇸</span>
+        <h3 class="name"><%= city.city_name %></h3>
+        <button class="deleteBtn" data-city-id="<%= city.id %>">&times;</button>
+    </li>
+  <% end %>
+</ul>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.deleteBtn').forEach(function (button) {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                const cityId = event.target.getAttribute('data-city-id');
+                handleDelete(cityId);
+            });
+        });
+    });
+
+    function handleDelete(cityId) {
+        console.log('Deleting city with id:', cityId);
+    }
+</script>

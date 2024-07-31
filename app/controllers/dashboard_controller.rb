@@ -1,31 +1,44 @@
 class DashboardController < ApplicationController
   def index
-    @q = City.includes(:crime_rates, :school_grades, :appreciation_values).ransack(params[:q])
-    @cities = @q.result
+    @q = City.ransack(params[:q])
+    @cities = @q.result.includes(:crime_rates, :school_grades, :appreciation_values)
+    @cities = @cities.page(params[:page]).per(10)
+  end
 
-    if params[:order].present?
-      valid_sort_columns = [
-        'crime_rates.crime_index',
-        'crime_rates.violent_crime_rate',
-        'crime_rates.property_crime_rate',
-        'school_grades.score_compared_to_il',
-        'school_grades.score_compared_to_us',
-        'appreciation_values.latest_quarter',
-        'appreciation_values.last_12months',
-        'appreciation_values.last_2years',
-        'appreciation_values.last_5years',
-        'appreciation_values.since_2000'
-      ]
-      order_params = params[:order].select { |param| valid_sort_columns.include?(param) }
-      order_clause = order_params.map { |param| "#{param} DESC" }.join(', ')
+  def search
+    priorities = params.values_at('priority-0', 'priority-1', 'priority-2')
 
+    @q = City.ransack(params[:q])
+    @cities = @q.result.includes(:crime_rates, :school_grades, :appreciation_values)
+
+    if priorities.any?
+      order_clause = build_order_clause(priorities)
       @cities = @cities.joins(:crime_rates, :school_grades, :appreciation_values)
-                       .group('cities.id, cities.city_name, cities.state, cities.longitude, cities.latitude, cities.created_at, cities.updated_at,
-                               crime_rates.id, crime_rates.city_id, crime_rates.crime_index, crime_rates.violent_crime_rate, crime_rates.property_crime_rate, crime_rates.created_at, crime_rates.updated_at,
-                               school_grades.id, school_grades.city_id, school_grades.score_compared_to_us, school_grades.score_compared_to_il, school_grades.created_at, school_grades.updated_at,
-                               appreciation_values.id, appreciation_values.latest_quarter, appreciation_values.last_12months, appreciation_values.last_2years, appreciation_values.last_5years, appreciation_values.last_10years, appreciation_values.since_2000, appreciation_values.city_id, appreciation_values.created_at, appreciation_values.updated_at')
-                       .having('COUNT(crime_rates.id) > 0 AND COUNT(school_grades.id) > 0 AND COUNT(appreciation_values.id) > 0')
                        .order(order_clause)
     end
+
+    @cities = @cities.limit(5)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  private
+
+  def build_order_clause(priorities)
+    priority_mapping = {
+      'School' => 'school_grades.score_compared_to_us DESC',
+      'Safety' => 'crime_rates.crime_index DESC',
+      'Appreciation' => 'appreciation_values.last_12months DESC',
+      # 'Metra' => 'metra_stations_count DESC',
+      # 'Grocery' => 'grocery_stores_count DESC',
+      # 'Coffee' => 'coffee_shops_count DESC',
+      # 'Community' => 'community_score DESC'
+    }
+
+    order_clause = priorities.map { |priority| priority_mapping[priority] }.compact.join(', ')
+    order_clause.presence || 'city_name ASC'
   end
 end

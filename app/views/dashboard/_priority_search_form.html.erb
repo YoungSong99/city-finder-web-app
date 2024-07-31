@@ -1,0 +1,73 @@
+<h1>Find Your Top 5 Cities in Illinois</h1>
+
+<div class="form-container">
+  <%= form_with url: search_cities_path, method: :get, local: false, class: "form" do |form| %>
+    <h1>What matters most to you?</h1>
+
+    <% 3.times do |index| %>
+      <div class="row">
+        <%= form.label :"priority-#{index}", get_label(index) %>
+        <%= form.select :"priority-#{index}", options_for_select([
+                                                                   ["Select a factor", ""],
+                                                                   ["School Rating", "School"],
+                                                                   ["Safety", "Safety"],
+                                                                   ["Appreciation Value", "Appreciation"],
+                                                                   ["Metra Station", "Metra"],
+                                                                   ["Grocery Store", "Grocery"],
+                                                                   ["Coffee shop", "Coffee"],
+                                                                   ["Community", "Community"]
+                                                                 ]), {}, { class: "select", onchange: "handlePriorityChange(event, #{index})" } %>
+
+        <div id="grocery-options-<%= index %>" class="grid" style="display: none;">
+          <% ["Jewel-Osco", "Mariano's", "Whole Foods Market", "Trader Joe's", "ALDI", "Meijer", "Walmart", "Target", "H-mart"].each do |grocery| %>
+            <div>
+              <%= form.check_box :grocery, { name: "grocery_#{index}[]" }, grocery, nil %>
+              <%= form.label grocery, grocery %>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="coffee-options-<%= index %>" class="grid" style="display: none;">
+          <% ["Starbucks", "Dunkin'", "Peet's Coffee", "McCafé", "Caribou Coffee", "Intelligentsia Coffee", "Philz Coffee", "Big Shoulders Coffee", "Foxtrot", "Tim Hortons"].each do |coffee| %>
+            <div>
+              <%= form.check_box :coffee, { name: "coffee_#{index}[]" }, coffee, nil %>
+              <%= form.label coffee, coffee %>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="community-options-<%= index %>" class="row" style="display: none;">
+          <%= form.label :"community-language-#{index}", "Select a language" %>
+          <%= form.select :"community-language-#{index}", options_for_select([
+                                                                               ["Select a language", ""],
+                                                                               "Spanish", "Langs. of India", "Polish", "Italian", "Urdu", "Arabic", "Other Indo-European", "German/Yiddish", "French", "Tagalog", "Slavic languages", "Greek", "Other Asian languages", "Chinese", "Korean", "Vietnamese", "Portuguese", "African languages", "Native American languages", "Pacific Island languages", "Russian", "Serbo-Croatian"
+                                                                             ]), {}, { class: "select" } %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="buttons">
+      <%= form.submit 'Search', class: 'btn primary' %>
+      <%= link_to 'Back', root_path, class: 'btn back' %>
+    </div>
+  <% end %>
+</div>
+
+
+<script>
+    function handlePriorityChange(event, index) {
+        const value = event.target.value;
+        console.log(`Handling change for priority-${index}: ${value}`);
+        document.querySelector(`#grocery-options-${index}`).style.display = value === 'Grocery' ? 'block' : 'none';
+        document.querySelector(`#coffee-options-${index}`).style.display = value === 'Coffee' ? 'block' : 'none';
+        document.querySelector(`#community-options-${index}`).style.display = value === 'Community' ? 'block' : 'none';
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        console.log("DOM fully loaded and parsed");
+        document.querySelectorAll(".select").forEach((select, index) => {
+            console.log(`Setting up handler for select-${index}`);
+            handlePriorityChange({ target: select }, index);
+        });
+    });
+</script>
