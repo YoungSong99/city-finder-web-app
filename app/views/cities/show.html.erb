@@ -1,116 +1,57 @@
-<div>
-  <div>
-    <h1>
-      City #<%= @the_city.id %> details
-    </h1>
-
-    <div>
-      <div>
-        <a href="/cities">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_city/<%= @the_city.id %>">
-          Delete city
-        </a>
-      </div>
-    </div>
-
-    <dl>
-      <dt>
-        City name
-      </dt>
-      <dd>
-        <%= @the_city.city_name %>
-      </dd>
-
-      <dt>
-        State
-      </dt>
-      <dd>
-        <%= @the_city.state %>
-      </dd>
-
-      <dt>
-        Longitude
-      </dt>
-      <dd>
-        <%= @the_city.longitude %>
-      </dd>
-
-      <dt>
-        Latitude
-      </dt>
-      <dd>
-        <%= @the_city.latitude %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_city.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_city.updated_at) %> ago
-      </dd>
-    </dl>
-  </div>
+<div class="app">
+  <%= render 'sidebar' %>
+  <%= render 'shared/map' %>
 </div>
 
-<hr>
+<script>
+    // Function to parse city_id from URL
+    function getCityIdFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('id');
+    }
 
+    // Function to fetch city data from the server
+    async function fetchCityData(cityId) {
+        const response = await fetch(`/cities/${cityId}/location`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    }
 
-<div>
-  <div>
-    <h2>
-      Edit city
-    </h2>
+    // Function to initialize the map
+    async function initMap() {
+        const cityId = getCityIdFromUrl();
+        if (!cityId) {
+            console.error('City ID not found in the URL');
+            return;
+        }
 
-    <form action="/modify_city/<%= @the_city.id %>"  method="post" >
-      <div>
-        <label for="city_name_box">
-          City name
-        </label>
+        try {
+            const cityData = await fetchCityData(cityId);
+            const city = {
+                lat: parseFloat(cityData.latitude),
+                lng: parseFloat(cityData.longitude)
+            };
 
-        <input type="text" id="city_name_box" name="query_city_name" value="<%= @the_city.city_name %>">
-      </div>
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 10,
+                center: city
+            });
 
-      <div>
-        <label for="state_box">
-          State
-        </label>
+            // Use AdvancedMarkerElement instead of Marker
+            const markerView = new google.maps.marker.AdvancedMarkerView({
+                content: document.createElement('div')
+            });
+            const marker = new google.maps.marker.AdvancedMarkerElement({
+                position: city,
+                map: map,
+                markerView: markerView
+            });
+        } catch (error) {
+            console.error('Error fetching city data: ', error);
+        }
+    }
 
-        <input type="text" id="state_box" name="query_state" value="<%= @the_city.state %>">
-      </div>
-
-      <div>
-        <label for="longitude_box">
-          Longitude
-        </label>
-
-        <input type="text" id="longitude_box" name="query_longitude" value="<%= @the_city.longitude %>">
-      </div>
-
-      <div>
-        <label for="latitude_box">
-          Latitude
-        </label>
-
-        <input type="text" id="latitude_box" name="query_latitude" value="<%= @the_city.latitude %>">
-      </div>
-
-      <button>
-        Update city
-      </button>
-    </form>
-  </div>
-</div>
-
-<hr>
+    window.initMap = initMap;
+</script>
