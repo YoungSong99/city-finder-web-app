@@ -8,19 +8,22 @@
 
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key="/>
 </head>
 <!--<nav>-->
-  <%# if user_signed_in? %>
-    <%#= link_to 'Edit Profile', edit_user_registration_path %>
-    <%#= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-  <%# else %>
-    <%#= link_to 'Sign In', new_user_session_path %>
-    <%#= link_to 'Sign Up', new_user_registration_path %>
-  <%# end %>
+<%# if user_signed_in? %>
+<%#= link_to 'Edit Profile', edit_user_registration_path %>
+<%#= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+<%# else %>
+<%#= link_to 'Sign In', new_user_session_path %>
+<%#= link_to 'Sign Up', new_user_registration_path %>
+<%# end %>
 <!--</nav>-->
 <!--<p class="notice"><%#= notice %></p>-->
 <!--<p class="alert"><%#= alert %></p>-->
 <body>
+
 <%= yield %>
 </body>
 </html>
