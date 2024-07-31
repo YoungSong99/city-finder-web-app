@@ -3,7 +3,7 @@
   <div class="nav">
     <ul>
       <li>
-        <%= link_to 'Search by Priority', search_cities_url %>
+        <%= link_to 'Search by Priority', search_cities_url, class: ('active' if current_page?(search_cities_url)) %>
       </li>
       <li>
         <%= link_to 'City Comparison', dashboard_path %>

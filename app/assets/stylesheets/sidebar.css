@@ -38,10 +38,9 @@
 }
 
 /* CSS Modules feature */
-.nav a:global(.active) {
+.active {
     background-color: var(--color-dark--0);
 }
-
 
 
 .footer {
@@ -52,7 +51,6 @@
     font-size: 1.2rem;
     color: var(--color-light--1);
 }
-
 
 .form {
     background-color: var(--color-dark--2);
