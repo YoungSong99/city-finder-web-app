@@ -10,7 +10,7 @@ class CitiesController < ApplicationController
   def show
     @the_city =  City.find(params[:id])
     respond_to do |format|
-      format.html { render partial: 'city_detail', locals: { city: @the_city } }
+      format.html
       format.js
     end
   end
