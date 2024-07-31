@@ -1,5 +1,5 @@
 <h1>Dashboard</h1>
-<%= search_form_for @q, url: dashboard_path do |form| %>
+<%= search_form_for @q, url: dashboard_path, method: :get do |form| %>
   <div class="form-group">
     <%= form.label :search_by_city_name %>
     <%= form.text_field :city_name_cont %>
@@ -8,54 +8,44 @@
 <% end %>
 
 <div class="priority_search">
-  <form action="/dashboard" method="post">
+  <%= form_with url: dashboard_path, method: :get do %>
     <label for="priority_1">1st Priority
-      <select name="order[]" id="priority_1">
-        <option value="crime_rates.crime_index">Crime Index</option>
-        <option value="violent_crime_rate">Violent Crime Rate</option>
-        <option value="property_crime_rate">Property Crime Rate</option>
-        <option value="school_grades.score_compared_to_il">School Score Compared to IL</option>
-        <option value="school_grades.score_compared_to_us">School Score Compared to US</option>
-        <option value="appreciation_values.latest_quarter">Latest Quarter Appreciation</option>
-        <option value="appreciation_values.last_12months">Last 12 Months Appreciation</option>
-        <option value="appreciation_values.last_2years">Last 2 Years Appreciation</option>
-        <option value="appreciation_values.last_5years">Last 5 Years Appreciation</option>
-        <option value="appreciation_values.since_2000">Since 2000 Appreciation</option>
-      </select>
+      <%= select_tag "order[]", options_for_select([
+                                                     ['Crime Index', 'crime_rates.crime_index'],
+                                                     ['School Score Compared to IL', 'school_grades.score_compared_to_il'],
+                                                     ['Latest Quarter Appreciation', 'appreciation_values.latest_quarter'],
+                                                     ['Last 12 Months Appreciation', 'appreciation_values.last_12months'],
+                                                     ['Last 2 Years Appreciation', 'appreciation_values.last_2years'],
+                                                     ['Last 5 Years Appreciation', 'appreciation_values.last_5years'],
+                                                     ['Since 2000 Appreciation', 'appreciation_values.since_2000']
+                                                   ]) %>
     </label>
     <label for="priority_2">2nd Priority
-      <select name="order[]" id="priority_2">
-        <option value="crime_rates.crime_index">Crime Index</option>
-        <option value="violent_crime_rate">Violent Crime Rate</option>
-        <option value="property_crime_rate">Property Crime Rate</option>
-        <option value="school_grades.score_compared_to_il">School Score Compared to IL</option>
-        <option value="school_grades.score_compared_to_us">School Score Compared to US</option>
-        <option value="appreciation_values.latest_quarter">Latest Quarter Appreciation</option>
-        <option value="appreciation_values.last_12months">Last 12 Months Appreciation</option>
-        <option value="appreciation_values.last_2years">Last 2 Years Appreciation</option>
-        <option value="appreciation_values.last_5years">Last 5 Years Appreciation</option>
-        <option value="appreciation_values.since_2000">Since 2000 Appreciation</option>
-      </select>
+      <%= select_tag "order[]", options_for_select([
+                                                     ['Crime Index', 'crime_rates.crime_index'],
+                                                     ['School Score Compared to IL', 'school_grades.score_compared_to_il'],
+                                                     ['Latest Quarter Appreciation', 'appreciation_values.latest_quarter'],
+                                                     ['Last 12 Months Appreciation', 'appreciation_values.last_12months'],
+                                                     ['Last 2 Years Appreciation', 'appreciation_values.last_2years'],
+                                                     ['Last 5 Years Appreciation', 'appreciation_values.last_5years'],
+                                                     ['Since 2000 Appreciation', 'appreciation_values.since_2000']
+                                                   ]) %>
     </label>
     <label for="priority_3">3rd Priority
-      <select name="order[]" id="priority_3">
-        <option value="crime_rates.crime_index">Crime Index</option>
-        <option value="violent_crime_rate">Violent Crime Rate</option>
-        <option value="property_crime_rate">Property Crime Rate</option>
-        <option value="school_grades.score_compared_to_il">School Score Compared to IL</option>
-        <option value="school_grades.score_compared_to_us">School Score Compared to US</option>
-        <option value="appreciation_values.latest_quarter">Latest Quarter Appreciation</option>
-        <option value="appreciation_values.last_12months">Last 12 Months Appreciation</option>
-        <option value="appreciation_values.last_2years">Last 2 Years Appreciation</option>
-        <option value="appreciation_values.last_5years">Last 5 Years Appreciation</option>
-        <option value="appreciation_values.since_2000">Since 2000 Appreciation</option>
-      </select>
+      <%= select_tag "order[]", options_for_select([
+                                                     ['Crime Index', 'crime_rates.crime_index'],
+                                                     ['School Score Compared to IL', 'school_grades.score_compared_to_il'],
+                                                     ['School Score Compared to US', 'school_grades.score_compared_to_us'],
+                                                     ['Latest Quarter Appreciation', 'appreciation_values.latest_quarter'],
+                                                     ['Last 12 Months Appreciation', 'appreciation_values.last_12months'],
+                                                     ['Last 2 Years Appreciation', 'appreciation_values.last_2years'],
+                                                     ['Last 5 Years Appreciation', 'appreciation_values.last_5years'],
+                                                     ['Since 2000 Appreciation', 'appreciation_values.since_2000']
+                                                   ]) %>
     </label>
-    <button type="submit">Sort</button>
-  </form>
+    <%= submit_tag 'Sort' %>
+  <% end %>
 </div>
-
-
 
 <table>
   <thead>
@@ -70,7 +60,7 @@
     <th><%= sort_link(@q, 'appreciation_values_last_12months', "Last 12 Months Appreciation") %></th>
     <th><%= sort_link(@q, 'appreciation_values_last_2years', "Last 2 Years Appreciation") %></th>
     <th><%= sort_link(@q, 'appreciation_values_last_5years', "Last 5 Years Appreciation") %></th>
-    <th><%= sort_link(@q, 'appreciation_values__since_2000', "Since 2000 Appreciation") %></th>
+    <th><%= sort_link(@q, 'appreciation_values_since_2000', "Since 2000 Appreciation") %></th>
     <th><%= sort_link(@q, 'average_rating', "Rating") %></th>
     <th>Reviews</th>
   </tr>
@@ -81,11 +71,9 @@
       <td><%= city.city_name %></td>
 
       <% if city.crime_rates.any? %>
-        <% city.crime_rates.each do |crime| %>
-          <td><%= crime.crime_index %></td>
-          <td><%= crime.violent_crime_rate %></td>
-          <td><%= crime.property_crime_rate %></td>
-        <% end %>
+        <td><%= city.crime_rates.first.crime_index %></td>
+        <td><%= city.crime_rates.first.violent_crime_rate %></td>
+        <td><%= city.crime_rates.first.property_crime_rate %></td>
       <% else %>
         <td>-</td>
         <td>-</td>
@@ -93,23 +81,19 @@
       <% end %>
 
       <% if city.school_grades.any? %>
-        <% city.school_grades.each do |school| %>
-          <td><%= school.score_compared_to_il %></td>
-          <td><%= school.score_compared_to_us %></td>
-        <% end %>
+        <td><%= city.school_grades.first.score_compared_to_il %></td>
+        <td><%= city.school_grades.first.score_compared_to_us %></td>
       <% else %>
         <td>-</td>
         <td>-</td>
       <% end %>
 
       <% if city.appreciation_values.any? %>
-        <% city.appreciation_values.each do |value| %>
-          <td><%= value.latest_quarter %></td>
-          <td><%= value.last_12months %></td>
-          <td><%= value.last_2years %></td>
-          <td><%= value.last_5years %></td>
-          <td><%= value.since_2000 %></td>
-        <% end %>
+        <td><%= city.appreciation_values.first.latest_quarter %></td>
+        <td><%= city.appreciation_values.first.last_12months %></td>
+        <td><%= city.appreciation_values.first.last_2years %></td>
+        <td><%= city.appreciation_values.first.last_5years %></td>
+        <td><%= city.appreciation_values.first.since_2000 %></td>
       <% else %>
         <td>-</td>
         <td>-</td>
@@ -117,13 +101,11 @@
         <td>-</td>
         <td>-</td>
       <% end %>
-      <td>
-        <%= city.average_rating&.round(2) %> (<%= city.reviews_count %>)
-      </td>
-      <td>
-        <%= link_to 'View Reviews', city_reviews_path(city) %>
-      </td>
+      <td><%= city.average_rating&.round(2) %> (<%= city.reviews_count %>)</td>
+      <td><%= link_to 'View Reviews', city_reviews_path(city) %></td>
     </tr>
   <% end %>
   </tbody>
 </table>
+
+<%= paginate @cities %>

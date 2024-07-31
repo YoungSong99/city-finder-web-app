@@ -1,0 +1,21 @@
+<div class="sidebar">
+  <img src="<%= asset_path('logo.png') %>" alt="CityFinder logo" class="logo">
+  <div class="nav">
+    <ul>
+      <li>
+        <%= link_to 'Search by Priority', dashboard_path %>
+      </li>
+      <li>
+        <%= link_to 'City Comparison', dashboard_path %>
+      </li>
+    </ul>
+  </div>
+  <div class="outlet">
+    <%= render 'priority_search_form' %>
+  </div>
+  <footer class="footer">
+    <p class="copyright">
+      &copy; Copyright <%= Date.today.year %> by Young.
+    </p>
+  </footer>
+</div>
