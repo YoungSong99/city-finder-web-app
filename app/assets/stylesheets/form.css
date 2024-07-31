@@ -6,7 +6,7 @@
     overflow-x: hidden;
     border-radius: 7px;
     padding: 2rem 3rem;
-    width: 100%;
+    width: 40vh;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -23,6 +23,7 @@
 .buttons {
     display: flex;
     justify-content: space-between;
+    margin-top: 2rem;
 }
 
 .flag {

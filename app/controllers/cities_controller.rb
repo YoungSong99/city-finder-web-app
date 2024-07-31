@@ -9,10 +9,6 @@ class CitiesController < ApplicationController
 
   def show
     @the_city =  City.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def create
