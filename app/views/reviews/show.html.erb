@@ -1,27 +1,4 @@
-<p>
-  <strong>Pros:</strong>
-  <%= @review.pros %>
-</p>
-
-<p>
-  <strong>Cons:</strong>
-  <%= @review.cons %>
-</p>
-
-<p>
-  <strong>Ratings:</strong>
-  <%= @review.ratings %>
-</p>
-
-<p>
-  <strong>Recommend Family Type:</strong>
-  <%= @review.recommend_family_type.join(', ') %>
-</p>
-
-<p>
-  <strong>Zipcode:</strong>
-  <%= @review.zipcode %>
-</p>
-
-<%= link_to 'Edit', edit_review_path(@review) %> |
-<%= link_to 'Back', city_reviews_path(@review.city) %>
+<div class="app">
+  <%= render 'sidebar' %>
+  <%= render 'shared/map' %>
+</div>

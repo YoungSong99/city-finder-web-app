@@ -1,26 +1,19 @@
-<%= form_with(model: [ @city, @review ], local: true) do |form| %>
-  <% if @review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
-      <ul>
-        <% @review.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="form-container">
+  <div class="row">
+    <%= form.label :pros %>
+    <%= form.text_area :pros %>
+  </div>
+  <div class="row">
+    <%= form.label :cons %>
+    <%= form.text_area :cons %>
+  </div>
 
   <div class="field">
     <%= form.label :pros %>
     <%= form.text_area :pros %>
   </div>
 
-  <div class="field">
-    <%= form.label :cons %>
-    <%= form.text_area :cons %>
-  </div>
-
-  <div class="field">
+  <div class="row">
     <%= form.label :recommend_family_type, "Recommend Family Type" %>
     <div>
       <%= form.check_box :recommend_family_type, { multiple: true }, 'single', nil %> Single<br>
@@ -33,17 +26,19 @@
     </div>
   </div>
 
-  <div class="field">
+  <div class="row">
     <%= form.label :ratings %>
     <%= form.select :ratings, options_for_select(1..5) %>
   </div>
 
-  <div class="field">
+  <div class="row">
     <%= form.label :zipcode %>
     <%= form.number_field :zipcode %>
   </div>
 
-  <div class="actions">
+  <div class="buttons">
     <%= form.submit %>
+    <%= link_to 'Back', root_path, class: 'btn back' %>
   </div>
-<% end %>
+</div>
+</div>

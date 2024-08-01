@@ -2,13 +2,13 @@ module DashboardHelper
   def get_label(index)
     case index
     when 0
-      "First Priority"
+      "Top Priority"
     when 1
-      "Second Priority"
+      "High Priority"
     when 2
-      "Third Priority"
+      "Medium Priority"
     else
-      "Priority"
+      "Low Priority"
     end
   end
 end
