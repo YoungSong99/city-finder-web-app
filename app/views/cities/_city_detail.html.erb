@@ -67,7 +67,7 @@
         <div>
           <div class="buttons">
             <%= link_to 'Add Review', new_city_review_path(@the_city), class: 'btn primary' %>
-            <%= link_to 'Back', root_path, class: 'btn back' %>
+            <%= link_to 'Back', request.referer || root_path, class: 'btn back' %>
           </div>
         </div>
       </div>
