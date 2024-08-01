@@ -3,7 +3,7 @@
     <li class="cityItem">
       <span class="emoji">🇺🇸</span>
       <h3 class="name"><%= link_to city.city_name, search_city_path(city) %></h3>
-      <button class="deleteBtn" data-city-id="<%= city.id %>">&times;</button>
+      <%= button_to '+', add_city_path(city), method: :post, class: 'deleteBtn' %>
     </li>
   <% end %>
 </ul>
