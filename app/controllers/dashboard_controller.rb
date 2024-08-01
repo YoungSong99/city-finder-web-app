@@ -5,6 +5,21 @@ class DashboardController < ApplicationController
     @cities = @cities.page(params[:page]).per(10)
   end
 
+  def comparison_search
+    if params[:q].present?
+      @q = City.ransack(params[:q])
+      @the_city = @q.result(distinct: true)
+      puts @the_city
+    else
+      @q = City.ransack(params[:q])
+      @the_city = City.none
+    end
+  end
+
+  def comparison_result
+
+  end
+
   def search
     priorities = params.values_at('priority-0', 'priority-1', 'priority-2')
 

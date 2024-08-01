@@ -1,5 +1,5 @@
 <ul class="cityList">
-  <% @cities.each do |city| %>
+  <% cities.each do |city| %>
     <li class="cityItem">
       <span class="emoji">🇺🇸</span>
       <h3 class="name"><%= link_to city.city_name, search_city_path(city) %></h3>

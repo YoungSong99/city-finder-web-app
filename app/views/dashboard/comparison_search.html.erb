@@ -1,0 +1,16 @@
+<div class="app">
+  <div class="sidebar">
+    <img src="<%= asset_path('logo.png') %>" alt="CityFinder logo" class="logo">
+    <%= render 'shared/nav' %>
+    <div class="outlet">
+      <%= render 'search_by_name' %>
+      <%= render 'city_list', cities: @the_city %>
+    </div>
+    <footer class="footer">
+      <p class="copyright">
+        &copy; Copyright <%= Date.today.year %> by Young.
+      </p>
+    </footer>
+  </div>
+  <%= render 'shared/map' %>
+</div>
