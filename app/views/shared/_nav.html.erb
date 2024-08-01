@@ -1,0 +1,10 @@
+<div class="nav">
+  <ul>
+    <li>
+      <%= link_to 'Search by Priority', search_path, class: ('active' if current_page?(search_path)) %>
+    </li>
+    <li>
+      <%= link_to 'Search by Priority', comparison_path, class: ('active' if current_page?(comparison_path)) %>
+    </li>
+  </ul>
+</div>
