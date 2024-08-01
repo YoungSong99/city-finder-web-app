@@ -1,0 +1,7 @@
+<h1 class="sub-title">Compare cities you picked</h1>
+<div class="row">
+  <%= search_form_for @q, url: comparison_path, method: :get do |form| %>
+    <%= form.text_field :city_name_cont, placeholder: "Search by City Name" %>
+    <%= form.submit 'Search', class: 'btn primary' %>
+  <% end %>
+</div>

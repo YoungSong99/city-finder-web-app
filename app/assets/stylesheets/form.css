@@ -132,3 +132,9 @@ input[type="checkbox"] {
     color: var(--color-dark--1);
     box-shadow: 0 0.4rem 1.2rem rgba(36, 42, 46, 0.16);
 }
+
+
+.search-bar {
+    margin: 5rem 0;
+    display: flex;
+}
