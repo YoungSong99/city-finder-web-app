@@ -1,4 +1,6 @@
 class DashboardController < ApplicationController
+  before_action :authenticate_user!, only: [:comparison_search, :add, :comparison_result]
+
   def index
     @q = City.ransack(params[:q])
     @cities = @q.result.includes(:crime_rates, :school_grades, :appreciation_values)
@@ -14,10 +16,41 @@ class DashboardController < ApplicationController
       @q = City.ransack(params[:q])
       @the_city = City.none
     end
+    @saved_cities = City.where(id: current_user.saved_cities)
+  end
+
+  def add
+    city_id = params[:id].to_i
+    if user_signed_in?
+      current_user.saved_cities << city_id unless current_user.saved_cities.include?(city_id)
+      current_user.save
+      redirect_to search_city_path(city_id), notice: 'City saved successfully.'
+    else
+      redirect_to new_user_session_path, alert: 'This service requires login.'
+    end
+  end
+
+  def remove
+    city_id = params[:id].to_i
+    if user_signed_in?
+      if current_user.saved_cities.delete(city_id)
+        puts "City #{city_id} removed from user's saved cities."
+      else
+        puts "Failed to remove city #{city_id}."
+      end
+      current_user.save
+      redirect_to comparison_path, notice: 'City removed successfully.'
+    else
+      redirect_to new_user_session_path, alert: 'This service requires login.'
+    end
   end
 
   def comparison_result
-
+    if user_signed_in?
+      @saved_cities = City.where(id: current_user.saved_cities)
+    else
+      redirect_to new_user_session_path, alert: 'This service requires login.'
+    end
   end
 
   def search
