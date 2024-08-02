@@ -3,21 +3,10 @@ class DashboardController < ApplicationController
 
   def index
     @q = City.ransack(params[:q])
-    @cities = @q.result.includes(:crime_rates, :school_grades, :appreciation_values)
-    @cities = @cities.page(params[:page]).per(10)
+    @cities = @q.result.includes(:crime_rates, :school_grades, :appreciation_values, :prices, :metras, :grocery_cities, :gym_cities, :language_cities)
+    @cities = @cities.page(params[:page]).per(100)
   end
 
-  def comparison_search
-    if params[:q].present?
-      @q = City.ransack(params[:q])
-      @the_city = @q.result(distinct: true)
-      puts @the_city
-    else
-      @q = City.ransack(params[:q])
-      @the_city = City.none
-    end
-    @saved_cities = City.where(id: current_user.saved_cities)
-  end
 
   def add
     city_id = params[:id].to_i
@@ -45,6 +34,18 @@ class DashboardController < ApplicationController
     end
   end
 
+  def comparison_search
+    if params[:q].present?
+      @q = City.ransack(params[:q])
+      @the_city = @q.result(distinct: true)
+      puts @the_city
+    else
+      @q = City.ransack(params[:q])
+      @the_city = City.none
+    end
+    @saved_cities = City.where(id: current_user.saved_cities)
+  end
+
   def comparison_result
     if user_signed_in?
       @saved_cities = City.where(id: current_user.saved_cities)
@@ -57,11 +58,14 @@ class DashboardController < ApplicationController
     priorities = params.values_at('priority-0', 'priority-1', 'priority-2')
 
     @q = City.ransack(params[:q])
-    @cities = @q.result.includes(:crime_rates, :school_grades, :appreciation_values)
+    @cities = @q.result.includes(:crime_rates, :school_grades, :appreciation_values, :prices, :metras, :grocery_cities, :gym_cities, :language_cities)
+    @grocery_names = Grocery.pluck(:name)
+    @language_names = Language.pluck(:name)
+    @gym_names = Gym.pluck(:name)
 
     if priorities.any?
       order_clause = build_order_clause(priorities)
-      @cities = @cities.joins(:crime_rates, :school_grades, :appreciation_values)
+      @cities = @cities.joins(:crime_rates, :school_grades, :appreciation_values, :prices, :metras, :grocery_cities, :gym_cities, :language_cities)
                        .order(order_clause)
     end
 
@@ -81,9 +85,12 @@ class DashboardController < ApplicationController
       'School' => 'school_grades.score_compared_to_us DESC',
       'Safety' => 'crime_rates.crime_index DESC',
       'Appreciation' => 'appreciation_values.last_12months DESC',
+      'Sales_low' => 'prices.median_home_value ASC',
+      'Sales_high' => 'prices.median_home_value DESC',
+      'rent_low' => 'prices.rental_value ASC',
+      'rent_high' => 'prices.rental_value DESC',
       # 'Metra' => 'metra_stations_count DESC',
       # 'Grocery' => 'grocery_stores_count DESC',
-      # 'Coffee' => 'coffee_shops_count DESC',
       # 'Community' => 'community_score DESC'
     }
 
