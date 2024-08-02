@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!, only: [:comparison_search, :add, :comparison_result]
 
-  def index
+  def dashboard
     @q = City.ransack(params[:q])
     @cities = @q.result.includes(:crime_rates, :school_grades, :appreciation_values)
     @cities = @cities.page(params[:page]).per(10)

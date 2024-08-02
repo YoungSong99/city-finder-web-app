@@ -1,0 +1,6 @@
+.search-bar {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}

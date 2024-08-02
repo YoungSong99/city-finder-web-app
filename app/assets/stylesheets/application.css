@@ -10,8 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require_tree .
  */
 
 @import "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css";
@@ -84,9 +84,8 @@ input:focus {
     border-radius: 5px;
 }
 
-h1.sub-title {
+.sub-title {
     text-align: center;
-    margin-bottom: 5rem;
 }
 
 .map_div {
