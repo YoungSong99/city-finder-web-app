@@ -8,7 +8,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  saved_cities           :text
+#  saved_cities           :text             default([]), is an Array
 #  user_family_type       :text             default([]), is an Array
 #  username               :string
 #  created_at             :datetime         not null

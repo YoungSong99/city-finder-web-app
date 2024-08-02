@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  before_action :authenticate_user!, only: [:add, :comparison_result]
+  before_action :authenticate_user!, only: [:comparison_search, :add, :comparison_result]
 
   def index
     @q = City.ransack(params[:q])
@@ -16,6 +16,7 @@ class DashboardController < ApplicationController
       @q = City.ransack(params[:q])
       @the_city = City.none
     end
+    @saved_cities = City.where(id: current_user.saved_cities)
   end
 
   def add
@@ -31,7 +32,7 @@ class DashboardController < ApplicationController
 
   def comparison_result
     if user_signed_in?
-      @saved_cities = City.find(current_user.saved_cities)
+      @saved_cities = City.where(id: current_user.saved_cities)
     else
       redirect_to new_user_session_path, alert: 'This service requires login.'
     end
