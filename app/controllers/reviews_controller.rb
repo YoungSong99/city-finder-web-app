@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_city, only: [:new, :create, :dashboard]
+  before_action :set_city, only: [:new, :create, :index]
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   def index
