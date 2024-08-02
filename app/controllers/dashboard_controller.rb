@@ -30,6 +30,21 @@ class DashboardController < ApplicationController
     end
   end
 
+  def remove
+    city_id = params[:id].to_i
+    if user_signed_in?
+      if current_user.saved_cities.delete(city_id)
+        puts "City #{city_id} removed from user's saved cities."
+      else
+        puts "Failed to remove city #{city_id}."
+      end
+      current_user.save
+      redirect_to comparison_path, notice: 'City removed successfully.'
+    else
+      redirect_to new_user_session_path, alert: 'This service requires login.'
+    end
+  end
+
   def comparison_result
     if user_signed_in?
       @saved_cities = City.where(id: current_user.saved_cities)
