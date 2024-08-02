@@ -133,8 +133,9 @@ input[type="checkbox"] {
     box-shadow: 0 0.4rem 1.2rem rgba(36, 42, 46, 0.16);
 }
 
-.search {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
+.large {
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+    text-align: center;
 }
