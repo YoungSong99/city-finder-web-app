@@ -15,6 +15,10 @@ class City < ApplicationRecord
   has_many :reviews, class_name: "Review", foreign_key: "city_id", dependent: :destroy
   has_many :appreciation_values, class_name: "AppreciationValue", foreign_key: "city_id", dependent: :destroy
   has_many :school_grades, class_name: "SchoolGrade", foreign_key: "city_id", dependent: :destroy
+  has_many  :prices, class_name: "Price", foreign_key: "city_id", dependent: :destroy
+  has_many  :metras, class_name: "Metra", foreign_key: "city_id", dependent: :destroy
+  has_many  :grocery_cities, class_name: "GroceryCity", foreign_key: "city_id", dependent: :destroy
+
 
   def average_rating
     unless self.reviews.any?
