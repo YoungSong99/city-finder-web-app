@@ -114,6 +114,13 @@ input[type="checkbox"] {
     margin-right: 3rem;
 }
 
+
+.primary:hover {
+    background-color: #519864;
+    color: var(--color-light--2);
+    margin-right: 3rem;
+}
+
 .back {
     font-weight: 500;
     background: none;

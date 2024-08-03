@@ -54,6 +54,20 @@
 }
 
 
+div.text{
+    font-size: 1.5rem;
+    gap: 1rem;
+    font-weight: 400;
+}
+
+.hint {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: var(--color-brand--2);
+}
+
+
 .cta {
     display: inline-block;
     background-color: var(--color-brand--2);
@@ -64,4 +78,9 @@
     font-weight: 600;
     padding: 1rem 3rem;
     border-radius: 5px;
+}
+
+abbr {
+    text-decoration: none;
+    color: var(--color-brand--2);
 }
