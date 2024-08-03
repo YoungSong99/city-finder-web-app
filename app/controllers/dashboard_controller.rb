@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  before_action :authenticate_user!, only: [:comparison_search, :add, :comparison_result]
+  before_action :authenticate_user!
 
   def index
     @q = City.ransack(params[:q])
@@ -7,54 +7,7 @@ class DashboardController < ApplicationController
     @cities = @cities.page(params[:page]).per(100)
   end
 
-
-  def add
-    city_id = params[:id].to_i
-    if user_signed_in?
-      current_user.saved_cities << city_id unless current_user.saved_cities.include?(city_id)
-      current_user.save
-      redirect_to search_city_path(city_id), notice: 'City saved successfully.'
-    else
-      redirect_to new_user_session_path, alert: 'This service requires login.'
-    end
-  end
-
-  def remove
-    city_id = params[:id].to_i
-    if user_signed_in?
-      if current_user.saved_cities.delete(city_id)
-        puts "City #{city_id} removed from user's saved cities."
-      else
-        puts "Failed to remove city #{city_id}."
-      end
-      current_user.save
-      redirect_to comparison_path, notice: 'City removed successfully.'
-    else
-      redirect_to new_user_session_path, alert: 'This service requires login.'
-    end
-  end
-
-  def comparison_search
-    if params[:q].present?
-      @q = City.ransack(params[:q])
-      @the_city = @q.result(distinct: true)
-      puts @the_city
-    else
-      @q = City.ransack(params[:q])
-      @the_city = City.none
-    end
-    @saved_cities = City.where(id: current_user.saved_cities)
-  end
-
-  def comparison_result
-    if user_signed_in?
-      @saved_cities = City.where(id: current_user.saved_cities)
-    else
-      redirect_to new_user_session_path, alert: 'This service requires login.'
-    end
-  end
-
-  def search
+  def search_by_priority
     priorities = params.values_at('priority-0', 'priority-1', 'priority-2')
 
     @q = City.ransack(params[:q])
@@ -81,6 +34,27 @@ class DashboardController < ApplicationController
       format.js
     end
   end
+
+  def city_comparison
+    if params[:q].present?
+      @q = City.ransack(params[:q])
+      @the_city = @q.result(distinct: true)
+      puts @the_city
+    else
+      @q = City.ransack(params[:q])
+      @the_city = City.none
+    end
+  end
+
+  def comparison_result
+    if user_signed_in?
+      @saved_cities = City.where(id: current_user.favorite_cities.pluck(:city_id).uniq)
+    else
+      redirect_to new_user_session_path, alert: 'This service requires login.'
+    end
+  end
+
+
 
   private
 
