@@ -20,7 +20,7 @@ class City < ApplicationRecord
   has_many  :grocery_cities, class_name: "GroceryCity", foreign_key: "city_id", dependent: :destroy
   has_many  :gym_cities, class_name: "GymCity", foreign_key: "city_id", dependent: :destroy
   has_many  :language_cities, class_name: "LanguageCity", foreign_key: "city_id", dependent: :destroy
-
+  has_many  :favorite_cities, class_name: "FavoriteCity", foreign_key: "city_id", dependent: :destroy
   has_many :languages, through: :language_cities
 
   def average_rating
