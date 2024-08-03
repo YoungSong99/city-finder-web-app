@@ -1,16 +1,19 @@
 Rails.application.routes.draw do
 
   devise_for :users
+
   root 'static#home'
+
   get 'about', to: 'static#about'
   get 'contact', to: 'static#contact'
-  get 'index', to: 'dashboard#index'
-  post 'index', to: 'dashboard#index'
-  get 'search', to: 'dashboard#search', as: 'search'
+
+  get 'search', to: 'dashboard#search_by_priority', as: 'search'
+  get 'comparison', to: 'dashboard#city_comparison', as: 'comparison'
   get 'search/cities/:id', to: 'cities#show', as: 'search_city'
-  get 'comparison', to: 'dashboard#comparison_search', as: 'comparison'
-  post '/cities/add/:id', to: 'dashboard#add', as: 'add_city'
-  delete '/cities/add/:id', to: 'dashboard#remove', as: 'remove_city'
+
+  post '/cities/add/:id', to: 'favorite_cities#add', as: 'add_city'
+  delete '/cities/add/:id', to: 'favorite_cities#remove', as: 'remove_city'
+
   get '/cities/comparison_result', to: 'dashboard#comparison_result', as: 'comparison_result'
 
   resources :cities, only: [:show]
