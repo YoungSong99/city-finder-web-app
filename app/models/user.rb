@@ -8,7 +8,6 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  saved_cities           :text             default([]), is an Array
 #  user_family_type       :text             default([]), is an Array
 #  username               :string
 #  created_at             :datetime         not null
@@ -26,4 +25,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many  :reviews, class_name: "Review", foreign_key: "user_id", dependent: :destroy
+  has_many  :favorite_cities, class_name: "FavoriteCity", foreign_key: "user_id", dependent: :destroy
+  has_many :cities, through: :favorite_cities
 end
