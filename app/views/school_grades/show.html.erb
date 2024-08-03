@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      School grade #<%= @the_school_grade.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/school_grades">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_school_grade/<%= @the_school_grade.id %>">
+          Delete school grade
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        City
+      </dt>
+      <dd>
+        <%= @the_school_grade.city_id %>
+      </dd>
+
+      <dt>
+        Score compared to us
+      </dt>
+      <dd>
+        <%= @the_school_grade.score_compared_to_us %>
+      </dd>
+
+      <dt>
+        Score compared to il
+      </dt>
+      <dd>
+        <%= @the_school_grade.score_compared_to_il %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_school_grade.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_school_grade.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit school grade
+    </h2>
+
+    <form action="/modify_school_grade/<%= @the_school_grade.id %>"  method="post" >
+      <div>
+        <label for="city_id_box">
+          City
+        </label>
+
+        <input type="text" id="city_id_box" name="query_city_id" value="<%= @the_school_grade.city_id %>">
+      </div>
+
+      <div>
+        <label for="score_compared_to_us_box">
+          Score compared to us
+        </label>
+
+        <input type="text" id="score_compared_to_us_box" name="query_score_compared_to_us" value="<%= @the_school_grade.score_compared_to_us %>">
+      </div>
+
+      <div>
+        <label for="score_compared_to_il_box">
+          Score compared to il
+        </label>
+
+        <input type="text" id="score_compared_to_il_box" name="query_score_compared_to_il" value="<%= @the_school_grade.score_compared_to_il %>">
+      </div>
+
+      <button>
+        Update school grade
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

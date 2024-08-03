@@ -58,23 +58,19 @@ class DashboardController < ApplicationController
     priorities = params.values_at('priority-0', 'priority-1', 'priority-2')
 
     @q = City.ransack(params[:q])
-    @cities = @q.result.includes(:crime_rates, :school_grades, :appreciation_values, :prices)
-
+    @cities = @q.result.includes(:crime_rates, :school_grades, :appreciation_values, :prices, :metras, :grocery_cities, :gym_cities, :language_cities)
     @grocery_names = Grocery.pluck(:name)
     @language_names = Language.pluck(:name)
     @gym_names = Gym.pluck(:name)
 
     if priorities.any?
       order_clause = build_order_clause(priorities)
-      @cities = @cities.joins(:crime_rates, :school_grades, :appreciation_values, :prices)
+      @cities = @cities.joins(:crime_rates, :school_grades, :appreciation_values, :prices, :metras, :grocery_cities, :gym_cities, :language_cities)
                        .order(order_clause)
     end
 
     @cities = @cities.limit(5)
-
-    @cities.each do |city|
-      puts city.city_name
-    end
+    puts @cities
 
     respond_to do |format|
       format.html
@@ -93,6 +89,9 @@ class DashboardController < ApplicationController
       'Sales_high' => 'prices.median_home_value DESC',
       'rent_low' => 'prices.rental_value ASC',
       'rent_high' => 'prices.rental_value DESC',
+      # 'Metra' => 'metra_stations_count DESC',
+      # 'Grocery' => 'grocery_stores_count DESC',
+      # 'Community' => 'community_score DESC'
     }
 
     order_clause = priorities.map { |priority| priority_mapping[priority] }.compact.join(', ')

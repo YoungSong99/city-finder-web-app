@@ -2,11 +2,10 @@
 import { Turbo } from "@hotwired/turbo-rails"
 import "controllers"
 
-Turbo.session.drive = true
+Turbo.session.drive = false
 
 import jquery from "jquery";
 window.jQuery = jquery;
 window.$ = jquery;
-
 import Rails from "@rails/ujs"
 Rails.start();

@@ -1,17 +1,21 @@
 <div class="app">
   <div class="sidebar">
-    <a href="/"><img src="<%= asset_path('logo.png') %>" alt="CityFinder logo" class="logo"></a>
+    <img src="<%= asset_path('logo.png') %>" alt="CityFinder logo" class="logo">
     <%= render 'shared/nav' %>
-    <div class="row">
-      <%= render 'search_by_name' %>
-      <%= render 'city_list', cities: @the_city %>
-      <h2 class="sub-title">Saved City List</h2>
-      <% if @saved_cities.any? %>
-        <%= render 'city_list', cities: @saved_cities %>
-      <% else %>
-        <p>Your city list is empty.</p>
-      <% end %>
-      <%= link_to 'Compare Cities', root_path, class: 'btn primary large' %>
+    <div class="outlet">
+      <div>
+        <%= render 'search_by_name' %>
+        <%= render 'city_list', cities: @the_city %>
+      </div>
+      <div>
+        <h2 class="sub-title">Saved City List</h2>
+        <% if @saved_cities.any? %>
+          <%= render 'city_list', cities: @saved_cities %>
+        <% else %>
+          <p>Your city list is empty.</p>
+        <% end %>
+        <%= link_to 'Compare Cities', root_path, class: 'btn primary large' %>
+      </div>
     </div>
     <footer class="footer">
       <p class="copyright">

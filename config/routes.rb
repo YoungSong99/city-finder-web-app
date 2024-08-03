@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root 'static#home'
-  get 'about', to: 'static#about'
-  get 'contact', to: 'static#contact'
+  root to: redirect('/search')
   get 'index', to: 'dashboard#index'
   post 'index', to: 'dashboard#index'
   get 'search', to: 'dashboard#search', as: 'search'
