@@ -1,0 +1,19 @@
+.hover-info {
+    position: relative;
+    display: inline-block;
+}
+
+.hover-info-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1;
+    top: 20px;
+    left: 0;
+}
+
+.hover-info:hover .hover-info-content {
+    display: block;
+}

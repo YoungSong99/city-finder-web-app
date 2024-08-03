@@ -76,6 +76,7 @@ group :development do
   gem "rails-erd"
   gem "rufo"
   gem "specs_to_readme"
+  gem 'rails-ujs'
 end
 
 group :development, :test do

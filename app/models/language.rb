@@ -9,4 +9,5 @@
 #
 class Language < ApplicationRecord
   has_many  :language_cities, class_name: "LanguageCity", foreign_key: "language_id", dependent: :destroy
+  has_many :cities, through: :language_cities
 end

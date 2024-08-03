@@ -6,4 +6,6 @@ const application = Application.start()
 application.debug = false
 window.Stimulus   = application
 
+//= require rails-ujs
+
 export { application }

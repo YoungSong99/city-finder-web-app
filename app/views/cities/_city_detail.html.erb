@@ -9,16 +9,17 @@
   <div class="row">
     <h6>School Grading</h6>
     <% if @the_city.school_grades.any? %>
-      <p><span class="emoji">🏫</span><%= @the_city.school_grades.first.score_compared_to_il %> in Illinois, <%= @the_city.school_grades.first.score_compared_to_us %> in the US</p>
+      <p><span class="emoji">🏫</span><%= @the_city.school_grades.first.score_compared_to_il %> in
+        Illinois, <%= @the_city.school_grades.first.score_compared_to_us %> in the US</p>
     <% else %>
       <p>There is No school data yet</p>
     <% end %>
     <div class="row">
-      <h6>Crime Rate</h6>
+      <h6>Safety Score</h6>
       <% if @the_city.crime_rates.any? %>
         <p><span class="emoji">👮‍</span><%= @the_city.crime_rates.first.crime_index %> / 100</p>
-        <p>(Violent Crime: <%= @the_city.crime_rates.first.violent_crime_rate %>, Property
-          Crime: <%= @the_city.crime_rates.first.property_crime_rate %>)</p>
+        (Violent Crime: <%= @the_city.crime_rates.first.violent_crime_rate %>, Property
+          Crime: <%= @the_city.crime_rates.first.property_crime_rate %>)
       <% else %>
         <p>There is No school data yet</p>
       <% end %>
@@ -37,19 +38,30 @@
       <div class="row">
         <h6>convenience</h6>
         <div class="grid">
-          <p><span>🛒</span> 3 Grocery Stores</p>
-          <p><span>☕️</span> 2 Coffee Shops</p>
-          <p><span>🏋</span> 1 Gym</p>
-          <p><span>🚊</span> <%= @the_city.city_name %> station</p>
-        </div>
+          <p><span class='emoji-sm'>🛒</span><%= @the_city.grocery_cities.count %> Grocery stores</p>
+          (
+          <% @the_city.grocery_cities.each do |grocery_city| %>
+            <%= grocery_city.grocery.name %>,
+          <% end %>)
+          <p><span class='emoji-sm'>🏋</span><%= @the_city.gym_cities.count %> Gym</p>
+          (
+          <% @the_city.gym_cities.each do |gym_city| %>
+            <%= gym_city.gym.name %>,
+          <% end %>)
       </div>
+        <div class="row">
+          <% @the_city.metras.each do |metra| %>
+            <p class="tag-color">
+              <span class='emoji-sm'>🚊</span><span class="tag-label"><%= metra.lines %></span> <%= metra.station %>
+            </p>
+          <% end %>
+        </div>
       <div class="row">
         <h6>community</h6>
         <p class="tag-color">
-          <span class="tag-label">Spanish</span>
-          <span class="tag-label">Korean️️</span>
-          <span class="tag-label">Langs. of India</span>
-          <span class="tag-label">Slavic languages</span>
+          <% @the_city.language_cities.each do |language_city| %>
+            <span class="tag-label"><%= language_city.language.name %> (<%= language_city.percentage %>%)</span>
+          <% end %>
         </p>
       </div>
       <div class="row">
@@ -73,21 +85,22 @@
       </div>
     </div>
   </div>
-  <script>
-      function renderStars(rating) {
-          const starContainer = document.getElementById('star-rating');
-          starContainer.innerHTML = '';
-
-          for (let i = 1; i <= 5; i++) {
-              if (i <= rating) {
-                  starContainer.innerHTML += '<span class="fa fa-star checked star-icon"></span>';
-              } else {
-                  starContainer.innerHTML += '<span class="fa fa-star star-icon"></span>';
-              }
-          }
-      }
-
-      const rating = <%= @the_city.average_rating %>; // Replace with the actual rating from your @the_city object
-      renderStars(rating);
-  </script>
 </div>
+</div>
+<script>
+    function renderStars(rating) {
+        const starContainer = document.getElementById('star-rating');
+        starContainer.innerHTML = '';
+
+        for (let i = 1; i <= 5; i++) {
+            if (i <= rating) {
+                starContainer.innerHTML += '<span class="fa fa-star checked star-icon"></span>';
+            } else {
+                starContainer.innerHTML += '<span class="fa fa-star star-icon"></span>';
+            }
+        }
+    }
+
+    const rating = <%= @the_city.average_rating %>;
+    renderStars(rating);
+</script>
