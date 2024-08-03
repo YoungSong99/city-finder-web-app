@@ -1,111 +1,107 @@
 <h1>Dashboard</h1>
-<%= search_form_for @q, url: dashboard_path, method: :get do |form| %>
-  <div class="form-group">
-    <%= form.label :search_by_city_name %>
-    <%= form.text_field :city_name_cont %>
-    <%= form.submit 'Search City' %>
+<div class="grid">
+  <div class="form">
+    <%= search_form_for @q, url: search_path, method: :get do |form| %>
+      <div class="row">
+        <%= form.label :search_by_city_name %>
+        <%= form.text_field :city_name_cont %>
+        <%= form.submit 'Search City' %>
+      </div>
+    <% end %>
   </div>
-<% end %>
-
-<div class="priority_search">
-  <%= form_with url: dashboard_path, method: :get do %>
-    <label for="priority_1">1st Priority
-      <%= select_tag "order[]", options_for_select([
-                                                     ['Crime Index', 'crime_rates.crime_index'],
-                                                     ['School Score Compared to IL', 'school_grades.score_compared_to_il'],
-                                                     ['Latest Quarter Appreciation', 'appreciation_values.latest_quarter'],
-                                                     ['Last 12 Months Appreciation', 'appreciation_values.last_12months'],
-                                                     ['Last 2 Years Appreciation', 'appreciation_values.last_2years'],
-                                                     ['Last 5 Years Appreciation', 'appreciation_values.last_5years'],
-                                                     ['Since 2000 Appreciation', 'appreciation_values.since_2000']
-                                                   ]) %>
-    </label>
-    <label for="priority_2">2nd Priority
-      <%= select_tag "order[]", options_for_select([
-                                                     ['Crime Index', 'crime_rates.crime_index'],
-                                                     ['School Score Compared to IL', 'school_grades.score_compared_to_il'],
-                                                     ['Latest Quarter Appreciation', 'appreciation_values.latest_quarter'],
-                                                     ['Last 12 Months Appreciation', 'appreciation_values.last_12months'],
-                                                     ['Last 2 Years Appreciation', 'appreciation_values.last_2years'],
-                                                     ['Last 5 Years Appreciation', 'appreciation_values.last_5years'],
-                                                     ['Since 2000 Appreciation', 'appreciation_values.since_2000']
-                                                   ]) %>
-    </label>
-    <label for="priority_3">3rd Priority
-      <%= select_tag "order[]", options_for_select([
-                                                     ['Crime Index', 'crime_rates.crime_index'],
-                                                     ['School Score Compared to IL', 'school_grades.score_compared_to_il'],
-                                                     ['School Score Compared to US', 'school_grades.score_compared_to_us'],
-                                                     ['Latest Quarter Appreciation', 'appreciation_values.latest_quarter'],
-                                                     ['Last 12 Months Appreciation', 'appreciation_values.last_12months'],
-                                                     ['Last 2 Years Appreciation', 'appreciation_values.last_2years'],
-                                                     ['Last 5 Years Appreciation', 'appreciation_values.last_5years'],
-                                                     ['Since 2000 Appreciation', 'appreciation_values.since_2000']
-                                                   ]) %>
-    </label>
-    <%= submit_tag 'Sort' %>
-  <% end %>
+  <div class="form">
+    <div class="priority_search">
+      <%= form_with url: search_path, method: :get do %>
+        <div class="row">
+          <label for="priority_1">1st Priority
+            <%= select_tag "priority-0", options_for_select([
+                                                              ['Crime Index', 'Safety'],
+                                                              ['School Score Compared to US', 'School'],
+                                                              ['Last 12 Months Appreciation', 'Appreciation']
+                                                            ]) %>
+          </label>
+        </div>
+        <div class="row">
+          <label for="priority_2">2nd Priority
+            <%= select_tag "priority-1", options_for_select([
+                                                              ['Crime Index', 'Safety'],
+                                                              ['School Score Compared to US', 'School'],
+                                                              ['Last 12 Months Appreciation', 'Appreciation']
+                                                            ]) %>
+          </label>
+        </div>
+        <div class="row">
+          <label for="priority_3">3rd Priority
+            <%= select_tag "priority-2", options_for_select([
+                                                              ['Crime Index', 'Safety'],
+                                                              ['School Score Compared to US', 'School'],
+                                                              ['Last 12 Months Appreciation', 'Appreciation']
+                                                            ]) %>
+          </label>
+        </div>
+        <%= submit_tag 'Sort' %>
+      <% end %>
+    </div>
+  </div>
 </div>
+<div>
 
-<table>
-  <thead>
-  <tr>
-    <th><%= sort_link(@q, :city_name, "City") %></th>
-    <th><%= sort_link(@q, 'crime_rates_crime_index', "Crime Index") %></th>
-    <th><%= sort_link(@q, 'crime_rates_violent_crime_rate', "Violent Crime Rate") %></th>
-    <th><%= sort_link(@q, 'crime_rates_property_crime_rate', "Property Crime Rate") %></th>
-    <th><%= sort_link(@q, 'school_grades_score_compared_to_il', "School Score(IL)") %></th>
-    <th><%= sort_link(@q, 'school_grades_score_compared_to_us', "School Score(US)") %></th>
-    <th><%= sort_link(@q, 'appreciation_values_latest_quarter', "Latest Quarter Appreciation") %></th>
-    <th><%= sort_link(@q, 'appreciation_values_last_12months', "Last 12 Months Appreciation") %></th>
-    <th><%= sort_link(@q, 'appreciation_values_last_2years', "Last 2 Years Appreciation") %></th>
-    <th><%= sort_link(@q, 'appreciation_values_last_5years', "Last 5 Years Appreciation") %></th>
-    <th><%= sort_link(@q, 'appreciation_values_since_2000', "Since 2000 Appreciation") %></th>
-    <th><%= sort_link(@q, 'average_rating', "Rating") %></th>
-    <th>Reviews</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @cities.each do |city| %>
+  <table>
+    <thead>
     <tr>
-      <td><%= city.city_name %></td>
-
-      <% if city.crime_rates.any? %>
-        <td><%= city.crime_rates.first.crime_index %></td>
-        <td><%= city.crime_rates.first.violent_crime_rate %></td>
-        <td><%= city.crime_rates.first.property_crime_rate %></td>
-      <% else %>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-      <% end %>
-
-      <% if city.school_grades.any? %>
-        <td><%= city.school_grades.first.score_compared_to_il %></td>
-        <td><%= city.school_grades.first.score_compared_to_us %></td>
-      <% else %>
-        <td>-</td>
-        <td>-</td>
-      <% end %>
-
-      <% if city.appreciation_values.any? %>
-        <td><%= city.appreciation_values.first.latest_quarter %></td>
-        <td><%= city.appreciation_values.first.last_12months %></td>
-        <td><%= city.appreciation_values.first.last_2years %></td>
-        <td><%= city.appreciation_values.first.last_5years %></td>
-        <td><%= city.appreciation_values.first.since_2000 %></td>
-      <% else %>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-      <% end %>
-      <td><%= city.average_rating&.round(2) %> (<%= city.reviews_count %>)</td>
-      <td><%= link_to 'View Reviews', city_reviews_path(city) %></td>
+      <th><%= sort_link(@q, :city_name, "City") %></th>
+      <th><%= sort_link(@q, 'crime_rates.crime_index', "Crime Index") %></th>
+      <th><%= sort_link(@q, 'school_grades.score_compared_to_us', "School Score (US)") %></th>
+      <th><%= sort_link(@q, 'appreciation_values.last_12months', "Last 12 Months Appreciation") %></th>
+      <th><%= sort_link(@q, 'prices.average_price', "Average Price") %></th>
+      <th><%= sort_link(@q, 'metras.count', "Metra Stations") %></th>
+      <th><%= sort_link(@q, 'grocery_cities.count', "Grocery Stores") %></th>
+      <th><%= sort_link(@q, 'gym_cities.count', "Gyms") %></th>
+      <th><%= sort_link(@q, 'language_cities.count', "Languages Spoken") %></th>
+      <th><%= sort_link(@q, 'average_rating', "Rating") %></th>
+      <th>Reviews</th>
     </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    <% @cities.each do |city| %>
+      <tr>
+        <td><%= city.city_name %></td>
 
+        <% if city.crime_rates.any? %>
+          <td><%= city.crime_rates.first.crime_index %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+
+        <% if city.school_grades.any? %>
+          <td><%= city.school_grades.first.score_compared_to_us %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+
+        <% if city.appreciation_values.any? %>
+          <td><%= city.appreciation_values.first.last_12months %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+
+        <% if city.prices.any? %>
+          <td><%= city.prices.first.average_price %></td>
+        <% else %>
+          <td>-</td>
+        <% end %>
+
+        <td><%= city.metras.count %></td>
+        <td><%= city.grocery_cities.count %></td>
+        <td><%= city.gym_cities.count %></td>
+        <td><%= city.language_cities.count %></td>
+
+        <td><%= city.average_rating %></td>
+        <td><%= link_to 'View Reviews', city_reviews_path(city) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>
 <%= paginate @cities %>

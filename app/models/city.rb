@@ -15,6 +15,12 @@ class City < ApplicationRecord
   has_many :reviews, class_name: "Review", foreign_key: "city_id", dependent: :destroy
   has_many :appreciation_values, class_name: "AppreciationValue", foreign_key: "city_id", dependent: :destroy
   has_many :school_grades, class_name: "SchoolGrade", foreign_key: "city_id", dependent: :destroy
+  has_many  :prices, class_name: "Price", foreign_key: "city_id", dependent: :destroy
+  has_many  :metras, class_name: "Metra", foreign_key: "city_id", dependent: :destroy
+  has_many  :grocery_cities, class_name: "GroceryCity", foreign_key: "city_id", dependent: :destroy
+  has_many  :gym_cities, class_name: "GymCity", foreign_key: "city_id", dependent: :destroy
+  has_many  :language_cities, class_name: "LanguageCity", foreign_key: "city_id", dependent: :destroy
+
 
   def average_rating
     unless self.reviews.any?
@@ -32,10 +38,10 @@ class City < ApplicationRecord
 
   # Ransack configuration
   def self.ransackable_associations(auth_object = nil)
-    ["appreciation_values", "crime_rates", "school_grades"]
+    %w(appreciation_values crime_rates school_grades language_cities gym_cities prices metras grocery_cities)
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["city_name", "self.average_rating", "reviews_count"]
+    %w(city_name latitude longitude state)
   end
 end
