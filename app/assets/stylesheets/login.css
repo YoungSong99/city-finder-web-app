@@ -61,9 +61,8 @@ div.text{
 }
 
 .hint {
-    margin-left: 1rem;
-    margin-top: 1rem;
     font-size: 1.2rem;
+    font-weight: 400;
     color: var(--color-brand--2);
 }
 
@@ -83,4 +82,13 @@ div.text{
 abbr {
     text-decoration: none;
     color: var(--color-brand--2);
+}
+
+.cancel {
+    width: 100%;
+}
+
+.cancel:hover {
+    width: 100%;
+    background-color: var(--color-dark--1);
 }
