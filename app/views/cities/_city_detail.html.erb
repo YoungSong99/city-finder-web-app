@@ -9,15 +9,15 @@
   <div class="row">
     <h6>School Grading</h6>
     <% if @the_city.school_grades.any? %>
-      <p><span class="emoji">🏫</span><%= @the_city.school_grades.first.score_compared_to_il %> in
-        Illinois, <%= @the_city.school_grades.first.score_compared_to_us %> in the US</p>
+      <p><span class="emoji">🏫</span><b><%= @the_city.school_grades.first.score_compared_to_il %></b> in
+        Illinois, <b><%= @the_city.school_grades.first.score_compared_to_us %></b> in the US</p>
     <% else %>
       <p>There is No school data yet</p>
     <% end %>
     <div class="row">
       <h6>Safety Score</h6>
       <% if @the_city.crime_rates.any? %>
-        <p><span class="emoji">👮‍</span><%= @the_city.crime_rates.first.crime_index %> / 100</p>
+        <p><span class="emoji">👮‍</span><b><%= @the_city.crime_rates.first.crime_index %></b> / 100</p>
         (Violent Crime: <%= @the_city.crime_rates.first.violent_crime_rate %>, Property
           Crime: <%= @the_city.crime_rates.first.property_crime_rate %>)
       <% else %>
@@ -28,8 +28,8 @@
         <% if @the_city.appreciation_values.any? %>
           <p>
             <span class="emoji">📈</span>
-            In the past year, the appreciation value is <%= @the_city.appreciation_values.first.last_12months %>.
-            Since 2000, the average appreciation value is <%= @the_city.appreciation_values.first.since_2000 %>.
+            In the past year, the appreciation value is <b><%= @the_city.appreciation_values.first.last_12months %></b>.
+            Since 2000, the average appreciation value is <b><%= @the_city.appreciation_values.first.since_2000 %></b>.
           </p>
         <% else %>
           <p>There is No Appreciation data yet</p>
@@ -38,12 +38,12 @@
       <div class="row">
         <h6>convenience</h6>
         <div class="grid">
-          <p><span class='emoji-sm'>🛒</span><%= @the_city.grocery_cities.count %> Grocery stores</p>
+          <p><span class='emoji-sm'>🛒</span><b><%= @the_city.grocery_cities.count %></b> Grocery stores</p>
           (
           <% @the_city.grocery_cities.each do |grocery_city| %>
             <%= grocery_city.grocery.name %>,
           <% end %>)
-          <p><span class='emoji-sm'>🏋</span><%= @the_city.gym_cities.count %> Gym</p>
+          <p><span class='emoji-sm'>🏋</span><b><%= @the_city.gym_cities.count %></b> Gym</p>
           (
           <% @the_city.gym_cities.each do |gym_city| %>
             <%= gym_city.gym.name %>,

@@ -84,6 +84,7 @@ input[type="checkbox"] {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
+    align-items: center;
 }
 
 .grid div {
