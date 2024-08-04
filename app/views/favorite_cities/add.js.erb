@@ -1,0 +1,12 @@
+var FavoriteAddBtn = $("#<%= dom_id(@the_city) %>_btn");
+var FavoriteAddItem = $("#<%= dom_id(@the_city) %>_item")
+
+FavoriteAddBtn.replaceWith(
+    '<%= button_to '-', remove_city_path(@the_city), method: :delete, remote: true, data: { turbo: false }, class: 'deleteBtn' %>'
+)
+
+if ($("ul.favoriteCityList").length) {
+    FavoriteAddItem.fadeOut(500)
+    $("ul.favoriteCityList li:last-child").after(FavoriteAddItem)
+    FavoriteAddItem.slideDown()
+}
