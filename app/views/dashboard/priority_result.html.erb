@@ -6,12 +6,7 @@
       <h1 class="sub-title">Find Your Top 5 Cities in Illinois</h1>
       <%= render 'city_list', cities: @cities %>
     </div>
-    <footer class="footer">
-      <p class="copyright">
-        &copy; Copyright <%= Date.today.year %> by <a href="https://www.linkedin.com/in/youngsong-us/">Young</a><br>
-        <a href="https://dpi.uillinois.edu/">Discovery Partners Institute</a>
-      </p>
-    </footer>
+    <%= render 'shared/footer' %>
   </div>
   <%= render 'shared/map' %>
   <%= render 'shared/user_nav' %>

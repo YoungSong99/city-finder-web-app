@@ -13,11 +13,7 @@
       <% end %>
       <%= link_to 'Compare Cities', root_path, class: 'btn primary large' %>
     </div>
-    <footer class="footer">
-      <p class="copyright">
-        &copy; Copyright <%= Date.today.year %> by Young.
-      </p>
-    </footer>
+    <%= render 'shared/footer' %>
   </div>
   <%= render 'shared/map' %>
     <%= render 'shared/user_nav' %>
