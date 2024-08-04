@@ -54,4 +54,15 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:pros, :cons, :ratings, { recommend_family_type: [] }, :zipcode)
   end
+
+  helper_method :display_stars
+
+  private
+
+  def display_stars(review)
+    filled_star_icon = '<span class="fa fa-star checked"></span>'
+    empty_star_icon = '<span class="fa fa-star"></span>'
+    stars = filled_star_icon * review.ratings + empty_star_icon * (5-review.ratings)
+    stars.html_safe
+  end
 end

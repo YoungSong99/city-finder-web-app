@@ -102,8 +102,10 @@
 }
 
 .city {
-    padding: 2rem 3rem;
     background-color: var(--color-dark--2);
+    height: 100%;
+    width: 100%;
+    padding: 2rem 3rem;
     border-radius: 7px;
     max-width: 50vh;
     max-height: 70vh;
@@ -133,7 +135,8 @@
 }
 
 .city::-webkit-scrollbar-track-piece {
-    background: var(--color-dark--2); /
+    background: var(--color-dark--2);
+/
 }
 
 
@@ -182,6 +185,10 @@
     opacity: 0.9;
 }
 
+.tag-color .tag-label:nth-child(0) {
+    background: #f5fff6;
+}
+
 .tag-color .tag-label:nth-child(1) {
     background: var(--color-brand--3);
 }
@@ -203,7 +210,7 @@
     align-items: center;
 }
 
-.flex-div p{
+.flex-div p {
     margin-right: 1rem;
 }
 

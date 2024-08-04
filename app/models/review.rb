@@ -18,6 +18,9 @@ class Review < ApplicationRecord
   belongs_to :city, required: true, class_name: "City", foreign_key: "city_id"
 
   serialize :recommend_family_type, Array
-
   validates :ratings, inclusion: { in: 1..5 }
+
+  def author
+    user.username
+  end
 end
