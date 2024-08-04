@@ -26,7 +26,8 @@ class DashboardController < ApplicationController
     end
 
     @cities = @cities.limit(5)
-    session[:search_results] = @cities.pluck(:id)
+    cache_key = "search_results_#{current_user.id}_#{Time.now.to_i}"
+    Rails.cache.write(cache_key, @cities.pluck(:id), expires_in: 1.hours)
 
     @cities.each do |city|
       puts city.city_name
@@ -39,11 +40,7 @@ class DashboardController < ApplicationController
   end
 
   def priority_result
-    if @stored_search_results.any?
-      @cities = @stored_search_results
-    else
-      @cities = City.none
-    end
+    @cities = @stored_search_results
   end
 
   def city_comparison
@@ -70,8 +67,9 @@ class DashboardController < ApplicationController
   private
 
   def load_stored_search_results
-    if session[:search_results].present?
-      @stored_search_results = City.where(id: session[:search_results])
+    if session[:search_results_cache_key].present?
+      city_ids = Rails.cache.read(session[:search_results_cache_key])
+      @stored_search_results = City.where(id: city_ids)
     else
       @stored_search_results = City.none
     end
