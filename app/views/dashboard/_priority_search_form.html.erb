@@ -50,7 +50,7 @@
 
       <div class="buttons">
         <%= form.submit 'Search', class: 'btn primary' %>
-        <%= link_to 'Back', root_path, class: 'btn back' %>
+        <%= link_to 'Back', '#', class: 'btn back', onclick: 'window.history.back(); return false;' %>
       </div>
     <% end %>
   </div>
