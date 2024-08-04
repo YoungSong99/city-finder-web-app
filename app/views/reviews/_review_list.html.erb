@@ -1,0 +1,19 @@
+<h1 class="sub-title">Reviews for <%= @city.city_name %></h1>
+
+<div class="form">
+  <%= render 'score_card' %>
+  <div class="row">
+  </div>
+  <% @reviews.each do |review| %>
+    <%= review.pros %>
+    <%= review.cons %>
+    <%= review.ratings %>
+    <%= review.recommend_family_type %>
+    <%= review.zipcode %>
+    <%#= link_to 'Show', city_review_path(@city, review) %>
+    <%#= link_to 'Edit', edit_city_review_path(@city, review) %>
+    <%#= link_to 'Destroy', city_review_path(@city, review), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</div>
+
+<%= link_to 'New Review', new_city_review_path(@city) %>

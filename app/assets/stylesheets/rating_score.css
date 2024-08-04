@@ -1,0 +1,44 @@
+.rating_card {
+}
+
+.rating_card .flex-div {
+    justify-content: space-between;
+}
+
+.rating_card hr {
+    border: none;
+    height: 0.5px;
+    background-color: var(--color-light--1);
+    margin: 1rem 0;
+}
+
+.bar-container {
+    width: 100%;
+}
+
+.bar {
+    margin-left: 1rem;
+    height: 0.8rem;
+    border-radius: 0.2rem;
+    background-color: var(--color-brand--2);
+}
+
+.bar-5 {
+    width: 60%;
+}
+
+.bar-4 {
+    width: 30%;
+}
+
+.bar-3 {
+    width: 10%;
+}
+
+.bar-2 {
+    width: 4%;
+}
+
+.bar-1 {
+    width: 15%;
+}
