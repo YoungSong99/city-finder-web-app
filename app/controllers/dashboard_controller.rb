@@ -1,5 +1,7 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_stored_search_results, only: [:priority_result]
+
 
   def index
     @q = City.ransack(params[:q])
@@ -24,6 +26,7 @@ class DashboardController < ApplicationController
     end
 
     @cities = @cities.limit(5)
+    session[:search_results] = @cities.pluck(:id)
 
     @cities.each do |city|
       puts city.city_name
@@ -32,6 +35,14 @@ class DashboardController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+    end
+  end
+
+  def priority_result
+    if @stored_search_results.any?
+      @cities = @stored_search_results
+    else
+      @cities = City.none
     end
   end
 
@@ -57,6 +68,15 @@ class DashboardController < ApplicationController
 
 
   private
+
+  def load_stored_search_results
+    if session[:search_results].present?
+      @stored_search_results = City.where(id: session[:search_results])
+    else
+      @stored_search_results = City.none
+    end
+  end
+
 
   def build_order_clause(priorities)
     priority_mapping = {
