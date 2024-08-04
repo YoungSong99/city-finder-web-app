@@ -50,3 +50,8 @@
     font-size: 1.2rem;
     color: var(--color-light--1);
 }
+
+.copyright a:link, .copyright a:visited{
+    text-decoration: none;
+    color: var(--color-light--1);
+}
