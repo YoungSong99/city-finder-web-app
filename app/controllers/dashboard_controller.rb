@@ -1,5 +1,7 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_stored_search_results, only: [:priority_result]
+
 
   def index
     @q = City.ransack(params[:q])
@@ -24,6 +26,8 @@ class DashboardController < ApplicationController
     end
 
     @cities = @cities.limit(5)
+    cache_key = "search_results_#{current_user.id}_#{Time.now.to_i}"
+    Rails.cache.write(cache_key, @cities.pluck(:id), expires_in: 1.hours)
 
     @cities.each do |city|
       puts city.city_name
@@ -33,6 +37,10 @@ class DashboardController < ApplicationController
       format.html
       format.js
     end
+  end
+
+  def priority_result
+    @cities = @stored_search_results
   end
 
   def city_comparison
@@ -57,6 +65,16 @@ class DashboardController < ApplicationController
 
 
   private
+
+  def load_stored_search_results
+    if session[:search_results_cache_key].present?
+      city_ids = Rails.cache.read(session[:search_results_cache_key])
+      @stored_search_results = City.where(id: city_ids)
+    else
+      @stored_search_results = City.none
+    end
+  end
+
 
   def build_order_clause(priorities)
     priority_mapping = {
