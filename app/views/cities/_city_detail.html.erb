@@ -1,24 +1,9 @@
 <div class="city">
   <div class="row">
     <h6>City name</h6>
-    <div class="flex-div-spread">
-      <h3>
-        <span>🇺🇸</span> <%= @the_city.city_name %>
-      </h3>
-      <div>
-        <div class="flex-div">
-          <% if current_user.favorite_cities.exists?(city_id: @the_city.id) %>
-            Remove from the list <%= button_to remove_city_path(@the_city), method: :delete, class: 'deleteBtn-lg' do %>
-              <i class="fas fa-heart"></i>
-            <% end %>
-          <% else %>
-            Save to compare <%= button_to add_city_path(@the_city), method: :post, class: 'deleteBtn-lg' do %>
-              <i class="far fa-heart"></i>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div>
+    <h3>
+      <span>🇺🇸</span> <%= @the_city.city_name %>
+    </h3>
   </div>
   <div class="row">
     <h6>School Grading</h6>
@@ -41,22 +26,26 @@
   </div>
   <div class="row">
     <h6>Average House Price</h6>
-    <div class="flex-div">
-      <p class="tag-color">
-        <span class="tag-label">sales</span> <%= number_to_currency(@the_city.prices.first.median_home_value, precision: 0) %>
-      </p>
-      <p class="tag-color">
-        <span class="tag-label">rent</span> <%= number_to_currency(@the_city.prices.first.rental_value, precision: 0) %>
-    </div>
-  </p>
+    <% if @the_city.prices.any? %>
+      <div class="flex-div">
+        <p class="tag-color">
+          <span class="tag-label">sales</span> <%= number_to_currency(@the_city.prices.first.median_home_value, precision: 0) %>
+        </p>
+        <p class="tag-color">
+          <span class="tag-label">rent</span> <%= number_to_currency(@the_city.prices.first.rental_value, precision: 0) %>
+      </div>
+    <% else %>
+      <p>There is No Price data yet</p>
+    <% end %>
+    </p>
   </div>
   <div class="row">
     <h6>Appreciation Value</h6>
     <% if @the_city.appreciation_values.any? %>
       <p>
         <span class="emoji">📈</span>
-        In the past year, the appreciation value is <b><%= @the_city.appreciation_values.first.last_12months %></b>.
-        Since 2000, the average appreciation value is <b><%= @the_city.appreciation_values.first.since_2000 %></b>.
+        In the past year, the appreciation value has increased by <b><%= @the_city.appreciation_values.first.last_12months %>%</b>.
+        Over the past five years, the average appreciation value has been <b><%= @the_city.appreciation_values.first.since_2000 %>%</b>.
       </p>
     <% else %>
       <p>There is No Appreciation data yet</p>
@@ -97,7 +86,7 @@
         <div id="star-rating" class="rating-group"></div>
         <p>
           <% if @the_city.reviews_count > 0 %>
-            From (<%= @the_city.reviews_count %>) People
+            <b><%= @the_city.average_rating %></b> (<%= @the_city.reviews_count %>)
           <% else %>
             Be the First Reviewer!
           <% end %>
