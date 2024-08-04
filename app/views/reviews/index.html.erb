@@ -23,8 +23,8 @@
       <td><%= review.recommend_family_type %></td>
       <td><%= review.zipcode %></td>
       <td><%= link_to 'Show', city_review_path(@city, review) %></td>
-      <td><%= link_to 'Edit', edit_review_path(review) %></td>
-      <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Edit', edit_city_review_path(@city, review) %></td>
+      <td><%= link_to 'Destroy', city_review_path(@city, review), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
   </tbody>

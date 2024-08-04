@@ -2,7 +2,7 @@
 
 <div class="form">
   <div class="review-form">
-    <%= form_with model: @review, local: true do |form| %>
+    <%= form_with(model:[@city, @review], local: true) do |form| %>
       <div class="row">
         <%= form.label :pros, "What did you love about #{@city.city_name}?" %>
         <%= form.text_area :pros, placeholder: "I loved..." %>
@@ -23,9 +23,19 @@
           <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'commuter', nil %> Commuters<br></div>
         </div>
       </div>
+<!--      <div class="row">-->
+        <%#= form.label :ratings, "Overall Rating" %>
+        <%#= form.select :ratings, options_for_select(1..5), { include_blank: "Select a rating" }, class: 'select'%>
+<!--      </div>-->
+
       <div class="row">
         <%= form.label :ratings, "Overall Rating" %>
-        <%= form.select :ratings, options_for_select(1..5), { include_blank: "Select a rating" }, class: 'select'%>
+        <div id="star-rating-input">
+          <% 5.times do |i| %>
+            <span class="fa fa-star star-icon" data-value="<%= i + 1 %>"></span>
+          <% end %>
+        </div>
+        <%= form.hidden_field :ratings, id: 'rating-input' %>
       </div>
 
       <div class="row">
@@ -39,5 +49,29 @@
       </div>
     <% end %>
   </div>
-
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const stars = document.querySelectorAll('#star-rating-input .star-icon');
+        const ratingInput = document.getElementById('rating-input');
+
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = this.getAttribute('data-value');
+                ratingInput.value = rating;
+                renderStars(rating);
+            });
+        });
+
+        function renderStars(rating) {
+            stars.forEach(star => {
+                if (star.getAttribute('data-value') <= rating) {
+                    star.classList.add('checked');
+                } else {
+                    star.classList.remove('checked');
+                }
+            });
+        }
+    });
+</script>

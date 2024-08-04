@@ -43,6 +43,7 @@ class ReviewsController < ApplicationController
   private
 
   def set_city
+    Rails.logger.debug "Params: #{params.inspect}"
     @city = City.find(params[:city_id])
   end
 

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :reviews
   devise_for :users
 
   root 'static#home'
@@ -22,6 +21,6 @@ Rails.application.routes.draw do
   resources :cities, only: [:show]
 
   resources :cities do
-    resources :reviews, only: [:new, :create, :index, :show]
+    resources :reviews
   end
 end
