@@ -1,0 +1,12 @@
+.review-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-form .row {
+    margin-bottom: 2rem;
+}
+
+.review-form .grid{
+    margin-top: 1rem;
+}

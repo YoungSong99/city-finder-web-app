@@ -1,31 +1,31 @@
 <h1 class="sub-title">💡Share your thoughts on <%= @city.city_name %>!</h1>
 
-<div class="form-container">
-  <div class="form">
+<div class="form">
+  <div class="review-form">
     <%= form_with model: @review, local: true do |form| %>
       <div class="row">
         <%= form.label :pros, "What did you love about #{@city.city_name}?" %>
-        <%= form.text_area :pros, placeholder: "One thing I loved about #{@city.city_name} is..." %>
+        <%= form.text_area :pros, placeholder: "I loved..." %>
       </div>
       <div class="row">
         <%= form.label :cons, "What needs improvement in #{@city.city_name}?" %>
-        <%= form.text_area :cons, placeholder: "One thing that could be better in #{@city.city_name} is..." %>
+        <%= form.text_area :cons, placeholder: "Needs improvement...  " %>
       </div>
       <div class="row">
         <%= form.label :recommend_family_type, "Who do you think would enjoy living here?" %>
         <div class="grid">
-          <div><%= form.check_box :recommend_family_type, { multiple: true }, 'single', nil %> Single<br></div>
-          <div><%= form.check_box :recommend_family_type, { multiple: true }, 'married', nil %> Married<br></div>
-          <div><%= form.check_box :recommend_family_type, { multiple: true }, 'pet', nil %> Pet Owners<br></div>
-          <div><%= form.check_box :recommend_family_type, { multiple: true }, 'with kid', nil %> Families with Kids<br></div>
-          <div><%= form.check_box :recommend_family_type, { multiple: true }, 'retired', nil %> Retirees<br></div>
-          <div><%= form.check_box :recommend_family_type, { multiple: true }, 'remote worker', nil %> Remote Workers<br></div>
-          <div><%= form.check_box :recommend_family_type, { multiple: true }, 'commuter', nil %> Commuters<br></div>
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'single', nil %> Single<br></div>
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'married', nil %> Married<br></div>
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'pet', nil %> Pet Owners<br></div>
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'with kid', nil %> Families with Kids<br></div>
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'retired', nil %> Retirees<br></div>
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'remote worker', nil %> Remote Workers<br></div>
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'commuter', nil %> Commuters<br></div>
         </div>
       </div>
       <div class="row">
         <%= form.label :ratings, "Overall Rating" %>
-        <%= form.select :ratings, options_for_select(1..5), { include_blank: "Select a rating" } %>
+        <%= form.select :ratings, options_for_select(1..5), { include_blank: "Select a rating" }, class: 'select'%>
       </div>
 
       <div class="row">
