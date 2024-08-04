@@ -48,7 +48,7 @@ class DashboardController < ApplicationController
 
   def comparison_result
     if user_signed_in?
-      @saved_cities = City.where(id: current_user.favorite_cities.pluck(:city_id).uniq)
+      @saved_cities = City.where(id: current_user.favorite_cities.pluck(:city_id))
     else
       redirect_to new_user_session_path, alert: 'This service requires login.'
     end

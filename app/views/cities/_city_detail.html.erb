@@ -5,7 +5,6 @@
       <span>🇺🇸</span> <%= @the_city.city_name %>
     </h3>
   </div>
-
   <div class="row">
     <h6>School Grading</h6>
     <% if @the_city.school_grades.any? %>
@@ -14,78 +13,91 @@
     <% else %>
       <p>There is No school data yet</p>
     <% end %>
-    <div class="row">
-      <h6>Safety Score</h6>
-      <% if @the_city.crime_rates.any? %>
-        <p><span class="emoji">👮‍</span><b><%= @the_city.crime_rates.first.crime_index %></b> / 100</p>
-        (Violent Crime: <%= @the_city.crime_rates.first.violent_crime_rate %>, Property
-          Crime: <%= @the_city.crime_rates.first.property_crime_rate %>)
-      <% else %>
-        <p>There is No school data yet</p>
-      <% end %>
-      <div class="row">
-        <h6>Appreciation Value</h6>
-        <% if @the_city.appreciation_values.any? %>
-          <p>
-            <span class="emoji">📈</span>
-            In the past year, the appreciation value is <b><%= @the_city.appreciation_values.first.last_12months %></b>.
-            Since 2000, the average appreciation value is <b><%= @the_city.appreciation_values.first.since_2000 %></b>.
-          </p>
-        <% else %>
-          <p>There is No Appreciation data yet</p>
-        <% end %>
-      </div>
-      <div class="row">
-        <h6>convenience</h6>
-        <div class="grid">
-          <p><span class='emoji-sm'>🛒</span><b><%= @the_city.grocery_cities.count %></b> Grocery</p>
-          (
-          <% @the_city.grocery_cities.each do |grocery_city| %>
-            <%= grocery_city.grocery.name %>,
-          <% end %>)
-          <p><span class='emoji-sm'>🏋</span><b><%= @the_city.gym_cities.count %></b> Gym</p>
-          (
-          <% @the_city.gym_cities.each do |gym_city| %>
-            <%= gym_city.gym.name %>,
-          <% end %>)
-      </div>
-        <div class="row">
-          <% @the_city.metras.each do |metra| %>
-            <p class="tag-color">
-              <span class='emoji-sm'>🚊</span><span class="tag-label"><%= metra.lines %></span> <%= metra.station %>
-            </p>
-          <% end %>
-        </div>
-      <div class="row">
-        <h6>community</h6>
+  </div>
+  <div class="row">
+    <h6>Safety Score</h6>
+    <% if @the_city.crime_rates.any? %>
+      <p><span class="emoji">👮‍</span><b><%= @the_city.crime_rates.first.crime_index %></b> / 100</p>
+      (Violent Crime: <%= @the_city.crime_rates.first.violent_crime_rate %>, Property
+      Crime: <%= @the_city.crime_rates.first.property_crime_rate %>)
+    <% else %>
+      <p>There is No school data yet</p>
+    <% end %>
+  </div>
+  <div class="row">
+    <h6>Average House Price</h6>
+    <% if @the_city.prices.any? %>
+      <div class="flex-div">
         <p class="tag-color">
-          <% @the_city.language_cities.each do |language_city| %>
-            <span class="tag-label"><%= language_city.language.name %> (<%= language_city.percentage %>%)</span>
+          <span class="tag-label">sales</span> <%= number_to_currency(@the_city.prices.first.median_home_value, precision: 0) %>
+        </p>
+        <p class="tag-color">
+          <span class="tag-label">rent</span> <%= number_to_currency(@the_city.prices.first.rental_value, precision: 0) %>
+      </div>
+    <% else %>
+      <p>There is No Price data yet</p>
+    <% end %>
+    </p>
+  </div>
+  <div class="row">
+    <h6>Appreciation Value</h6>
+    <% if @the_city.appreciation_values.any? %>
+      <p>
+        <span class="emoji">📈</span>
+        In the past year, the appreciation value has increased by <b><%= @the_city.appreciation_values.first.last_12months %>%</b>.
+        Over the past five years, the average appreciation value has been <b><%= @the_city.appreciation_values.first.since_2000 %>%</b>.
+      </p>
+    <% else %>
+      <p>There is No Appreciation data yet</p>
+    <% end %>
+  </div>
+  <div class="row">
+    <h6>convenience</h6>
+    <div class="grid">
+      <p><span class='emoji-sm'>🛒</span><b><%= @the_city.grocery_cities.count %></b> Grocery</p>
+      (
+      <% @the_city.grocery_cities.each do |grocery_city| %>
+        <%= grocery_city.grocery.name %>,
+      <% end %>)
+      <p><span class='emoji-sm'>🏋</span><b><%= @the_city.gym_cities.count %></b> Gym</p>
+      (
+      <% @the_city.gym_cities.each do |gym_city| %>
+        <%= gym_city.gym.name %>,
+      <% end %>)
+    </div>
+    <div class="row">
+      <% @the_city.metras.each do |metra| %>
+        <p class="tag-color">
+          <span class='emoji-sm'>🚊</span><span class="tag-label"><%= metra.lines %></span> <%= metra.station %>
+        </p>
+      <% end %>
+    </div>
+    <div class="row">
+      <h6>community</h6>
+      <p class="tag-color">
+        <% @the_city.language_cities.each do |language_city| %>
+          <span class="tag-label"><%= language_city.language.name %> (<%= language_city.percentage %>%)</span>
+        <% end %>
+      </p>
+    </div>
+    <div class="row">
+      <h6>Residence Ratings</h6>
+      <div class="flex-div">
+        <div id="star-rating" class="rating-group"></div>
+        <p>
+          <% if @the_city.reviews_count > 0 %>
+            <b><%= @the_city.average_rating %></b> (<%= @the_city.reviews_count %>)
+          <% else %>
+            Be the First Reviewer!
           <% end %>
         </p>
       </div>
-      <div class="row">
-        <h6>Residence Ratings</h6>
-        <div class="flex-div">
-          <div id="star-rating" class="rating-group"></div>
-          <p>
-            <% if @the_city.reviews_count > 0 %>
-              From (<%= @the_city.reviews_count %>) People
-            <% else %>
-              Be the First Reviewer!
-            <% end %>
-          </p>
-        </div>
-        <div>
-          <div class="buttons">
-            <%= link_to 'Add Review', new_city_review_path(@the_city), class: 'btn primary' %>
-            <%= link_to 'Back', request.referer || root_path, class: 'btn back' %>
-          </div>
-        </div>
-      </div>
+    </div>
+    <div class="buttons">
+      <%= link_to 'Add Review', new_city_review_path(@the_city), class: 'btn primary' %>
+      <%= link_to 'Back', request.referer || root_path, class: 'btn back' %>
     </div>
   </div>
-</div>
 </div>
 <script>
     function renderStars(rating) {

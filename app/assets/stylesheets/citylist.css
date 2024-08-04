@@ -85,6 +85,20 @@
     color: var(--color-dark--1);
 }
 
+.deleteBtn-lg {
+    height: 3rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--color-dark--1);
+    color: var(--color-light--2);
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
 .city {
     padding: 2rem 3rem;
     max-width: 40vh;
@@ -160,8 +174,15 @@
 
 .flex-div {
     display: flex;
+    align-items: center;
 }
 
-.flex-div p {
-    margin-left: 1rem;
+.flex-div p{
+    margin-right: 1rem;
+}
+
+.flex-div-spread {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

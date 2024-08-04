@@ -11,5 +11,4 @@
 #
 class Price < ApplicationRecord
   belongs_to :city, required: true, class_name: "City", foreign_key: "city_id"
-
 end

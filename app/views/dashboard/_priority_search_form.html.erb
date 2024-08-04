@@ -1,58 +1,62 @@
 <h1 class="sub-title">Find Your Top 5 Cities in Illinois</h1>
 
 <div class="form-container">
-  <%= form_with url: search_path, method: :get, local: false, class: "form" do |form| %>
-    <h1>What matters most to you?</h1>
+  <div class="form">
+    <%= form_with url: search_path, method: :get, local: false, class: "form" do |form| %>
+      <h1><span class="emoji">👋</span>Hi, <%= current_user.username.capitalize %>! <br>What matters most to you?</h1>
 
-    <% 3.times do |index| %>
-      <div class="row">
-        <%= form.label :"priority-#{index}", get_label(index) %>
-        <%= form.select :"priority-#{index}", options_for_select([
-                                                                   ["Select a factor", ""],
-                                                                   ["School Rating", "School"],
-                                                                   ["Safety", "Safety"],
-                                                                   ["Sale Price (Low to high)", "Sales_low"],
-                                                                   ["Sale Price (high to low)", "Sales_high"],
-                                                                   ["Rent Price (Low to high)", "rent_low"],
-                                                                   ["Rent Price (high to low)", "rent_high"],
-                                                                   ["Appreciation Value", "Appreciation"],
-                                                                   ["Need a Metra Station", "Metra"],
-                                                                   ["Grocery Store", "Grocery"],
-                                                                   ["Community", "Community"],
-                                                                   ["Gym", "Gym"]
-                                                                 ]), {}, { class: "select", onchange: "handlePriorityChange(event, #{index})" } %>
+      <% 3.times do |index| %>
+        <div class="row">
+          <%= form.label :"priority-#{index}", get_label(index) %>
+          <%= form.select :"priority-#{index}", options_for_select([
+                                                                     ["Select a factor", ""],
+                                                                     ["School Rating", "School"],
+                                                                     ["Safety", "Safety"],
+                                                                     ["Sale Price (Low to high)", "Sales_low"],
+                                                                     ["Sale Price (high to low)", "Sales_high"],
+                                                                     ["Rent Price (Low to high)", "rent_low"],
+                                                                     ["Rent Price (high to low)", "rent_high"],
+                                                                     ["Appreciation Value", "Appreciation"],
+                                                                     ["Need a Metra Station", "Metra"],
+                                                                     ["Grocery Store", "Grocery"],
+                                                                     ["Community", "Community"],
+                                                                     ["Gym", "Gym"]
+                                                                   ]), {}, { class: "select", onchange: "handlePriorityChange(event, #{index})" } %>
 
-        <div id="grocery-options-<%= index %>" class="grid" style="display: none;">
-          <% @grocery_names.each do |grocery| %>
-            <div>
-              <%= form.check_box :grocery, { name: "grocery_#{index}[]" }, grocery, nil %>
-              <%= form.label grocery, grocery %>
-            </div>
-          <% end %>
+          <div id="grocery-options-<%= index %>" class="grid" style="display: none;">
+            <% @grocery_names.each do |grocery| %>
+              <div>
+                <%= form.check_box :grocery, { name: "grocery_#{index}[]" }, grocery, nil %>
+                <%= form.label grocery, grocery %>
+              </div>
+            <% end %>
+          </div>
+
+          <div id="gym-options-<%= index %>" class="grid" style="display: none;">
+            <% @gym_names.each do |gym| %>
+              <div>
+                <%= form.check_box :gym, { name: "gym_#{index}[]" }, gym, nil %>
+                <%= form.label gym, gym %>
+              </div>
+            <% end %>
+          </div>
+
+          <div id="community-options-<%= index %>" class="row" style="display: none;">
+            <%= form.label :"community-language-#{index}", "Select a language" %>
+            <%= form.select :"community-language-#{index}", options_for_select(@language_names.map { |language| [language, language] }), {}, { class: "select" } %>
+          </div>
         </div>
+      <% end %>
 
-        <div id="gym-options-<%= index %>" class="grid" style="display: none;">
-          <% @gym_names.each do |gym| %>
-            <div>
-              <%= form.check_box :gym, { name: "gym_#{index}[]" }, gym, nil %>
-              <%= form.label gym, gym %>
-            </div>
-          <% end %>
-        </div>
-
-        <div id="community-options-<%= index %>" class="row" style="display: none;">
-          <%= form.label :"community-language-#{index}", "Select a language" %>
-          <%= form.select :"community-language-#{index}", options_for_select(@language_names.map { |language| [language, language] }), {}, { class: "select" } %>
-        </div>
+      <div class="buttons">
+        <%= form.submit 'Search', class: 'btn primary' %>
+        <%= link_to 'Back', root_path, class: 'btn back' %>
       </div>
     <% end %>
+  </div>
 
-    <div class="buttons">
-      <%= form.submit 'Search', class: 'btn primary' %>
-      <%= link_to 'Back', root_path, class: 'btn back' %>
-    </div>
-  <% end %>
 </div>
+
 
 
 <script>
