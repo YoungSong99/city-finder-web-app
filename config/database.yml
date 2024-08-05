@@ -76,5 +76,5 @@ production:
   database: city_finder_production
   username: young
 #  password: <%#= ENV["RAILS_TEMPLATE_DATABASE_PASSWORD"] %>
-#  url: <%#= ENV['DATABASE_URL'] %>
+  url: <%= ENV['DATABASE_URL'] %>
   #  password: <%#= ENV["RAILS_TEMPLATE_DATABASE_PASSWORD"] %>
