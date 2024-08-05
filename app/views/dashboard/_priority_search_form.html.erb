@@ -17,10 +17,10 @@
                                                                      ["Rent Price (Low to high)", "rent_low"],
                                                                      ["Rent Price (high to low)", "rent_high"],
                                                                      ["Appreciation Value", "Appreciation"],
-                                                                     ["Need a Metra Station", "Metra"],
-                                                                     ["Grocery Store", "Grocery"],
-                                                                     ["Community", "Community"],
-                                                                     ["Gym", "Gym"]
+                                                                     ["Need a Metra Station (coming soon)", "Metra"],
+                                                                     ["Grocery Store (coming soon)", "Grocery"],
+                                                                     ["Community (coming soon)", "Community"],
+                                                                     ["Gym (coming soon)", "Gym"]
                                                                    ]), {}, { class: "select", onchange: "handlePriorityChange(event, #{index})" } %>
 
           <div id="grocery-options-<%= index %>" class="grid" style="display: none;">
@@ -50,7 +50,7 @@
 
       <div class="buttons">
         <%= form.submit 'Search', class: 'btn primary' %>
-        <%= link_to 'Back', root_path, class: 'btn back' %>
+        <%= link_to 'Back', '#', class: 'btn back', onclick: 'window.history.back(); return false;' %>
       </div>
     <% end %>
   </div>

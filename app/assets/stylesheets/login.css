@@ -19,14 +19,14 @@
     margin: 8rem auto;
 }
 
-.row {
+.login .form .row {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1.5rem;
 }
 
 .login .form .row input {
-    margin-bottom: 1.5rem;
+    /*margin-bottom: 1.5rem;*/
 }
 
 .login .form .row .password a {
@@ -103,4 +103,19 @@ abbr {
     font-weight: 600;
     padding: 0.5rem 1rem;
     border-radius: 5px;
+}
+
+.login-btn-div {
+    display: flex;
+    row-gap: 1rem;
+    flex-direction: column;
+    text-align: center;
+}
+
+.login .form {
+    padding: 3rem 3rem;
+}
+
+.margin-top {
+    margin-top: 1.5rem;
 }

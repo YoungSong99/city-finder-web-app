@@ -44,8 +44,10 @@
     <% if @the_city.appreciation_values.any? %>
       <p>
         <span class="emoji">📈</span>
-        In the past year, the appreciation value has increased by <b><%= @the_city.appreciation_values.first.last_12months %>%</b>.
-        Over the past five years, the average appreciation value has been <b><%= @the_city.appreciation_values.first.since_2000 %>%</b>.
+        In the past year, the appreciation value has increased by
+        <b><%= @the_city.appreciation_values.first.last_12months %>%</b>.
+        Over the past five years, the average appreciation value has been
+        <b><%= @the_city.appreciation_values.first.last_5years %>%</b>.
       </p>
     <% else %>
       <p>There is No Appreciation data yet</p>
@@ -82,16 +84,7 @@
     </div>
     <div class="row">
       <h6>Residence Ratings</h6>
-      <div class="flex-div">
-        <div id="star-rating" class="rating-group"></div>
-        <p>
-          <% if @the_city.reviews_count > 0 %>
-            <b><%= @the_city.average_rating %></b> (<%= @the_city.reviews_count %>)
-          <% else %>
-            Be the First Reviewer!
-          <% end %>
-        </p>
-      </div>
+      <%= render 'shared/rating_by_city', city: @the_city %>
     </div>
     <div class="buttons">
       <%= link_to 'Add Review', new_city_review_path(@the_city), class: 'btn primary' %>
@@ -99,20 +92,3 @@
     </div>
   </div>
 </div>
-<script>
-    function renderStars(rating) {
-        const starContainer = document.getElementById('star-rating');
-        starContainer.innerHTML = '';
-
-        for (let i = 1; i <= 5; i++) {
-            if (i <= rating) {
-                starContainer.innerHTML += '<span class="fa fa-star checked star-icon"></span>';
-            } else {
-                starContainer.innerHTML += '<span class="fa fa-star star-icon"></span>';
-            }
-        }
-    }
-
-    const rating = <%= @the_city.average_rating %>;
-    renderStars(rating);
-</script>

@@ -1,3 +1,13 @@
-<h1>Edit Review for <%= @review.city.city_name %></h1>
-<%= render 'form', city: @review.city, review: @review %>
-<%= link_to 'Back', city_review_path(@review.city, @review) %>
+<div class="app">
+  <div class="sidebar">
+    <img src="<%= asset_path('logo.png') %>" alt="CityFinder logo" class="logo">
+    <%= render 'shared/nav' %>
+    <div class="outlet">
+      <h1 class="sub-title">💡Edit Review for <%= @review.city.city_name %></h1>
+      <%= render 'form', city: @review.city, review: @review %>
+    </div>
+    <%= render 'shared/footer' %>
+  </div>
+  <%= render 'shared/map' %>
+  <%= render 'shared/user_nav' %>
+</div>

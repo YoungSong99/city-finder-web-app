@@ -1,11 +1,12 @@
 <main class="login">
   <%= render 'shared/static_nav' %>
   <div class="form">
+      <h1>Let's keep your profile up-to-date!👍</h1>
     <div class="row">
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= f.error_notification %>
 
-        <div class="form-inputs">
+        <div class="row">
           <%= f.input :email, required: true, autofocus: true %>
           <%= f.input :username %>
 
@@ -27,20 +28,24 @@
           <%= f.input :password,
                       hint: "leave it blank if you don't want to change it",
                       required: false,
-                      input_html: { autocomplete: "new-password" } %>
+                      input_html: { autocomplete: "new-password" }, class: 'row'%>
           <%= f.input :password_confirmation,
                       required: false,
-                      input_html: { autocomplete: "new-password" } %>
+                      input_html: { autocomplete: "new-password" }, class: 'row' %>
           <%= f.input :current_password,
                       hint: "we need your current password to confirm your changes",
                       required: true,
-                      input_html: { autocomplete: "current-password" } %>
+                      input_html: { autocomplete: "current-password" }, class: 'row' %>
         </div>
-
-        <div class="large">
-          <%= f.button :submit, "Update", class: "btn primary"%>
+        <div class="margin-top">
+        <div class="login-btn-div">
+            <%= f.button :submit, "Update", class: "btn primary"%>
+            <%= link_to 'Back', '#', class: 'btn back', onclick: 'window.history.back(); return false;' %>
         </div>
-        <div><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?"}, method: :delete, class:"btn cancel back" %></div>
+        </div>
+        <div class="password">
+          <%= link_to "I want to delete my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?"}, method: :delete %>
+        </div>
     <% end %>
     </div>
   </div>

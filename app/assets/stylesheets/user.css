@@ -36,3 +36,7 @@
 .user-edit {
     color: var(--color-light--2);
 }
+
+#new_user .row {
+    margin-bottom: 1.5rem;
+}

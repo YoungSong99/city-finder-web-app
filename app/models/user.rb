@@ -24,7 +24,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many  :reviews, class_name: "Review", foreign_key: "user_id", dependent: :destroy
-  has_many  :favorite_cities, class_name: "FavoriteCity", foreign_key: "user_id", dependent: :destroy
+  has_many :reviews, class_name: "Review", foreign_key: "user_id", dependent: :destroy
+  has_many :favorite_cities, class_name: "FavoriteCity", foreign_key: "user_id", dependent: :destroy
   has_many :cities, through: :favorite_cities
 end

@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :set_city, only: [:new, :create, :index]
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :set_city
+  before_action :set_review, only: [:edit, :update, :destroy, :show]
 
   def index
     @reviews = @city.reviews
@@ -42,6 +42,12 @@ class ReviewsController < ApplicationController
 
   private
 
+  def review_params
+    params.require(:review).permit(:pros, :cons, :ratings, { recommend_family_type: [] }, :zipcode)
+  end
+
+  helper_method :display_stars
+
   def set_city
     @city = City.find(params[:city_id])
   end
@@ -50,7 +56,10 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
   end
 
-  def review_params
-    params.require(:review).permit(:pros, :cons, :ratings, { recommend_family_type: [] }, :zipcode)
+  def display_stars(review)
+    filled_star_icon = '<span class="fa fa-star checked"></span>'
+    empty_star_icon = '<span class="fa fa-star"></span>'
+    stars = filled_star_icon * review.ratings + empty_star_icon * (5-review.ratings)
+    stars.html_safe
   end
 end

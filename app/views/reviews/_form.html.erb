@@ -1,44 +1,75 @@
-<div class="form-container">
-  <div class="row">
-    <%= form.label :pros %>
-    <%= form.text_area :pros %>
-  </div>
-  <div class="row">
-    <%= form.label :cons %>
-    <%= form.text_area :cons %>
-  </div>
+<div class="form">
+  <div class="review-form">
+    <%= form_with(model:[@city, @review], local: true) do |form| %>
+      <div class="row">
+        <%= form.label :pros, "What did you love about #{@city.city_name}?" %>
+        <%= form.text_area :pros, placeholder: "I loved..." %>
+      </div>
+      <div class="row">
+        <%= form.label :cons, "What needs improvement in #{@city.city_name}?" %>
+        <%= form.text_area :cons, placeholder: "Needs improvement...  " %>
+      </div>
+      <div class="row">
+        <%= form.label :recommend_family_type, "Who do you think would enjoy living here?" %>
+        <div class="grid">
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'single', nil %> Single<br></div>
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'married', nil %> Married<br></div>
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'pet', nil %> Pet Owners<br></div>
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'with kid', nil %> Families with Kids<br></div>
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'retired', nil %> Retirees<br></div>
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'remote worker', nil %> Remote Workers<br></div>
+          <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'commuter', nil %> Commuters<br></div>
+        </div>
+      </div>
+<!--      <div class="row">-->
+        <%#= form.label :ratings, "Overall Rating" %>
+        <%#= form.select :ratings, options_for_select(1..5), { include_blank: "Select a rating" }, class: 'select'%>
+<!--      </div>-->
 
-  <div class="field">
-    <%= form.label :pros %>
-    <%= form.text_area :pros %>
-  </div>
+      <div class="row">
+        <%= form.label :ratings, "Overall Rating" %>
+        <div id="star-rating-input">
+          <% 5.times do |i| %>
+            <span class="fa fa-star star-icon" data-value="<%= i + 1 %>"></span>
+          <% end %>
+        </div>
+        <%= form.hidden_field :ratings, id: 'rating-input' %>
+      </div>
 
-  <div class="row">
-    <%= form.label :recommend_family_type, "Recommend Family Type" %>
-    <div>
-      <%= form.check_box :recommend_family_type, { multiple: true }, 'single', nil %> Single<br>
-      <%= form.check_box :recommend_family_type, { multiple: true }, 'married', nil %> Married<br>
-      <%= form.check_box :recommend_family_type, { multiple: true }, 'pet', nil %> Pet<br>
-      <%= form.check_box :recommend_family_type, { multiple: true }, 'with kid', nil %> With Kid<br>
-      <%= form.check_box :recommend_family_type, { multiple: true }, 'retired', nil %> Retired<br>
-      <%= form.check_box :recommend_family_type, { multiple: true }, 'remote worker', nil %> Remote Worker<br>
-      <%= form.check_box :recommend_family_type, { multiple: true }, 'commuter', nil %> Commuter<br>
-    </div>
-  </div>
+      <div class="row">
+        <%= form.label :zipcode, "Zip Code of #{@city.city_name}" %>
+        <%= form.number_field :zipcode, placeholder: "Enter the zip code of #{@city.city_name}..." %>
+      </div>
 
-  <div class="row">
-    <%= form.label :ratings %>
-    <%= form.select :ratings, options_for_select(1..5) %>
-  </div>
-
-  <div class="row">
-    <%= form.label :zipcode %>
-    <%= form.number_field :zipcode %>
-  </div>
-
-  <div class="buttons">
-    <%= form.submit %>
-    <%= link_to 'Back', root_path, class: 'btn back' %>
+      <div class="buttons">
+        <%= form.submit "Submit Your Review", class: "btn primary" %>
+        <%= link_to 'Back', '#', class: 'btn back', onclick: 'window.history.back(); return false;' %>
+      </div>
+    <% end %>
   </div>
 </div>
-</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const stars = document.querySelectorAll('#star-rating-input .star-icon');
+        const ratingInput = document.getElementById('rating-input');
+
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = this.getAttribute('data-value');
+                ratingInput.value = rating;
+                renderStars(rating);
+            });
+        });
+
+        function renderStars(rating) {
+            stars.forEach(star => {
+                if (star.getAttribute('data-value') <= rating) {
+                    star.classList.add('checked');
+                } else {
+                    star.classList.remove('checked');
+                }
+            });
+        }
+    });
+</script>
