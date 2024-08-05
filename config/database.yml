@@ -81,7 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: city_finder_production
+  database: city_finder_production_6t55
   username: young
-#  url: <%#= ENV['DATABASE_URL'] %>
+  url: <%= ENV['DATABASE_URL'] %>
 #  password: <%#= ENV["RAILS_TEMPLATE_DATABASE_PASSWORD"] %>

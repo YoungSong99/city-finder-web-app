@@ -1,21 +1,21 @@
 databases:
   - name: city-finder
-    databaseName: city_finder_production
+    databaseName: city_finder_production_6t55
     user: young
-    plan: free
+    plan: starter
 
 services:
   - type: web
     name: city-finder
     runtime: ruby
-    plan: free
+    plan: starter
     buildCommand: "./bin/render-build.sh"
     # preDeployCommand: "bundle exec rails db:migrate" # preDeployCommand only available on paid instance types
     startCommand: "bundle exec rails server"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: city_finder_production
+          name: city_finder_production_6t55
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync:false- key: WEB_CONCURRENCY
