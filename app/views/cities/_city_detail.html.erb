@@ -6,10 +6,10 @@
     </h3>
   </div>
   <div class="row">
-    <h6>School Grading</h6>
+    <h6>School Score</h6>
     <% if @the_city.school_grades.any? %>
-      <p><span class="emoji">🏫</span><b><%= @the_city.school_grades.first.score_compared_to_il %></b> in
-        Illinois, <b><%= @the_city.school_grades.first.score_compared_to_us %></b> in the US</p>
+      <p><span class="emoji">🏫</span><b><%= @the_city.school_grades.first.score_compared_to_il %></b>/10 in
+        Illinois, <b><%= @the_city.school_grades.first.score_compared_to_us %></b>/10 in the US</p>
     <% else %>
       <p>There is No school data yet</p>
     <% end %>

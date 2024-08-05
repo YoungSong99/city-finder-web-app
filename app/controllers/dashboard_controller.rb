@@ -3,17 +3,11 @@ class DashboardController < ApplicationController
   before_action :load_stored_search_results, only: [:priority_result]
 
 
-  def index
-    @q = City.ransack(params[:q])
-    @cities = @q.result.includes(:crime_rates, :school_grades, :appreciation_values, :prices, :metras, :grocery_cities, :gym_cities, :language_cities)
-    @cities = @cities.page(params[:page]).per(100)
-  end
-
   def search_by_priority
     priorities = params.values_at('priority-0', 'priority-1', 'priority-2')
 
     @q = City.ransack(params[:q])
-    @cities = @q.result.includes(:crime_rates, :school_grades, :appreciation_values, :prices)
+    @cities = @q.result.joins(:crime_rates, :school_grades, :appreciation_values, :prices)
 
     @grocery_names = Grocery.pluck(:name)
     @language_names = Language.pluck(:name)
