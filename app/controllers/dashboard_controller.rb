@@ -37,7 +37,7 @@ class DashboardController < ApplicationController
     @cities = @stored_search_results
   end
 
-  def city_comparison
+  def search_by_name
     if params[:q].present?
       @q = City.ransack(params[:q])
       @the_city = @q.result(distinct: true)
@@ -48,7 +48,7 @@ class DashboardController < ApplicationController
     end
   end
 
-  def comparison_result
+  def search_by_name_result
     if user_signed_in?
       @saved_cities = City.where(id: current_user.favorite_cities.pluck(:city_id))
     else

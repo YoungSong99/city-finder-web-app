@@ -1,0 +1,12 @@
+<div class="app">
+  <div class="sidebar">
+    <a href="/"><img src="<%= asset_path('logo.png') %>" alt="CityFinder logo" class="logo"></a>
+    <%= render 'shared/nav' %>
+    <div class="row">
+      <%= render 'comparison_graph' %>
+    </div>
+    <%= render 'shared/footer' %>
+  </div>
+  <%= render 'shared/map' %>
+  <%= render 'shared/user_nav' %>
+</div>
