@@ -6,7 +6,7 @@
 #  cons                  :text
 #  pros                  :text
 #  ratings               :integer
-#  recommend_family_type :text
+#  recommend_family_type :text             default([]), is an Array
 #  zipcode               :integer
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
