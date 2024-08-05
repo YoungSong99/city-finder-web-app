@@ -9,7 +9,7 @@
       <% if current_user.favorite_cities.any? %>
         <%= render 'favorite_city_list', favorite_cities: current_user.favorite_cities %>
       <% else %>
-        <p>Add Your First City Using + Button</p>
+        <h3 class="center">Add Your First City</h3>
       <% end %>
       <%= link_to 'Compare Cities', root_path, class: 'btn primary large' %>
     </div>
