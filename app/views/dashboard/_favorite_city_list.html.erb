@@ -2,7 +2,7 @@
   <% favorite_cities.each do |favorite_city| %>
     <li class="cityItem" id="<%= dom_id(favorite_city.city) %>_item">
       <span class="emoji">🇺🇸</span>
-      <h3 class="name"><%= link_to favorite_city.city.city_name, comparison_result_detail_path(favorite_city.city) %></h3>
+      <h3 class="name"><%= link_to favorite_city.city.city_name, search_by_name_result_detail_path(favorite_city.city) %></h3>
       <div id="<%= dom_id(favorite_city.city) %>_btn">
         <%= button_to '-', remove_city_path(favorite_city.city), method: :delete, remote: true, data: { turbo: false }, class: 'deleteBtn' %>
       </div>
