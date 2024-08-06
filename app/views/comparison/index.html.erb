@@ -6,7 +6,7 @@
       <h1 class="sub-title">Compared Below Cities</h1>
       <%= render 'dashboard/favorite_city_list', favorite_cities: current_user.favorite_cities %>
       <div class="buttons">
-        <%= link_to 'Download To CSV', root_url, class: 'btn primary' %>
+        <%= link_to 'Download To CSV', export_comparison_path(format: :csv), class: 'btn primary' %>
         <%= link_to 'Back', '#', class: 'btn back', onclick: 'window.history.back(); return false;' %>
       </div>
     </div>

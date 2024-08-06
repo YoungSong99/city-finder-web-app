@@ -16,6 +16,17 @@ class ComparisonController < ApplicationController
     end
   end
 
+
+  def export
+    @favorite_cities = current_user.favorite_cities.includes(:city => [:crime_rates, :school_grades, :appreciation_values, :prices, :metras, :grocery_cities, :gym_cities])
+
+    respond_to do |format|
+      format.csv do
+        send_data City.to_csv(@favorite_cities), filename: "city-finder-#{Date.today}.csv"
+      end
+    end
+  end
+
   private
 
   def safety_total(city)
