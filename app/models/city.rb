@@ -21,8 +21,12 @@ class City < ApplicationRecord
   has_many  :gym_cities, class_name: "GymCity", foreign_key: "city_id", dependent: :destroy
   has_many  :language_cities, class_name: "LanguageCity", foreign_key: "city_id", dependent: :destroy
   has_many  :favorite_cities, class_name: "FavoriteCity", foreign_key: "city_id", dependent: :destroy
+
   has_many :languages, through: :language_cities
   has_many :users, through: :favorite_cities
+  has_many :gyms, through: :gym_cities
+  has_many :groceries, through: :grocery_cities
+
 
 
   def average_rating
@@ -47,25 +51,4 @@ class City < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     %w(city_name latitude longitude state)
   end
-
-  # comparison graph
-  def safety_total
-    city.crime_rates.crime_index.to_i * 100
-  end
-  def school_total
-    city.school_grades.score_compared_to_il.to_i * 100
-  end
-
-  def convenience_total
-
-  end
-
-  def appreciation_total
-
-  end
-
-  def price_total
-
-  end
-
 end

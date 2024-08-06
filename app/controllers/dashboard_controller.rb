@@ -57,7 +57,6 @@ class DashboardController < ApplicationController
   end
 
 
-
   private
 
   def load_stored_search_results
@@ -84,4 +83,5 @@ class DashboardController < ApplicationController
     order_clause = priorities.map { |priority| priority_mapping[priority] }.compact.join(', ')
     order_clause.presence || 'city_name ASC'
   end
+
 end

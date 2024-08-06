@@ -4,7 +4,7 @@
       <%= link_to 'Search by Priority', search_path, class: ('active' if current_page?(search_path || priority_result_path)) %>
     </li>
     <li>
-      <%= link_to 'City Comparison', search_by_name_path, class: ('active' if current_page?(search_by_name_path)) %>
+      <%= link_to 'City Comparison', search_by_name_path, class: ('active' if current_page?(search_by_name_path || comparison_path)) %>
     </li>
   </ul>
 </div>

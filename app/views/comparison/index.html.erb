@@ -3,10 +3,18 @@
     <a href="/"><img src="<%= asset_path('logo.png') %>" alt="CityFinder logo" class="logo"></a>
     <%= render 'shared/nav' %>
     <div class="row">
-      <%= render 'comparison_graph' %>
+      <h1 class="sub-title">Compared Below Cities</h1>
+      <%= render 'dashboard/favorite_city_list', favorite_cities: current_user.favorite_cities %>
+      <div class="buttons">
+        <%= link_to 'Download To CSV', root_url, class: 'btn primary' %>
+        <%= link_to 'Back', '#', class: 'btn back', onclick: 'window.history.back(); return false;' %>
+      </div>
     </div>
     <%= render 'shared/footer' %>
   </div>
-  <%= render 'shared/map' %>
+  <div class="data-div">
+    <%= render 'comparison_graph' %>
+    <%= render 'comparison_table' %>
+  </div>
   <%= render 'shared/user_nav' %>
 </div>
