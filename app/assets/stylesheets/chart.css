@@ -36,8 +36,9 @@
     border-bottom: 1px solid #ddd;
 }
 .table th {
-    background-color: var(--color-light--1);
-    color: #333;
+    background-color: var(--color-dark--2);
+    color: var(--color-light--2);
+    opacity: 0.8;
 }
 .table tr:nth-child(even) {
     /*background-color: #f9f9f9;*/
@@ -49,8 +50,8 @@
     /*opacity: 0.5;*/
 }
 .table th[rowspan], .table th[colspan] {
-    background-color: var(--color-light--2);
-    opacity: 0.75;
+    background-color: var(--color-dark--2);
+    opacity: 1;
 }
 .left-corner {
     border-top-left-radius: 1rem;
