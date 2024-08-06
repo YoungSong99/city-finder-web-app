@@ -31,6 +31,7 @@
     font-size: 1.9rem;
     color: var(--color-light--1);
     margin-bottom: 2.5rem;
+    font-weight: 400;
 }
 
 .static-nav {
@@ -77,3 +78,11 @@ a.ctaLink:visited {
     background-color: var(--color-dark--0);
 }
 
+.homepage a.cta {
+    font-weight: 600;
+}
+
+.homepage a.cta:hover {
+    background-color: #519864;
+    color: var(--color-light--2);
+}
