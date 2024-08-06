@@ -1,0 +1,90 @@
+<div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th rowspan="2" class="left-corner">City</th>
+      <th colspan="3">Safety</th>
+      <th colspan="2">School Score</th>
+      <th colspan="6">Appreciation</th>
+      <th colspan="2">Price</th>
+      <th colspan="3" class="right-corner">Convenience</th>
+    </tr>
+    <tr>
+      <th>Crime Index</th>
+      <th>Property Crime</th>
+      <th>Violent Crime</th>
+      <th>IL</th>
+      <th>US</th>
+      <th>Quarter</th>
+      <th>1 Year</th>
+      <th>2 Years</th>
+      <th>5 Years</th>
+      <th>10 Years</th>
+      <th>Since 2000</th>
+      <th>Median Home Value</th>
+      <th>Rental Value</th>
+      <th>Metra</th>
+      <th>Grocery</th>
+      <th>Gym</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @cities.each do |city| %>
+      <tr>
+        <td><%= city.city.city_name %></td>
+
+        <% if city.city.crime_rates.any? %>
+          <td><%= city.city.crime_rates.first.crime_index %></td>
+          <td><%= city.city.crime_rates.first.property_crime_rate %></td>
+          <td><%= city.city.crime_rates.first.violent_crime_rate %></td>
+        <% else %>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        <% end %>
+
+        <% if city.city.school_grades.any? %>
+          <td><%= city.city.school_grades.first.score_compared_to_il %></td>
+          <td><%= city.city.school_grades.first.score_compared_to_us %></td>
+        <% else %>
+          <td>-</td>
+          <td>-</td>
+        <% end %>
+
+        <% if city.city.appreciation_values.any? %>
+          <td><%= city.city.appreciation_values.first.latest_quarter %></td>
+          <td><%= city.city.appreciation_values.first.last_12months %></td>
+          <td><%= city.city.appreciation_values.first.last_2years %></td>
+          <td><%= city.city.appreciation_values.first.last_5years %></td>
+          <td><%= city.city.appreciation_values.first.last_10years %></td>
+          <td><%= city.city.appreciation_values.first.since_2000 %></td>
+        <% else %>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        <% end %>
+
+        <% if city.city.prices.any? %>
+          <td><%= number_to_currency(city.city.prices.first.median_home_value,  precision: 0) %></td>
+          <td><%= number_to_currency(city.city.prices.first.rental_value,  precision: 0) %></td>
+        <% else %>
+          <td>-</td>
+          <td>-</td>
+        <% end %>
+
+        <% if city.city.metras.any? %>
+          <td>Y</td>
+        <% else %>
+          <td>N</td>
+        <% end %>
+
+        <td><%= city.city.grocery_cities.count %></td>
+        <td><%= city.city.gym_cities.count %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
