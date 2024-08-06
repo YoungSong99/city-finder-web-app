@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post '/cities/add/:id', to: 'favorite_cities#add', as: 'add_city'
   delete '/cities/add/:id', to: 'favorite_cities#remove', as: 'remove_city'
 
-  get 'comparison', to: 'comparison#index'
+  get 'comparison', to: 'comparison#index', as: 'comparison'
 
   # get '/cities/comparison_result', to: 'dashboard#comparison_result', as: 'comparison_result'
 

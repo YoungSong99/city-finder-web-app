@@ -10,17 +10,17 @@
           <%= form.label :"priority-#{index}", get_label(index) %>
           <%= form.select :"priority-#{index}", options_for_select([
                                                                      ["Select a factor", ""],
-                                                                     ["School Rating", "School"],
-                                                                     ["Safety", "Safety"],
                                                                      ["Sale Price (Low to high)", "Sales_low"],
                                                                      ["Sale Price (high to low)", "Sales_high"],
                                                                      ["Rent Price (Low to high)", "rent_low"],
                                                                      ["Rent Price (high to low)", "rent_high"],
+                                                                     ["School Rating", "School"],
+                                                                     ["Safety", "Safety"],
                                                                      ["Appreciation Value", "Appreciation"],
-                                                                     ["Need a Metra Station (coming soon)", "Metra"],
-                                                                     ["Grocery Store (coming soon)", "Grocery"],
-                                                                     ["Community (coming soon)", "Community"],
-                                                                     ["Gym (coming soon)", "Gym"]
+                                                                     ["Need a Metra Station", "Metra"],
+                                                                     ["Grocery Store", "Grocery"],
+                                                                     ["Community", "Community"],
+                                                                     ["Gym", "Gym"]
                                                                    ]), {}, { class: "select", onchange: "handlePriorityChange(event, #{index})" } %>
 
           <div id="grocery-options-<%= index %>" class="grid" style="display: none;">
