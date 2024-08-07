@@ -71,6 +71,7 @@ a.ctaLink:visited {
     padding: 0.8rem 2rem;
     border-radius: 7px;
     text-decoration: none;
+    text-align: center;
 }
 
 /* CSS Modules feature */

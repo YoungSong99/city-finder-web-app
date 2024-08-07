@@ -110,6 +110,7 @@ input[type="checkbox"] {
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
+    text-align: center;
 }
 
 .primary {
