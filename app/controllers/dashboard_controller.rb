@@ -15,6 +15,10 @@ class DashboardController < ApplicationController
     @q = City.ransack(params[:q])
     @cities = @q.result.joins(:crime_rates, :school_grades, :appreciation_values, :prices)
 
+    if selected_convenience_option.include?("All")
+      @cities = City.joins(:crime_rates, :school_grades, :appreciation_values, :prices)
+    end
+
     if selected_convenience_option.include?("Metra")
       @cities = @cities.joins(:metras).distinct
     end
