@@ -13,3 +13,4 @@ Rails.start();
 
 import "chartkick"
 import "Chart.bundle"
+import "mapkick/bundle"

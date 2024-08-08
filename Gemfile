@@ -18,6 +18,7 @@ gem "bootsnap", require: false
 gem "rack-cors"
 gem 'simple_form'
 gem "chartkick"
+gem "mapkick-rb"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
