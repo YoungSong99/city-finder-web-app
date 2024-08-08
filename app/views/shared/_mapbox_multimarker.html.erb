@@ -1,0 +1,15 @@
+<div class="map_div">
+  <%= js_map [{
+                latitude: city.latitude,
+                longitude: city.longitude,
+                label: city.city_name,
+                tooltip: city.city_name,
+                width: "50%",
+                height: "100vh",
+                id: "cities-map",
+                tooltips: { hover: false, html: true },
+                zoom: 10,
+                controls: true
+              }]
+  %>
+</div>

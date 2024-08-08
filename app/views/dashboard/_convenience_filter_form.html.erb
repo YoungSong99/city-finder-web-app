@@ -14,7 +14,7 @@
                                                                     ["Grocery Store", "Grocery"],
                                                                     ["Community", "Community"],
                                                                     ["Gym", "Gym"]
-                                                                  ]), {}, { class: "select", onchange: "handlePriorityChange(event)" } %>
+                                                                  ]), {}, { class: "select", data: { action: "convenience-form#handlePriorityChange" }} %>
 
         <div id="grocery-options" class="grid" data-convenience-form-target="groceryOptions" style="display: none;">
           <% @grocery_names.each do |grocery| %>
@@ -35,8 +35,8 @@
         </div>
 
         <div id="community" class="row"  data-convenience-form-target="community"  style="display: none;">
-          <%= form.label :"community-language", "Select a language" %>
-          <%= form.select "community-language", options_for_select(@language_names), { include_blank: true }, { class: "select" } %>
+          <%= form.label :"community_language", "Find a community using language" %>
+          <%= form.select "community_language", options_for_select([["Select a language", ""]] + @language_names), { include_blank: false }, { class: "select" } %>
         </div>
       </div>
 

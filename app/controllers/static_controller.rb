@@ -7,4 +7,7 @@ class StaticController < ApplicationController
 
   def contact
   end
+
+  def map_test
+  end
 end
