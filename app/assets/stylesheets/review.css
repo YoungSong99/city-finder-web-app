@@ -6,6 +6,7 @@
     .review-form {
         display: flex;
         flex-direction: column;
+        padding: 1rem 1.5rem;
     }
 
     .review-form .row {
