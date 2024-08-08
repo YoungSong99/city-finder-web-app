@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   get 'about', to: 'static#about'
   get 'contact', to: 'static#contact'
+  get 'test', to: 'static#test'
 
+  get 'filter', to: 'dashboard#convenience_filter', as: 'filter'
   get 'search', to: 'dashboard#search_by_priority', as: 'search'
   get 'search/cities', to: 'dashboard#priority_result', as: 'priority_result'
   get 'search/cities/:id', to: 'cities#show', as: 'priority_result_detail'
