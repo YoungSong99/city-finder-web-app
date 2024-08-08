@@ -35,8 +35,8 @@
         </div>
 
         <div id="community" class="row"  data-convenience-form-target="community"  style="display: none;">
-          <%= form.label :"community-language", "Find a community using language" %>
-          <%= form.select "community-language", options_for_select([["Select a language", ""]] + @language_names), { include_blank: false }, { class: "select" } %>
+          <%= form.label :"community_language", "Find a community using language" %>
+          <%= form.select "community_language", options_for_select([["Select a language", ""]] + @language_names), { include_blank: false }, { class: "select" } %>
         </div>
       </div>
 
