@@ -9,4 +9,5 @@
 #
 class Grocery < ApplicationRecord
   has_many  :grocery_cities, class_name: "GroceryCity", foreign_key: "grocery_id", dependent: :destroy
+  has_many :cities, through: :grocery_cities
 end
