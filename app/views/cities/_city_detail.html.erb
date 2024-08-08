@@ -56,17 +56,30 @@
   <div class="row">
     <h6>convenience</h6>
     <div class="grid">
-      <p><span class='emoji-sm'>🛒</span><b><%= @the_city.grocery_cities.count %></b> Grocery</p>
-      (
-      <% @the_city.grocery_cities.each do |grocery_city| %>
-        <%= grocery_city.grocery.name %>,
-      <% end %>)
-      <p><span class='emoji-sm'>🏋</span><b><%= @the_city.gym_cities.count %></b> Gym</p>
-      (
-      <% @the_city.gym_cities.each do |gym_city| %>
-        <%= gym_city.gym.name %>,
-      <% end %>)
+      <% if @the_city.grocery_cities.count > 0 %>
+        <p><span class='emoji-sm'>🛒</span><b><%= @the_city.grocery_cities.count %></b> Grocery</p>
+        (
+        <% @the_city.grocery_cities.each do |grocery_city| %>
+          <%= grocery_city.grocery.name %>,
+        <% end %>)
+      <% else %>
+        <p><span class='emoji-sm'>🛒</span><b><%= @the_city.grocery_cities.count %></b> Grocery</p>
+        (Check Local Grocery)
+      <% end %>
+
+
+      <% if @the_city.gym_cities.count > 0 %>
+        <p><span class='emoji-sm'>🏋</span><b><%= @the_city.gym_cities.count %></b> Gym</p>
+        (
+        <% @the_city.gym_cities.each do |gym_city| %>
+          <%= gym_city.gym.name %>,
+        <% end %>)
+      <% else %>
+        <p><span class='emoji-sm'>🏋</span><b><%= @the_city.gym_cities.count %></b> Gym</p>
+        (Check the Local Gym)
+      <% end %>
     </div>
+
     <div class="row">
       <% @the_city.metras.each do |metra| %>
         <p class="tag-color">
