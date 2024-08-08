@@ -2,30 +2,43 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
   before_action :load_stored_search_results, only: [:priority_result]
 
-
-  def search_by_priority
-    priorities = params.values_at('priority-0', 'priority-1', 'priority-2')
-
-    @q = City.ransack(params[:q])
-    @cities = @q.result.joins(:crime_rates, :school_grades, :appreciation_values, :prices)
-
+  def convenience_filter
     @grocery_names = Grocery.pluck(:name)
     @language_names = Language.pluck(:name)
     @gym_names = Gym.pluck(:name)
 
-    if priorities.any?
-      order_clause = build_order_clause(priorities)
-      @cities = @cities.joins(:crime_rates, :school_grades, :appreciation_values, :prices)
-                       .order(order_clause)
+    selected_grocery = params[:grocery] || []
+    selected_gym = params[:gym] || []
+    selected_languages = params[:community_language] || []
+    selected_convenience_option = params[:convenience_option] || []
+
+    @q = City.ransack(params[:q])
+    @cities = @q.result.joins(:crime_rates, :school_grades, :appreciation_values, :prices)
+
+    if selected_convenience_option.include?("All")
+      @cities = City.joins(:crime_rates, :school_grades, :appreciation_values, :prices)
     end
 
-    @cities = @cities.limit(5)
-    cache_key = "search_results_#{current_user.id}_#{Time.now.to_i}"
-    Rails.cache.write(cache_key, @cities.pluck(:id), expires_in: 1.hours)
-
-    @cities.each do |city|
-      puts city.city_name
+    if selected_convenience_option.include?("Metra")
+      @cities = @cities.joins(:metras).distinct
     end
+
+    if selected_grocery.present?
+      @cities = @cities.joins(:groceries).where(groceries: { name: selected_grocery }).distinct
+    end
+
+    if selected_gym.present?
+      @cities = @cities.joins(:gyms).where(gyms: { name: selected_gym }).distinct
+    end
+
+    if selected_languages.present?
+      @cities = @cities.joins(:languages).where(languages: { name: selected_languages }).distinct
+    end
+
+    city_ids = @cities.pluck(:id)
+
+    session[:filter_results_city_ids] = city_ids
+    Rails.logger.info("Session stored city IDs: #{city_ids}")
 
     respond_to do |format|
       format.html
@@ -33,8 +46,40 @@ class DashboardController < ApplicationController
     end
   end
 
-  def priority_result
-    @cities = @stored_search_results
+  def search_by_priority
+
+    city_ids = session[:filter_results_city_ids] || []
+    Rails.logger.info("Retrieved cached city IDs from search_by_priority: #{city_ids}")
+
+    @grocery_names = Grocery.pluck(:name)
+    @language_names = Language.pluck(:name)
+    @gym_names = Gym.pluck(:name)
+
+    @cities = City.where(id: city_ids)
+                  .joins(:crime_rates, :school_grades, :appreciation_values, :prices) # Ensure necessary tables are joined
+
+    @cities.each do |city|
+      p "before #{city.city_name}"
+    end
+
+    priorities = params.values_at('priority-0', 'priority-1', 'priority-2')
+
+    if priorities.any?(&:present?)
+      order_clause = build_order_clause(priorities)
+      @cities = @cities.order(order_clause)
+    end
+
+    @cities = @cities.limit(5)
+    session[:priority_search_city_ids] = @cities.pluck(:id)
+
+    @cities.each do |city|
+      p "after #{city.city_name}"
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def search_by_name
@@ -56,7 +101,6 @@ class DashboardController < ApplicationController
     end
   end
 
-
   private
 
   def load_stored_search_results
@@ -68,7 +112,6 @@ class DashboardController < ApplicationController
     end
   end
 
-
   def build_order_clause(priorities)
     priority_mapping = {
       'School' => 'school_grades.score_compared_to_us DESC',
@@ -77,11 +120,10 @@ class DashboardController < ApplicationController
       'Sales_low' => 'prices.median_home_value ASC',
       'Sales_high' => 'prices.median_home_value DESC',
       'rent_low' => 'prices.rental_value ASC',
-      'rent_high' => 'prices.rental_value DESC',
+      'rent_high' => 'prices.rental_value DESC'
     }
 
     order_clause = priorities.map { |priority| priority_mapping[priority] }.compact.join(', ')
     order_clause.presence || 'city_name ASC'
   end
-
 end

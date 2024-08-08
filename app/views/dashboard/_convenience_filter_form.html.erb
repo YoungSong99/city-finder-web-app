@@ -1,0 +1,46 @@
+<h1 class="sub-title">Find Your Top 5 Cities in Illinois</h1>
+
+<div class="form-container">
+  <div class="form" data-controller="convenience-form">
+    <%= form_with url: filter_path, method: :get, local: false, class: "form", id: "convenience-form" do |form| %>
+      <h1><span class="emoji">👋</span>Hi, <%= current_user.username.capitalize %>! <br>What do you need in your city?</h1>
+
+      <div class="row">
+        <%= form.label :"Must Have" %>
+        <%= form.select :"convenience_option", options_for_select([
+                                                                    ["Select a factor", ""],
+                                                                    ["I'm open to all options :)", "All"],
+                                                                    ["Metra Station", "Metra"],
+                                                                    ["Grocery Store", "Grocery"],
+                                                                    ["Community", "Community"],
+                                                                    ["Gym", "Gym"]
+                                                                  ]), {}, { class: "select", onchange: "handlePriorityChange(event)" } %>
+
+        <div id="grocery-options" class="grid" data-convenience-form-target="groceryOptions" style="display: none;">
+          <% @grocery_names.each do |grocery| %>
+            <div>
+              <%= form.check_box "grocery[]", { name: "grocery[]" }, grocery, nil %>
+              <%= form.label grocery, grocery %>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="gym-options" class="grid" data-convenience-form-target="gymOptions" style="display: none;">
+          <% @gym_names.each do |gym| %>
+            <div>
+              <%= form.check_box "gym[]", { name: "gym[]" }, gym, nil %>
+              <%= form.label gym, gym %>
+            </div>
+          <% end %>
+        </div>
+
+        <div id="community" class="row"  data-convenience-form-target="community"  style="display: none;">
+          <%= form.label :"community-language", "Select a language" %>
+          <%= form.select "community-language", options_for_select(@language_names), { include_blank: true }, { class: "select" } %>
+        </div>
+      </div>
+
+      <%= form.submit 'Next', class: 'btn primary large' %>
+    <% end %>
+  </div>
+</div>

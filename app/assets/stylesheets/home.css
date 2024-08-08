@@ -71,6 +71,7 @@ a.ctaLink:visited {
     padding: 0.8rem 2rem;
     border-radius: 7px;
     text-decoration: none;
+    text-align: center;
 }
 
 /* CSS Modules feature */
@@ -83,6 +84,6 @@ a.ctaLink:visited {
 }
 
 .homepage a.cta:hover {
-    background-color: #519864;
+    background-color: #409756;
     color: var(--color-light--2);
 }
