@@ -5,11 +5,11 @@
     <div class="row">
       <%= render 'search_by_name' %>
       <%= render 'city_list', cities: @the_city %>
-      <h2 class="sub-title">Saved Cities</h2>
+      <h2 class="sub-title">Your Saved Cities</h2>
       <% if current_user.favorite_cities.any? %>
         <%= render 'favorite_city_list', favorite_cities: current_user.favorite_cities %>
       <% else %>
-        <h3 class="center">Add Your First City</h3>
+        <h3 class="center">Start by adding a city to your list</h3>
       <% end %>
       <%= link_to 'Compare Cities', comparison_path, class: 'btn primary large' %>
     </div>

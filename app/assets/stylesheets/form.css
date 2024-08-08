@@ -122,7 +122,7 @@ input[type="checkbox"] {
 
 
 .primary:hover {
-    background-color: #519864;
+    background-color: #409756;
     color: var(--color-light--2);
     margin-right: 3rem;
 }
