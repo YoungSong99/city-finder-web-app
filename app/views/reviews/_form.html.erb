@@ -21,19 +21,21 @@
           <div class="text no-margin"><%= form.check_box :recommend_family_type, { multiple: true }, 'commuter', nil %> Commuters<br></div>
         </div>
       </div>
-<!--      <div class="row">-->
-        <%#= form.label :ratings, "Overall Rating" %>
-        <%#= form.select :ratings, options_for_select(1..5), { include_blank: "Select a rating" }, class: 'select'%>
-<!--      </div>-->
 
-      <div class="row" data-controller="star_rating">
+<!--      data-convenience-form-target="groceryOptions"-->
+<!--      static targets = ["groceryOptions", "gymOptions", "community"]-->
+<!--      this.groceryOptionsTarget.style.display = value === 'Grocery' ? 'block' : 'none';-->
+<!--      data: { action: "convenience-form#handlePriorityChange" }-->
+
+
+      <div class="row" data-controller="star-rating">
         <%= form.label :ratings, "Overall Rating" %>
-        <div id="star-rating-input">
+        <div id="star-rating-input" >
           <% 5.times do |i| %>
-            <span class="fa fa-star star-icon" data-value="<%= i + 1 %>"></span>
+            <span class="fa fa-star star-icon" data-star-rating-target="starIcon" data-action="click->star-rating#selectStar" data-value="<%= i + 1 %>"></span>
           <% end %>
         </div>
-        <%= form.hidden_field :ratings, id: 'rating-input' %>
+        <%= form.hidden_field :ratings, id: 'rating-input', 'data-star-rating-target': "rating" %>
       </div>
 
       <div class="row">
@@ -48,28 +50,3 @@
     <% end %>
   </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const stars = document.querySelectorAll('#star-rating-input .star-icon');
-        const ratingInput = document.getElementById('rating-input');
-
-        stars.forEach(star => {
-            star.addEventListener('click', function() {
-                const rating = this.getAttribute('data-value');
-                ratingInput.value = rating;
-                renderStars(rating);
-            });
-        });
-
-        function renderStars(rating) {
-            stars.forEach(star => {
-                if (star.getAttribute('data-value') <= rating) {
-                    star.classList.add('checked');
-                } else {
-                    star.classList.remove('checked');
-                }
-            });
-        }
-    });
-</script>
