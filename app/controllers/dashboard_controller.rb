@@ -47,7 +47,6 @@ class DashboardController < ApplicationController
   end
 
   def search_by_priority
-
     city_ids = session[:filter_results_city_ids] || []
     Rails.logger.info("Retrieved cached city IDs from search_by_priority: #{city_ids}")
 
