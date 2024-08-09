@@ -1,7 +1,7 @@
 <h1 class="sub-title">Reviews for <%= @city.city_name %></h1>
 
 <div class="city review">
-  <%= render 'score_card' %>
+  <%= render 'score_card', city:@city %>
   <div class="row">
   </div>
   <% @reviews.each do |review| %>
@@ -20,18 +20,26 @@
       <h6>cons</h6>
       <p><%= review.cons %></p>
     </div>
-    <div class="row">
-      <h6>Recommend to</h6>
-      <% review.recommend_family_type.each do |family_type| %>
-        <p class="tag-color">
-          <span class="tag-label"><%= family_type %></span>
-        </p>
-      <% end %>
-    </div>
-    <div class="flex-div-spread">
-      <h6>Zipcode</h6>
-      <%= review.zipcode %>
-    </div>
+    <% unless review.recommend_family_type.nil? %>
+      <div class="row">
+        <h6>Recommend to</h6>
+        <div class="flex-div">
+          <p class="tag-color">
+            <% review.recommend_family_type.each do |family_type| %>
+              <span class="tag-label"><%= family_type %></span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+
+    <% unless review.zipcode.nil? %>
+      <div class="flex-div-spread">
+        <h6>Zipcode</h6>
+        <%= review.zipcode %>
+      </div>
+    <% end %>
+
     <% if current_user.id == review.user.id %>
       <div class="buttons-sm">
         <%= link_to 'Edit', edit_city_review_path(@city, review) %>

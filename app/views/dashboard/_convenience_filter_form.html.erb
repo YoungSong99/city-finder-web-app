@@ -9,11 +9,11 @@
         <%= form.label :"Must Have" %>
         <%= form.select :"convenience_option", options_for_select([
                                                                     ["Select a factor", ""],
-                                                                    ["I'm open to all options :)", "All"],
-                                                                    ["Metra Station", "Metra"],
-                                                                    ["Grocery Store", "Grocery"],
-                                                                    ["Community", "Community"],
-                                                                    ["Gym", "Gym"]
+                                                                    ["I'm open to all options 😉", "All"],
+                                                                    ["Metra Station 🚊", "Metra"],
+                                                                    ["Grocery Store 🛒", "Grocery"],
+                                                                    ["Community 👥", "Community"],
+                                                                    ["Gym 🏋️", "Gym"]
                                                                   ]), {}, { class: "select", data: { action: "convenience-form#handlePriorityChange" }} %>
 
         <div id="grocery-options" class="grid" data-convenience-form-target="groceryOptions" style="display: none;">

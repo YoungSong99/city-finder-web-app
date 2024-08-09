@@ -21,7 +21,7 @@
 
       <div class="buttons">
         <%= form.submit 'Search', class: 'btn primary' %>
-        <%= link_to 'Back', '#', class: 'btn back', onclick: 'window.history.back(); return false;' %>
+        <%= link_to 'Back', filter_path, class: 'btn back' %>
       </div>
     <% end %>
   </div>
