@@ -38,7 +38,6 @@ class DashboardController < ApplicationController
     city_ids = @cities.pluck(:id)
 
     session[:filter_results_city_ids] = city_ids
-    Rails.logger.info("Session stored city IDs: #{city_ids}")
 
     respond_to do |format|
       format.html
@@ -57,10 +56,6 @@ class DashboardController < ApplicationController
     @cities = City.where(id: city_ids)
                   .joins(:crime_rates, :school_grades, :appreciation_values, :prices) # Ensure necessary tables are joined
 
-    @cities.each do |city|
-      p "before #{city.city_name}"
-    end
-
     priorities = params.values_at('priority-0', 'priority-1', 'priority-2')
 
     if priorities.any?(&:present?)
@@ -70,10 +65,6 @@ class DashboardController < ApplicationController
 
     @cities = @cities.limit(5)
     session[:priority_search_city_ids] = @cities.pluck(:id)
-
-    @cities.each do |city|
-      p "after #{city.city_name}"
-    end
 
     respond_to do |format|
       format.html

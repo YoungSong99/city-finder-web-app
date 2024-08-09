@@ -22,11 +22,17 @@
     padding: 2rem 1rem;
 }
 
+.table-div {
+    width: 100%;
+    overflow-y: scroll;
+    overflow-y: scroll;
+}
+
 .table {
     width: 100%;
     border-collapse: collapse;
-    overflow: hidden;
 }
+
 .table th, .table td {
     padding: 8px;
     text-align: center;
