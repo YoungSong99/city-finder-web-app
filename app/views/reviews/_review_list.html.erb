@@ -1,7 +1,7 @@
 <h1 class="sub-title">Reviews for <%= @city.city_name %></h1>
 
 <div class="city review">
-  <%= render 'score_card' %>
+  <%= render 'score_card', city:@city %>
   <div class="row">
   </div>
   <% @reviews.each do |review| %>
