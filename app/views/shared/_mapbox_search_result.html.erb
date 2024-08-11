@@ -1,0 +1,10 @@
+<div class="map_div" id="map">
+  <%= js_map search_path(format: :json),
+             id: "cities-map",
+             markers: { label: 'city_name' },  # Specify the label attribute
+             tooltips: { hover: false, html: true},
+             zoom: 7,
+             controls: true,
+             refresh: 60
+  %>
+</div>
