@@ -10,8 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_09_032943) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_11_151309) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "cube"
+  enable_extension "earthdistance"
   enable_extension "plpgsql"
 
   create_table "appreciation_values", force: :cascade do |t|
@@ -33,6 +35,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_09_032943) do
     t.decimal "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["latitude"], name: "index_cities_on_latitude"
+    t.index ["longitude"], name: "index_cities_on_longitude"
   end
 
   create_table "crime_rates", force: :cascade do |t|

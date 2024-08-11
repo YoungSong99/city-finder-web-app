@@ -19,6 +19,20 @@ class DashboardController < ApplicationController
       @cities = City.joins(:crime_rates, :school_grades, :appreciation_values, :prices)
     end
 
+    if selected_convenience_option.include?("Distance")
+      user_location = Geocoder.search(params[:place])
+      lat, lng = user_location.first.coordinates
+
+      # Convert miles to meters
+      distance_threshold = params[:distance].to_i * 1609.34
+
+      @cities = City
+                  .select('cities.*, earth_distance(ll_to_earth(?, ?), ll_to_earth(cities.latitude, cities.longitude)) AS distance', lat, lng)
+                  .where('earth_distance(ll_to_earth(?, ?), ll_to_earth(cities.latitude, cities.longitude)) < ?', lat, lng, distance_threshold)
+
+    end
+
+
     if selected_convenience_option.include?("Metra")
       @cities = @cities.joins(:metras).distinct
     end
@@ -69,7 +83,17 @@ class DashboardController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-      format.json { render json: @cities.select(:latitude, :longitude, :city_name).as_json }
+      format.json do
+        render json: @cities.map { |city|
+          {
+            latitude: city.latitude,
+            longitude: city.longitude,
+            label: city.city_name,
+            tooltip: render_to_string(partial: 'tooltip', locals: { city: city }, formats: [:html]),
+            url: search_by_name_result_detail_url(city, format: :json)
+          }
+        }
+      end
     end
   end
 
@@ -87,7 +111,17 @@ class DashboardController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-      format.json { render json: @saved_cities.select(:latitude, :longitude, :city_name).as_json }
+      format.json do
+        render json: @saved_cities.map { |city|
+          {
+            latitude: city.latitude,
+            longitude: city.longitude,
+            label: city.city_name,
+            tooltip: render_to_string(partial: 'tooltip', locals: { city: city }, formats: [:html]),
+            url: search_by_name_result_detail_url(city, format: :json)
+          }
+        }
+      end
     end
   end
 

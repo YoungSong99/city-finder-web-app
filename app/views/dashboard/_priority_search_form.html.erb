@@ -8,13 +8,13 @@
           <%= form.label :"priority-#{index}", get_label(index) %>
           <%= form.select :"priority-#{index}", options_for_select([
                                                                      ["Select a factor", ""],
-                                                                     ["Sale Price (Low to high)", "Sales_low"],
-                                                                     ["Sale Price (high to low)", "Sales_high"],
-                                                                     ["Rent Price (Low to high)", "rent_low"],
-                                                                     ["Rent Price (high to low)", "rent_high"],
-                                                                     ["School Rating", "School"],
-                                                                     ["Safety", "Safety"],
-                                                                     ["Appreciation Value", "Appreciation"],
+                                                                     ["Sale Price (Low to high) 📈", "Sales_low"],
+                                                                     ["Sale Price (high to low) 📉", "Sales_high"],
+                                                                     ["Rent Price (Low to high) 📈", "rent_low"],
+                                                                     ["Rent Price (high to low) 📉", "rent_high"],
+                                                                     ["School Rating 🏫", "School"],
+                                                                     ["Safety 👮", "Safety"],
+                                                                     ["Appreciation Value 📊", "Appreciation"],
                                                                    ]), {}, { class: "select" } %>
         </div>
       <% end %>
