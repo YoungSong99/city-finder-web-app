@@ -69,7 +69,17 @@ class DashboardController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-      format.json { render json: @cities.select(:latitude, :longitude, :city_name).as_json }
+      format.json do
+        render json: @cities.map { |city|
+          {
+            latitude: city.latitude,
+            longitude: city.longitude,
+            label: city.city_name,
+            tooltip: render_to_string(partial: 'tooltip', locals: { city: city }, formats: [:html]),
+            url: search_by_name_result_detail_url(city, format: :json)
+          }
+        }
+      end
     end
   end
 
@@ -87,7 +97,17 @@ class DashboardController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-      format.json { render json: @saved_cities.select(:latitude, :longitude, :city_name).as_json }
+      format.json do
+        render json: @saved_cities.map { |city|
+          {
+            latitude: city.latitude,
+            longitude: city.longitude,
+            label: city.city_name,
+            tooltip: render_to_string(partial: 'tooltip', locals: { city: city }, formats: [:html]),
+            url: search_by_name_result_detail_url(city, format: :json)
+          }
+        }
+      end
     end
   end
 
