@@ -19,6 +19,20 @@ class DashboardController < ApplicationController
       @cities = City.joins(:crime_rates, :school_grades, :appreciation_values, :prices)
     end
 
+    if selected_convenience_option.include?("Distance")
+      user_location = Geocoder.search(params[:place])
+      lat, lng = user_location.first.coordinates
+
+      # Convert miles to meters
+      distance_threshold = params[:distance].to_i * 1609.34
+
+      @cities = City
+                  .select('cities.*, earth_distance(ll_to_earth(?, ?), ll_to_earth(cities.latitude, cities.longitude)) AS distance', lat, lng)
+                  .where('earth_distance(ll_to_earth(?, ?), ll_to_earth(cities.latitude, cities.longitude)) < ?', lat, lng, distance_threshold)
+
+    end
+
+
     if selected_convenience_option.include?("Metra")
       @cities = @cities.joins(:metras).distinct
     end

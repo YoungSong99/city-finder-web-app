@@ -10,11 +10,21 @@
         <%= form.select :"convenience_option", options_for_select([
                                                                     ["Select a factor", ""],
                                                                     ["I'm open to all options 😉", "All"],
+                                                                    ["Distance From Work 🚗", "Distance"],
+                                                                    # ["Distance From Work 🚗(currently unavailable)", "Distance", { disabled: true }],
                                                                     ["Metra Station 🚊", "Metra"],
                                                                     ["Grocery Store 🛒", "Grocery"],
                                                                     ["Community 👥", "Community"],
                                                                     ["Gym 🏋️", "Gym"]
                                                                   ]), {}, { class: "select", data: { action: "convenience-form#handlePriorityChange" }} %>
+
+        <div id="distance" class="row"  data-convenience-form-target="distance" style="display: none;">
+          <%= form.label :place, "From"%>
+          <%= form.text_field :place, placeholder: "Enter the address"%>
+
+          <%= form.label :distance, "Distance to.." %>
+          <%= form.select :distance, options_for_select([["10 miles", 10], ["20 miles", 20], ["30 miles", 30], ["50 miles", 50]]), {}, { class: "select" } %>
+        </div>
 
         <div id="grocery-options" class="grid" data-convenience-form-target="groceryOptions" style="display: none;">
           <% @grocery_names.each do |grocery| %>

@@ -9,6 +9,12 @@
 #  state      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_cities_on_latitude   (latitude)
+#  index_cities_on_longitude  (longitude)
+#
 
 require 'csv'
 
@@ -29,7 +35,12 @@ class City < ApplicationRecord
   has_many :gyms, through: :gym_cities
   has_many :groceries, through: :grocery_cities
 
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
+  def address
+    [city_name, 'IL', 'USA'].compact.join(', ')
+  end
 
   def average_rating
     unless self.reviews.any?
@@ -111,5 +122,11 @@ class City < ApplicationRecord
         csv << row
       end
     end
+  end
+
+  private
+
+  def address_changed?
+    city_name_changed? || state_changed?
   end
 end
