@@ -133,4 +133,13 @@
     .hidden-menu hr {
         opacity: 0.5;
     }
+
+    /* user sign in, log in*/
+    .form {
+        width: 100%;
+    }
+
+    .login .form .grid {
+        grid-template-columns: 1fr;
+    }
 }
