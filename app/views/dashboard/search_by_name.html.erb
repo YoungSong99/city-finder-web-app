@@ -4,7 +4,9 @@
     <%= render 'shared/nav' %>
     <div class="row">
       <%= render 'search_by_name' %>
-      <%= render 'city_list', cities: @the_city %>
+      <div class="search_result">
+        <%= render 'city_list', cities: @the_city %>
+      </div>
       <h2 class="sub-title">Your Saved Cities</h2>
       <% if current_user.favorite_cities.any? %>
         <%= render 'favorite_city_list', favorite_cities: current_user.favorite_cities %>
@@ -15,6 +17,6 @@
     </div>
     <%= render 'shared/footer' %>
   </div>
-  <%= render 'shared/mapbox' %>
-    <%= render 'shared/user_nav' %>
+  <%= render 'shared/mapbox_saved_city' %>
+  <%= render 'shared/user_nav' %>
 </div>

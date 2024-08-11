@@ -231,3 +231,12 @@ h3.center {
     margin-top: 2.5rem;
     color: var(--color-light--1);
 }
+
+.search_result {
+    max-height: 15rem;
+    overflow-y: scroll;
+}
+
+.search_result::-webkit-scrollbar {
+    width: 0;
+}

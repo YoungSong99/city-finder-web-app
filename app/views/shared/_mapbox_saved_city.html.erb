@@ -1,8 +1,8 @@
 <div class="map_div" id="map">
-  <%= js_map filter_path(format: :json, city_ids: session[:filter_results_city_ids]),
+  <%= js_map search_by_name_path(format: :json),
              id: "cities-map",
              tooltips: { hover: false, html: true},
-             zoom: 10,
+             zoom: 7,
              controls: true,
              refresh: 60
   %>

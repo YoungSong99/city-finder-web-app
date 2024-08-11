@@ -42,7 +42,6 @@ class DashboardController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-      format.json { render json: @cities.select(:latitude, :longitude, :city_name).as_json }
     end
   end
 
@@ -82,6 +81,13 @@ class DashboardController < ApplicationController
     else
       @q = City.ransack(params[:q])
       @the_city = City.none
+    end
+
+    @saved_cities = City.where(id: current_user.favorite_cities.pluck(:city_id))
+    respond_to do |format|
+      format.html
+      format.js
+      format.json { render json: @saved_cities.select(:latitude, :longitude, :city_name).as_json }
     end
   end
 
