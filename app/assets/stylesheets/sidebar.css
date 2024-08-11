@@ -55,3 +55,25 @@
     text-decoration: none;
     color: var(--color-light--1);
 }
+
+.sidebar_mobile, .nav_mobile {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .sidebar {
+        display: none;
+    }
+
+    .app {
+        height: 80%;
+        grid-template-rows: 30% 70%;
+        grid-template-columns: 100%;
+    }
+
+    .mapbox {
+        height: 100%;
+    }
+
+}
+

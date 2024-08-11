@@ -1,0 +1,50 @@
+@media screen and (max-width: 800px) {
+    .nav-mobile {
+        display: block;
+    }
+}
+
+
+.nav-mobile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-dark--1);
+    width: 100%;
+    height: 7rem;
+    padding: 0;
+    z-index: 1000;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.nav-mobile ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.nav-mobile li {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-mobile li a i {
+    font-size: 2rem;
+}
+
+.nav-mobile li a div {
+    font-size: 1rem;
+}
+
+.nav-mobile a {
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav-mobile a:hover {
+    color: var(--color-brand--2);
+}

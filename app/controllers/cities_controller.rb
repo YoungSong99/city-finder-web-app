@@ -1,11 +1,4 @@
 class CitiesController < ApplicationController
-  def index
-    matching_cities = City.all
-
-    @list_of_cities = matching_cities.order({ :created_at => :desc })
-
-    render({ :template => "cities/index" })
-  end
 
   def show
     @the_city =  City.find(params[:id])
