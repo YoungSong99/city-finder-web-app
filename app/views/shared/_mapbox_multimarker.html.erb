@@ -1,13 +1,9 @@
-<div class="map_div">
-  <%= js_map [{
-                latitude: city.latitude,
-                longitude: city.longitude,
-                label: city.city_name,
-                tooltip: city.city_name,
-                id: "cities-map",
-                tooltips: { hover: false, html: true },
-                zoom: 10,
-                controls: true
-              }]
+<div class="map_div" id="map">
+  <%= js_map filter_path(format: :json, city_ids: session[:filter_results_city_ids]),
+             id: "cities-map",
+             tooltips: { hover: false, html: true},
+             zoom: 10,
+             controls: true,
+             refresh: 60
   %>
 </div>
