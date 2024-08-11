@@ -41,6 +41,10 @@
     margin-top: 2rem;
 }
 
+.static-nav-mobile {
+    display: none;
+}
+
 .static-nav ul {
     list-style: none;
     display: flex;
