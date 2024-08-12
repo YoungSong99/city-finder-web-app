@@ -1,3 +1,4 @@
+<%= render 'shared/static_nav_mobile' %>
 <main class="login">
   <%= render 'shared/static_nav' %>
   <div class="form">
@@ -35,6 +36,7 @@
         </div>
         <div class="buttons large">
           <%= f.button :submit, "Sign up", class: "btn primary"%>
+          <%= link_to 'Back', '#', class: 'btn back large', onclick: 'window.history.back(); return false;' %>
         </div>
       <% end %>
     </div>

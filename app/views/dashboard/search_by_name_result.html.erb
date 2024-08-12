@@ -1,0 +1,9 @@
+<%= render 'shared/static_nav_mobile' %>
+<div class="app">
+  <div class="saved-city">
+    <h1>Saved Cities</h1>
+    <%= render 'city_list', cities: @saved_cities %>
+    <%= link_to 'Compare Cities', comparison_path, class: 'btn primary large' %>
+  </div>
+  <%= render 'shared/nav_mobile' %>
+</div>

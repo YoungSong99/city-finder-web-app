@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_stored_search_results, only: [:priority_result]
+  before_action :load_stored_search_results, only: [:search_by_priority]
 
   def convenience_filter
     @grocery_names = Grocery.pluck(:name)
@@ -80,11 +80,16 @@ class DashboardController < ApplicationController
     @cities = @cities.limit(5)
     session[:priority_search_city_ids] = @cities.pluck(:id)
 
+    @cities.each do |city|
+      puts city.city_name
+    end
+
     respond_to do |format|
       format.html
       format.js
       format.json do
         render json: @cities.map { |city|
+          puts city.city_name
           {
             latitude: city.latitude,
             longitude: city.longitude,

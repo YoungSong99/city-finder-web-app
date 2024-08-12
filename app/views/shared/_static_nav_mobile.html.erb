@@ -1,0 +1,49 @@
+<nav class="static-nav-mobile">
+  <%= render 'shared/logo' %>
+  <div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <nav class="hidden-menu">
+    <div class="close" id="close">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+    <ul>
+      <div>
+        <h1>Welcome, <%= user_signed_in? ? current_user.username : "Guest" %>!👋</h1>
+      </div>
+      <li>
+        <%= link_to 'How to use', about_path %>
+      </li>
+      <li>
+        <%= link_to 'Contact', contact_path %>
+      </li>
+      <li>
+        <%= link_to 'Find my place', filter_path %>
+      </li>
+      <hr>
+      <li>
+        <div class="hidden-menu-btn">
+          <% if user_signed_in? %>
+            <%= link_to 'Edit', edit_user_registration_path, class: "ctaLink" %>
+            <%= link_to 'Log Out', destroy_user_session_path, data: { turbo_method: :delete }, class: "ctaLink" %>
+          <% else %>
+            <%= link_to 'Log In', new_user_session_path, class: "ctaLink" %>
+            <%= link_to 'Sign up', new_user_session_path, class: "ctaLink" %>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</nav>
+<script>
+    function toggleMenu() {
+        document.querySelector('.hidden-menu').classList.toggle('on');
+        document.getElementById('hamburger').classList.toggle('on');
+        document.querySelector('body').classList.toggle('on');
+    }
+
+    document.getElementById('hamburger').addEventListener('click', toggleMenu);
+    document.getElementById('close').addEventListener('click', toggleMenu);
+</script>

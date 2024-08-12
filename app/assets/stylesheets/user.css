@@ -39,3 +39,10 @@
 #new_user .row {
     margin-bottom: 1.5rem;
 }
+
+
+@media screen and (max-width: 800px) {
+    .user {
+        display: none;
+    }
+}
