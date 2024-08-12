@@ -8,6 +8,10 @@
     </div>
     <%= render 'shared/footer' %>
   </div>
-  <%= render 'shared/mapbox_city', city: @city %>
+  <%= render 'shared/mapbox_city', city:@city %>
   <%= render 'shared/user_nav' %>
+  <%= render 'shared/nav_mobile' %>
+  <div class="side_mobile_city">
+    <%= render 'form', city: @review.city, review: @review %>
+  </div>
 </div>
