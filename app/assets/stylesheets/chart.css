@@ -65,3 +65,22 @@
 .right-corner {
     border-top-right-radius: 1rem;
 }
+
+a.btn.primary.mobile {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .data-div {
+        padding: 1rem;
+    }
+
+    a.btn.primary.mobile {
+        display: block;
+        margin-right: 0;
+    }
+
+    .table-div {
+        max-height: 30vh;
+    }
+}
