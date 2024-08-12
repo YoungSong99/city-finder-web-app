@@ -56,7 +56,7 @@
     color: var(--color-light--1);
 }
 
-.sidebar_mobile, .nav_mobile {
+.sidebar_mobile, .nav_mobile, .side_mobile_search {
     display: none;
 }
 
@@ -79,7 +79,7 @@
     .side_mobile {
         display: block;
         position: absolute;
-        top: 40%;
+        bottom: 0;
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: transparent;
@@ -92,5 +92,41 @@
     .side_mobile div {
         margin: 0;
     }
+
+    .side_mobile .cityList {
+        display: none;
+    }
+
+    .side_mobile_search {
+        display: block;
+        position: absolute;
+        padding: 2rem 2rem;
+        bottom: 17%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        background-color: var(--color-dark--1);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        max-width: 400px;
+        z-index: 999;
+    }
+
+    .side_mobile_search .search-bar {
+        padding: 0;
+        margin: 1rem 0 0 0;
+    }
+
+    .side_mobile_search input.back{
+        font-weight: 600;
+        background-color: var(--color-brand--2);
+        color: var(--color-dark--1);
+    }
+
+    .side_mobile_search .search_result ul{
+        padding: 0;
+        margin: 1rem 0 0 0;
+    }
+
 }
 

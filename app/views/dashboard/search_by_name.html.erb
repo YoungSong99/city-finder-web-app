@@ -1,8 +1,10 @@
+<%= render 'shared/static_nav_mobile' %>
 <div class="app">
   <div class="sidebar">
     <a href="/"><img src="<%= asset_path('logo.png') %>" alt="CityFinder logo" class="logo"></a>
     <%= render 'shared/nav' %>
     <div class="row">
+      <h1 class="sub-title">Compare the Cities You Selected</h1>
       <%= render 'search_by_name' %>
       <div class="search_result">
         <%= render 'city_list', cities: @the_city %>
@@ -19,6 +21,11 @@
   </div>
   <%= render 'shared/mapbox_saved_city' %>
   <%= render 'shared/user_nav' %>
-  <%= render 'shared/sidebar_mobile' %>
+  <div class="side_mobile_search">
+    <%= render 'search_by_name' %>
+    <div class="search_result">
+      <%= render 'city_list', cities: @the_city %>
+    </div>
+  </div>
   <%= render 'shared/nav_mobile' %>
 </div>

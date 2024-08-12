@@ -1,7 +1,10 @@
+<%= render 'shared/static_nav_mobile' %>
 <div class="app">
   <%= render 'sidebar' %>
   <%= render 'shared/mapbox_city', city:@the_city %>
   <%= render 'shared/user_nav' %>
-  <%= render 'shared/sidebar_mobile' %>
   <%= render 'shared/nav_mobile' %>
+  <div class="side_mobile_city">
+    <%= render 'cities/city_detail' %>
+  </div>
 </div>

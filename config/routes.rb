@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'search/cities/:id', to: 'cities#show', as: 'priority_result_detail'
 
   get 'search-by-name', to: 'dashboard#search_by_name', as: 'search_by_name'
+  get 'saved-cities', to: 'dashboard#search_by_name_result', as: 'saved_cities'
   get 'search-by-name/cities/:id', to: 'cities#show', as: 'search_by_name_result_detail'
 
   post '/cities/add/:id', to: 'favorite_cities#add', as: 'add_city'
