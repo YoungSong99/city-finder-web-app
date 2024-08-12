@@ -1,0 +1,12 @@
+.tooltip a {
+    text-decoration: none;
+    font-family: "Lato", sans-serif;
+    color: var(--color-dark--1);
+    font-weight: 600;
+    line-height: 1.6;
+    font-size: 1.5rem;
+}
+
+.tooltip i {
+    color: var(--color-dark--2);
+}
