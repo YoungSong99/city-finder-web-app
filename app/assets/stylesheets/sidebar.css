@@ -66,14 +66,31 @@
     }
 
     .app {
-        height: 80%;
-        grid-template-rows: 30% 70%;
-        grid-template-columns: 100%;
+        width: 100%;
+        height: 100vh;
+        padding: 1.2rem;
+        grid-template-columns: 1fr;
     }
 
     .mapbox {
         height: 100%;
     }
 
+    .side_mobile {
+        display: block;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: transparent;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .side_mobile div {
+        margin: 0;
+    }
 }
 
