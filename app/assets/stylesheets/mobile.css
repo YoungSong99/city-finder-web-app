@@ -6,7 +6,7 @@
 
     .app {
         width: 100%;
-        height: 100%;
+        height: 87vh;
     }
 
     /* Homepage nav */
@@ -133,7 +133,7 @@
 
     .hidden-menu a.ctaLink:link,
     .hidden-menu a.ctaLink:visited {
-        width: 15rem;
+        width: 100%;
     }
 
     .hidden-menu hr {

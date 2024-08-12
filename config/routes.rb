@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'about', to: 'static#about'
   get 'contact', to: 'static#contact'
-  get 'test', to: 'static#test'
+  get 'map', to: 'static#map'
 
   get 'filter', to: 'dashboard#convenience_filter', as: 'filter'
   get 'search', to: 'dashboard#search_by_priority', as: 'search'
