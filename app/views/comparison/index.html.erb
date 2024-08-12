@@ -15,6 +15,7 @@
   <div class="data-div">
     <%= render 'comparison_graph' %>
     <%= render 'comparison_table' %>
+    <%= link_to 'Download To CSV', export_comparison_path(format: :csv), class: 'btn primary mobile' %>
   </div>
   <%= render 'shared/user_nav' %>
   <%= render 'shared/nav_mobile' %>
