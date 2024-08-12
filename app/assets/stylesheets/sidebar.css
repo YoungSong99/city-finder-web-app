@@ -101,9 +101,9 @@
         display: block;
         position: absolute;
         padding: 2rem 2rem;
-        bottom: 17%;
+        bottom: 10%;
         left: 50%;
-        transform: translate(-50%, 0%);
+        transform: translate(-50%, -50%);
         background-color: var(--color-dark--1);
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

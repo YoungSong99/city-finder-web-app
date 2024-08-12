@@ -153,4 +153,21 @@
         grid-template-columns: 1fr;
     }
 
+    .saved-city {
+        padding: 0 1.5rem;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* Centers the content vertically */
+    }
+
+    .saved-city .cityList {
+        height: auto;
+    }
+
+    .saved-city .primary {
+        margin-right: 0;
+    }
+
 }
