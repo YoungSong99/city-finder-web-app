@@ -1,6 +1,158 @@
+.data-div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 10rem 3rem;
+    gap: 2rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.data-div .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3); /* Reduced opacity for better blur effect */
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.data-div .overlay-message {
+    color: var(--color-dark--1);
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 20;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.overlay-message i {
+  font-size: 3rem;
+}
+
+.data-div::-webkit-scrollbar {
+    width: 0.8rem;
+}
+
+.favorite-list {
+    position: relative;
+}
+
+.favorite-list .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.favorite-list .overlay-message {
+    color: var(--color-light--3);
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 20;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn.inactive {
+    pointer-events: none;
+    opacity: 0.5; /* Make the button look inactive */
+    cursor: not-allowed; /* Change cursor to indicate that the button is disabled */
+}
+
+
+.chart {
+    justify-content: center;
+    background-color: var(--color-light--2);
+    opacity: 0.8;
+    border-radius: 2rem;
+    padding: 2rem 1rem;
+}
+
+.table-div {
+    width: 100%;
+    overflow-y: scroll;
+    overflow-y: scroll;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 8px;
+    text-align: center;
+}
+
+.table td {
+    border-bottom: 1px solid #ddd;
+}
+.table th {
+    background-color: var(--color-dark--2);
+    color: var(--color-light--2);
+    opacity: 0.8;
+}
+.table tr:nth-child(even) {
+    /*background-color: #f9f9f9;*/
+}
+.table tr:hover {
+    /*background-color: var(--color-brand--2);*/
+    /*color: var(--color-dark--0);*/
+    font-weight: bold;
+    /*opacity: 0.5;*/
+}
+.table th[rowspan], .table th[colspan] {
+    background-color: var(--color-dark--2);
+    opacity: 1;
+}
+.left-corner {
+    border-top-left-radius: 1rem;
+}
+.right-corner {
+    border-top-right-radius: 1rem;
+}
+
+a.btn.primary.mobile {
+    display: none;
+}
+
 .search-bar {
     display: grid;
     grid-template-columns: 3fr 1fr;
     gap: 0.5rem;
     margin-top: 2rem;
+}
+
+@media screen and (max-width: 800px) {
+    .data-div {
+        padding: 1rem;
+    }
+
+    a.btn.primary.mobile {
+        display: block;
+        margin-right: 0;
+    }
+
+    .table-div {
+        max-height: 30vh;
+    }
 }

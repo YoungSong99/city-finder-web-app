@@ -31,7 +31,6 @@ class DashboardController < ApplicationController
       @cities = City
                   .select('cities.*, earth_distance(ll_to_earth(?, ?), ll_to_earth(cities.latitude, cities.longitude)) AS distance', lat, lng)
                   .where('earth_distance(ll_to_earth(?, ?), ll_to_earth(cities.latitude, cities.longitude)) < ?', lat, lng, distance_threshold)
-
     end
 
     if selected_convenience_option.include?("Metra")
@@ -50,6 +49,8 @@ class DashboardController < ApplicationController
       @cities = @cities.joins(:languages).where(languages: { name: selected_languages }).distinct
     end
 
+    # redirect_to search_path(city_ids: @cities.pluck(:id))
+
     city_ids = @cities.pluck(:id)
 
     session[:filter_results_city_ids] = city_ids
@@ -65,10 +66,7 @@ class DashboardController < ApplicationController
 
     city_ids = session[:filter_results_city_ids] || []
     Rails.logger.info("Retrieved cached city IDs from search_by_priority: #{city_ids}")
-
-    @grocery_names = Grocery.pluck(:name)
-    @language_names = Language.pluck(:name)
-    @gym_names = Gym.pluck(:name)
+    # city_ids = params[:city_ids] || []
 
     @cities = City.where(id: city_ids)
                   .joins(:crime_rates, :school_grades, :appreciation_values, :prices)
@@ -82,30 +80,30 @@ class DashboardController < ApplicationController
 
     @cities = @cities.limit(5)
 
-    redirect_to priority_result_path(city_ids: @cities.pluck(:id))
+    # redirect_to priority_result_path(city_ids: @cities.pluck(:id))
 
-    # session[:priority_search_city_ids] = @cities.pluck(:id)
+    session[:priority_search_city_ids] = @cities.pluck(:id)
 
-    # @cities.each do |city|
-    #   puts city.city_name
-    # end
-    #
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    #   format.json do
-    #     render json: @cities.map { |city|
-    #       puts city.city_name
-    #       {
-    #         latitude: city.latitude,
-    #         longitude: city.longitude,
-    #         label: city.city_name,
-    #         tooltip: render_to_string(partial: 'tooltip', locals: { city: city }, formats: [:html]),
-    #         url: search_by_name_result_detail_url(city, format: :json)
-    #       }
-    #     }
-    #   end
-    # end
+    @cities.each do |city|
+      puts city.city_name
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
+      format.json do
+        render json: @cities.map { |city|
+          puts city.city_name
+          {
+            latitude: city.latitude,
+            longitude: city.longitude,
+            label: city.city_name,
+            tooltip: render_to_string(partial: 'tooltip', locals: { city: city }, formats: [:html]),
+            url: search_by_name_result_detail_url(city, format: :json)
+          }
+        }
+      end
+    end
   end
 
   def priority_result
