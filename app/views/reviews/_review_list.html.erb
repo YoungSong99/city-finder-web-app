@@ -39,7 +39,7 @@
       </div>
     <% end %>
 
-    <% if current_user.id == review.user.id %>
+    <% if user_signed_in? && current_user.id == review.user.id %>
       <div class="buttons-sm">
         <%= link_to 'Edit', edit_city_review_path(@city, review) %>
         <%= link_to 'Delete', city_review_path(@city, review), method: :delete, data: { confirm: 'Are you sure?' } %>
