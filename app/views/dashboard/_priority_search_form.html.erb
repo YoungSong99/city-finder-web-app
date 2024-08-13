@@ -1,7 +1,10 @@
 <div class="form-container">
   <div class="form">
-    <%= form_with url: search_path, method: :get, local: false, class: "form" do |form| %>
-      <h1><span class="emoji">👋</span>Hi, <%= current_user.username.capitalize %>! <br>What matters most to you?</h1>
+    <%= form_with url: search_submit_path, method: :post, data: { turbo: false }, class: "form" do |form| %>
+      <h1><%= @greeting %>, <%= user_signed_in? ? current_user.username.capitalize : 'Explorer' %>!
+        <span class="emoji">👍</span>
+        <br>Now, what matters most to you?
+      </h1>
 
       <% 3.times do |index| %>
         <div class="row">
@@ -18,7 +21,7 @@
                                                                    ]), {}, { class: "select" } %>
         </div>
       <% end %>
-
+      <%= form.hidden_field :city_ids, value: (@city_ids || []).join(',') %>
       <div class="buttons">
         <%= form.submit 'Search', class: 'btn primary' %>
         <%= link_to 'Back', filter_path, class: 'btn back' %>

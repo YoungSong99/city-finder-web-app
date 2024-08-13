@@ -4,8 +4,12 @@
       <span class="emoji">🇺🇸</span>
       <h3 class="name"><%= link_to city.city_name, priority_result_detail_path(city) %></h3>
       <div id="<%= dom_id(city) %>_btn">
-        <% if current_user.favorite_cities.exists?(city_id: city.id) %>
-          <%= button_to '-', remove_city_path(city), method: :delete, remote: true, data: { turbo: false }, class: 'deleteBtn' %>
+        <% if user_signed_in? %>
+          <% if current_user.favorite_cities.exists?(city_id: city.id) %>
+            <%= button_to '-', remove_city_path(city), method: :delete, remote: true, data: { turbo: false }, class: 'deleteBtn' %>
+          <% else %>
+            <%= button_to '+', add_city_path(city), method: :post, remote: true, data: { turbo: false }, class: 'deleteBtn' %>
+          <% end %>
         <% else %>
           <%= button_to '+', add_city_path(city), method: :post, remote: true, data: { turbo: false }, class: 'deleteBtn' %>
         <% end %>

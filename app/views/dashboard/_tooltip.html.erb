@@ -1,5 +1,6 @@
 <div class="tooltip">
   <%= link_to priority_result_detail_path(city), class: 'profile-link' do %>
-    <i class="fa-solid fa-flag-usa"></i> <%= city.city_name %>
+    <h3>🇺🇸 <%= city.city_name.upcase %></h3>
+    <p>Click to See City Info</p>
   <% end %>
 </div>

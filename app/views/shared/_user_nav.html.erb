@@ -1,5 +1,10 @@
-<div class= "user">
-<!--  <img src="" alt= <%#= current_user.username %> />-->
-  <span> <span class="emoji">🙌</span>Welcome,  <%= link_to current_user.username.capitalize, edit_user_registration_path, class: "user-edit" %></span>
-  <%= link_to 'Log Out', destroy_user_session_path, data: { turbo_method: :delete }, class: "logout-btn"%>
-</div>
+<div class="user">
+  <span> <span class="emoji">🙌</span>Welcome,
+    <% if user_signed_in? %>
+      <%= link_to current_user.username.capitalize, edit_user_registration_path, class: "user-edit" %></span>
+      <%= link_to 'Log Out', destroy_user_session_path, method: :delete, data: { turbo: false, confirm: 'Are you sure?' }, class: 'logout-btn' %>
+    <% else %>
+      Explorer</span>
+      <%= link_to 'Log In', new_user_session_path, class: 'logout-btn' %>
+    <% end %>
+    </div>

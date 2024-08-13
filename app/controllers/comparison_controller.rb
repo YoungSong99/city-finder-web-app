@@ -1,21 +1,23 @@
 class ComparisonController < ApplicationController
+  before_action :authenticate_user!, only: [:export]
+
   def index
-    @cities = current_user.favorite_cities
+    sample_city_names = ['Chicago', 'Mendota', 'Cary', 'Winnetka']
+    @cities = user_signed_in? ? current_user.favorite_cities : City.where(city_name: sample_city_names)
 
     @city_totals = @cities.map do |city|
       {
-        name: city.city.city_name,
+        name: city.city_name,
         data: {
-          "Safety" => safety_total(city.city),
-          "School" => school_total(city.city),
-          "Convenience" => convenience_total(city.city),
-          "Appreciation" => appreciation_total(city.city),
-          "Price" => price_total(city.city)
+          "Safety" => safety_total(city),
+          "School" => school_total(city),
+          "Convenience" => convenience_total(city),
+          "Appreciation" => appreciation_total(city),
+          "Price" => price_total(city)
         }
       }
     end
   end
-
 
   def export
     @favorite_cities = current_user.favorite_cities.includes(:city => [:crime_rates, :school_grades, :appreciation_values, :prices, :metras, :grocery_cities, :gym_cities])

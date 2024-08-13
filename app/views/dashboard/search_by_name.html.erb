@@ -9,7 +9,7 @@
         <%= render 'city_list', cities: @the_city %>
       </div>
       <h2 class="sub-title">Your Saved Cities</h2>
-      <% if current_user.favorite_cities.any? %>
+      <% if user_signed_in? && current_user.favorite_cities.any? %>
         <%= render 'favorite_city_list', favorite_cities: current_user.favorite_cities %>
       <% else %>
         <h3 class="center">Start by adding a city to your list</h3>

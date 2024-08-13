@@ -4,9 +4,21 @@
     <%= render 'shared/nav' %>
     <div class="row">
       <h1 class="sub-title">Compared Below Cities</h1>
-      <%= render 'dashboard/favorite_city_list', favorite_cities: current_user.favorite_cities %>
+      <div class="favorite-list">
+        <%= render 'dashboard/favorite_city_list', favorite_cities: @cities %>
+        <% unless user_signed_in? %>
+          <div class="overlay">
+            <div class="overlay-message">
+              <i class="fa-solid fa-lock"></i><br>
+              Login to unlock this feature
+            </div>
+          </div>
+        <% end %>
+      </div>
       <div class="buttons">
-        <%= link_to 'Download To CSV', export_comparison_path(format: :csv), class: 'btn primary' %>
+        <%= link_to 'Download To CSV', export_comparison_path(format: :csv),
+                    class: "btn primary #{'inactive' unless user_signed_in?}",
+                    disabled: !user_signed_in? %>
         <%= link_to 'Back', '#', class: 'btn back', onclick: 'window.history.back(); return false;' %>
       </div>
     </div>
@@ -15,6 +27,16 @@
   <div class="data-div">
     <%= render 'comparison_graph' %>
     <%= render 'comparison_table' %>
+
+    <% unless user_signed_in? %>
+      <div class="overlay">
+        <div class="overlay-message">
+          <i class="fa-solid fa-lock"></i><br>
+          Login to unlock this feature
+        </div>
+      </div>
+    <% end %>
+
     <%= link_to 'Download To CSV', export_comparison_path(format: :csv), class: 'btn primary mobile' %>
   </div>
   <%= render 'shared/user_nav' %>
