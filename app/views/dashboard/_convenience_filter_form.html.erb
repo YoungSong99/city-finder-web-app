@@ -1,7 +1,10 @@
 <div class="form-container">
   <div class="form" data-controller="convenience-form">
     <%= form_with url: filter_path, method: :get, local: false, class: "form", id: "convenience-form" do |form| %>
-      <h1><span class="emoji">👋</span>Hi, <%= current_user.username.capitalize %>! <br>What do you need in your city?</h1>
+      <h1><span class="emoji">👋</span>Hi,
+        <%= user_signed_in? ? current_user.username.capitalize : 'Explorer' %>!
+        <br>What do you need in your city?
+      </h1>
 
       <div class="row">
         <%= form.label :"Must Have" %>

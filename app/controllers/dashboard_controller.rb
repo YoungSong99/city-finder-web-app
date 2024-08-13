@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:search_by_name_result]
   before_action :load_stored_search_results, only: [:search_by_priority]
 
   def convenience_filter
@@ -32,7 +32,6 @@ class DashboardController < ApplicationController
 
     end
 
-
     if selected_convenience_option.include?("Metra")
       @cities = @cities.joins(:metras).distinct
     end
@@ -60,6 +59,8 @@ class DashboardController < ApplicationController
   end
 
   def search_by_priority
+    @greeting = ["Good Choice!", "I like that!", "Awesome"].sample
+
     city_ids = session[:filter_results_city_ids] || []
     Rails.logger.info("Retrieved cached city IDs from search_by_priority: #{city_ids}")
 
@@ -112,7 +113,12 @@ class DashboardController < ApplicationController
       @the_city = City.none
     end
 
-    @saved_cities = City.where(id: current_user.favorite_cities.pluck(:city_id))
+    if user_signed_in?
+      @saved_cities = City.where(id: current_user.favorite_cities.pluck(:city_id))
+    else
+      @saved_cities = City.where(city_name: 'Chicago')
+    end
+
     respond_to do |format|
       format.html
       format.js
