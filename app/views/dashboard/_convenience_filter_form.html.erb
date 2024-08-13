@@ -1,6 +1,6 @@
 <div class="form-container">
   <div class="form" data-controller="convenience-form">
-    <%= form_with url: filter_path, method: :get, local: false, class: "form", id: "convenience-form" do |form| %>
+    <%= form_with url: filter_submit_path, method: :post, data: { turbo: false }, class: "form", id: "convenience-form" do |form| %>
       <h1><span class="emoji">👋</span>Hi,
         <%= user_signed_in? ? current_user.username.capitalize : 'Explorer' %>!
         <br>What do you need in your city?
@@ -12,7 +12,6 @@
                                                                     ["Select a factor", ""],
                                                                     ["I'm open to all options 😉", "All"],
                                                                     ["Distance From Work 🚗", "Distance"],
-                                                                    # ["Distance From Work 🚗(currently unavailable)", "Distance", { disabled: true }],
                                                                     ["Metra Station 🚊", "Metra"],
                                                                     ["Grocery Store 🛒", "Grocery"],
                                                                     ["Community 👥", "Community"],
@@ -51,6 +50,8 @@
         </div>
       </div>
 
+      <% Rails.logger.debug("City IDs in form: #{@city_ids.inspect}") %>
+      <%= form.hidden_field :city_ids, value: @city_ids.join(',') %>
       <%= form.submit 'Next', class: 'btn primary large' %>
     <% end %>
   </div>

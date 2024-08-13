@@ -8,10 +8,12 @@ Rails.application.routes.draw do
   get 'map', to: 'static#map'
 
   get 'filter', to: 'dashboard#convenience_filter', as: 'filter'
+  post 'filter', to: 'dashboard#convenience_filter_submit', as: 'filter_submit'
   get 'search', to: 'dashboard#search_by_priority', as: 'search'
+  post 'search', to: 'dashboard#search_by_priority_submit', as: 'search_submit'
   get 'search/cities', to: 'dashboard#priority_result', as: 'priority_result'
-  get 'search/cities/:id', to: 'cities#show', as: 'priority_result_detail'
 
+  get 'search/cities/:id', to: 'cities#show', as: 'priority_result_detail'
   get 'search-by-name', to: 'dashboard#search_by_name', as: 'search_by_name'
   get 'saved-cities', to: 'dashboard#search_by_name_result', as: 'saved_cities'
   get 'search-by-name/cities/:id', to: 'cities#show', as: 'search_by_name_result_detail'
