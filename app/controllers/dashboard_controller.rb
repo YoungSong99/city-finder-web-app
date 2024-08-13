@@ -7,6 +7,8 @@ class DashboardController < ApplicationController
     @language_names = Language.pluck(:name)
     @gym_names = Gym.pluck(:name)
 
+    @greeting = ["Good Choice", "I like that", "Awesome"].sample
+
     selected_grocery = params[:grocery] || []
     selected_gym = params[:gym] || []
     selected_languages = params[:community_language] || []
@@ -59,7 +61,7 @@ class DashboardController < ApplicationController
   end
 
   def search_by_priority
-    @greeting = ["Good Choice!", "I like that!", "Awesome"].sample
+    @greeting = ["Good Choice", "I like that", "Awesome"].sample
 
     city_ids = session[:filter_results_city_ids] || []
     Rails.logger.info("Retrieved cached city IDs from search_by_priority: #{city_ids}")
@@ -79,18 +81,41 @@ class DashboardController < ApplicationController
     end
 
     @cities = @cities.limit(5)
-    session[:priority_search_city_ids] = @cities.pluck(:id)
 
-    @cities.each do |city|
-      puts city.city_name
-    end
+    redirect_to priority_result_path(city_ids: @cities.pluck(:id))
+
+    # session[:priority_search_city_ids] = @cities.pluck(:id)
+
+    # @cities.each do |city|
+    #   puts city.city_name
+    # end
+    #
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    #   format.json do
+    #     render json: @cities.map { |city|
+    #       puts city.city_name
+    #       {
+    #         latitude: city.latitude,
+    #         longitude: city.longitude,
+    #         label: city.city_name,
+    #         tooltip: render_to_string(partial: 'tooltip', locals: { city: city }, formats: [:html]),
+    #         url: search_by_name_result_detail_url(city, format: :json)
+    #       }
+    #     }
+    #   end
+    # end
+  end
+
+  def priority_result
+    city_ids = params[:city_ids] || []
+    @cities = City.where(id: city_ids)
 
     respond_to do |format|
       format.html
-      format.js
       format.json do
         render json: @cities.map { |city|
-          puts city.city_name
           {
             latitude: city.latitude,
             longitude: city.longitude,

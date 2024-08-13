@@ -1,9 +1,9 @@
 <div class="form-container">
   <div class="form">
     <%= form_with url: search_path, method: :get, local: false, class: "form" do |form| %>
-      <h1><%= @greeting %><%= user_signed_in? ? current_user.username.capitalize : 'Explorer' %>
-        <span class="emoji-left-margin">👍</span>!
-        <br>What matters most to you?
+      <h1><%= @greeting %>, <%= user_signed_in? ? current_user.username.capitalize : 'Explorer' %>!
+        <span class="emoji">👍</span>
+        <br>Now, what matters most to you?
       </h1>
 
       <% 3.times do |index| %>
