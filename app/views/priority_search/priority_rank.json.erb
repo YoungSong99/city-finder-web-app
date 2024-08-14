@@ -1,0 +1,9 @@
+<%= @cities.map do |city|
+  {
+    latitude: city.latitude,
+    longitude: city.longitude,
+    label: city.city_name,
+    tooltip: j(render(partial: 'shared/tooltip', locals: { city: city }, formats: [:html])),
+    url: city_detail_path(city, format: :json)
+  }
+end.to_json.html_safe %>

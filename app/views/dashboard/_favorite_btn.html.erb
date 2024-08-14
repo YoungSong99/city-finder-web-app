@@ -1,7 +1,0 @@
-<div id="<%= dom_id(city) %>">
-  <% if current_user.favorite_cities.exists?(city_id: city.id) %>
-    <%= button_to '-', remove_city_path(city), method: :delete, remote: true, data: { turbo: false }, class: 'deleteBtn' %>
-  <% else %>
-    <%= button_to '+', add_city_path(city), method: :post, remote: true, data: { turbo: false }, class: 'deleteBtn' %>
-  <% end %>
-</div>

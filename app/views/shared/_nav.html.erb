@@ -1,10 +1,10 @@
 <div class="nav">
   <ul>
     <li>
-      <%= link_to 'Search by Priority', filter_path, class: ('active' if current_page?(filter_path || search_path || priority_result_path || priority_result_detail_path)) %>
+      <%= link_to 'Search by Priority', find_city_path, class: ('active' if current_page?(city_search_path)) %>
     </li>
     <li>
-      <%= link_to 'City Comparison', search_by_name_path, class: ('active' if current_page?(search_by_name_path || comparison_path)) %>
+      <%= link_to 'City Comparison', search_by_name_path, class: ('active' if current_page?(search_by_name_path)) %>
     </li>
   </ul>
 </div>

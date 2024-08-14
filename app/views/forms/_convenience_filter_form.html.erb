@@ -1,6 +1,6 @@
 <div class="form-container">
   <div class="form" data-controller="convenience-form">
-    <%= form_with url: filter_submit_path, method: :post, data: { turbo: false }, class: "form", id: "convenience-form" do |form| %>
+    <%= form_with url: submit_city_filter_path, method: :post, data: { turbo: false }, class: "form", id: "convenience-form" do |form| %>
       <h1><span class="emoji">👋</span>Hi,
         <%= user_signed_in? ? current_user.username.capitalize : 'Explorer' %>!
         <br>What do you need in your city?

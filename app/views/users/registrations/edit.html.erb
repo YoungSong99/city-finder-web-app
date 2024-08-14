@@ -18,12 +18,12 @@
 
         <div class="row">
           <div class="field">
-            <%= f.label :email %><br>
+            <%= f.label :email %>
             <%= f.email_field :email, required: true, autofocus: true %>
           </div>
 
           <div class="field">
-            <%= f.label :username %><br>
+            <%= f.label :username %>
             <%= f.text_field :username %>
           </div>
 
@@ -43,18 +43,18 @@
           <% end %>
 
           <div class="field row">
-            <%= f.label :password %><br>
+            <%= f.label :password %>
             <%= f.password_field :password, required: false, autocomplete: "new-password" %>
             <small>leave it blank if you don't want to change it</small>
           </div>
 
           <div class="field row">
-            <%= f.label :password_confirmation %><br>
+            <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, required: false, autocomplete: "new-password" %>
           </div>
 
           <div class="field row">
-            <%= f.label :current_password %><br>
+            <%= f.label :current_password %>
             <%= f.password_field :current_password, required: true, autocomplete: "current-password" %>
             <small>we need your current password to confirm your changes</small>
           </div>

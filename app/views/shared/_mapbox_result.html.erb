@@ -1,8 +1,8 @@
-  <%= js_map priority_result_path(format: :json, city_ids: params[:city_ids]),
+  <%= js_map city_search_path(format: :json, city_ids: params[:city_ids]),
              id: "cities-map",
              markers: { label: 'city_name' },
              tooltips: { hover: false, html: true},
              zoom: 7,
              controls: true,
-             refresh: 60
+             refresh: 300
   %>

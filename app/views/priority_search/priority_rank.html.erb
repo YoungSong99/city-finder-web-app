@@ -1,0 +1,24 @@
+<div class="app">
+  <div class="sidebar">
+    <%= render 'shared/logo' %>
+    <%= render 'shared/nav' %>
+    <div class="outlet">
+      <h1 class="sub-title">Find Your Top 5 Cities in Illinois</h1>
+      <%= render 'forms/priority_search_form' %>
+    </div>
+    <%= render 'shared/footer' %>
+  </div>
+  <%= js_map city_search_path(format: :json, city_ids: params[:city_ids]),
+             id: "cities-map",
+             markers: { label: 'city_name' },
+             tooltips: { hover: false, html: true },
+             zoom: 7,
+             controls: true,
+             refresh: 300
+  %>
+  <div class="side_mobile">
+    <%= render 'forms/priority_search_form' %>
+  </div>
+  <%= render 'shared/nav_mobile' %>
+  <%= render 'shared/user_nav' %>
+</div>
