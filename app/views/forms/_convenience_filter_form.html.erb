@@ -16,14 +16,21 @@
                                                                     ["Grocery Store 🛒", "Grocery"],
                                                                     ["Community 👥", "Community"],
                                                                     ["Gym 🏋️", "Gym"]
-                                                                  ]), {}, { class: "select", data: { action: "convenience-form#handlePriorityChange" }} %>
+                                                                  ]), {}, { class: "select", data: { action: "convenience-form#handlePriorityChange" } } %>
 
-        <div id="distance" class="row"  data-convenience-form-target="distance" style="display: none;">
-          <%= form.label :place, "From"%>
-          <%= form.text_field :place, placeholder: "Enter the address"%>
-
-          <%= form.label :distance, "Distance to.." %>
-          <%= form.select :distance, options_for_select([["5 miles", 5], ["10 miles", 10], ["20 miles", 20], ["30 miles", 30], ["50 miles", 50]]), {}, { class: "select" } %>
+        <div id="distance" class="row" data-convenience-form-target="distance" style="display: none;">
+          <%= form.label :place, "From" %>
+          <div class="row">
+            <%= form.text_field :address, placeholder: "Address" %>
+            <div class="flex-div-spread">
+              <%= form.text_field :city_name, placeholder: "City Name" %>
+              <%= form.text_field :state, placeholder: "Illinois", readonly: true %>
+            </div>
+          </div>
+          <div class="row">
+            <%= form.label :distance, "Distance to.." %>
+            <%= form.select :distance, options_for_select([["5 miles", 5], ["10 miles", 10], ["20 miles", 20], ["30 miles", 30], ["50 miles", 50]]), {}, { class: "select" } %>
+          </div>
         </div>
 
         <div id="grocery-options" class="grid" data-convenience-form-target="groceryOptions" style="display: none;">
@@ -44,7 +51,7 @@
           <% end %>
         </div>
 
-        <div id="community" class="row"  data-convenience-form-target="community"  style="display: none;">
+        <div id="community" class="row" data-convenience-form-target="community" style="display: none;">
           <%= form.label :"community_language", "Find a community using language" %>
           <%= form.select "community_language", options_for_select([["Select a language", ""]] + @language_names), { include_blank: false }, { class: "select" } %>
         </div>
