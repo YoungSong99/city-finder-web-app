@@ -30,6 +30,8 @@ class FavoriteCitiesController < ApplicationController
   def remove
     city_id = params[:id].to_i
     @the_city = City.find(city_id)
+    Rails.logger.debug("Received city_ids to delete: #{@the_city.inspect}")
+
     favorite_city = current_user.favorite_cities.find_by(city_id: city_id)
     favorite_city.destroy if favorite_city
 
