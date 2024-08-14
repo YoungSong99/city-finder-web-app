@@ -5,7 +5,7 @@
     <div class="row">
       <h1 class="sub-title">Compared Below Cities</h1>
       <div class="favorite-list">
-        <%= render 'dashboard/favorite_city_list', favorite_cities: @cities %>
+        <%= render 'shared/city_list', cities: @cities %>
         <% unless user_signed_in? %>
           <div class="overlay">
             <div class="overlay-message">

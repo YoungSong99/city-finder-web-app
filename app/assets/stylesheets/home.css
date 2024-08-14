@@ -78,6 +78,18 @@ a.ctaLink:visited {
     text-align: center;
 }
 
+a.ctaLink.bl:link,
+a.ctaLink.bl:visited {
+    background-color: var(--color-dark--0);
+    color: var(--color-light--2);
+    border: 1px solid;
+    border-color: var(--color-light--2);
+    padding: 0.8rem 2rem;
+    border-radius: 7px;
+    text-decoration: none;
+    text-align: center;
+}
+
 /* CSS Modules feature */
 .nav a:global(.active) {
     background-color: var(--color-dark--0);

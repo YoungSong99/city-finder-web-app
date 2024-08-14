@@ -1,4 +1,9 @@
 class FavoriteCitiesController < ApplicationController
+  def list
+    sample_city_names = ['Chicago', 'Mendota', 'Cary', 'Winnetka']
+    @saved_cities = user_signed_in? ? current_user.favorite_cities : City.where(city_name: sample_city_names)
+  end
+
   def add
     unless user_signed_in?
       respond_to do |format|

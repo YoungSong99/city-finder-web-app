@@ -1,6 +1,6 @@
 <div class="row">
   <% if city.reviews_count > 0 %>
-    <%= link_to city_reviews_path(@the_city) do %>
+    <%= link_to new_city_review_path(@the_city) do %>
       <div class="flex-div">
       <div><%= display_stars(city) %></div>
       <p><b><%= city.average_rating %></b> (<%= city.reviews_count %>)</p>
