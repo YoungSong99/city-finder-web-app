@@ -56,7 +56,18 @@ class CityFilterController < ApplicationController
   end
 
   def apply_distance_filter
-    user_location = Geocoder.search(params[:place])
+    address = params[:address].strip if params[:address].present?
+    city_name = params[:city_name].strip if params[:city_name].present?
+    state = "IL"
+
+    full_address = [address, city_name, state].compact.join(", ")
+    user_location = Geocoder.search(full_address)
+
+    if user_location.blank?
+      flash[:alert] = "We couldn't find this address🥲. Could you please try entering it again?"
+      redirect_to find_city_path and return
+    end
+
     lat, lng = user_location.first.coordinates
 
     distance_threshold = params[:distance].to_i * 1609.34
