@@ -2,10 +2,7 @@ class CityNameSearchController < ApplicationController
   def search_by_name
     @q = City.ransack(params[:q])
     @the_city = @q.result(distinct: true) if params[:q].present?
-
     load_saved_cities
-    Rails.logger.debug("Received city_ids: #{@saved_cities.inspect}")
-
     respond_to do |format|
       format.html
       format.js

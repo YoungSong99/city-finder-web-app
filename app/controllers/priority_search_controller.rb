@@ -4,18 +4,15 @@ class PrioritySearchController < ApplicationController
     @greeting = ["Good Choice", "I like that", "Awesome"].sample
 
     city_ids = params[:city_ids].map(&:to_i)
-    Rails.logger.debug("Received city_ids: #{city_ids.inspect}")
     apply_priorities(city_ids)
     @city_ids = @cities.pluck(:id)
   end
 
   def priority_rank_submit
     city_ids = params[:city_ids].split(',').map(&:to_i)
-    Rails.logger.debug("Received city_ids: #{city_ids.inspect}")
     apply_priorities(city_ids)
     @cities = @cities.limit(5)
     @city_ids = @cities.pluck(:id)
-    Rails.logger.debug("sending_priority_controller: #{@city_ids.inspect}")
 
     redirect_to city_search_results_path(city_ids: @city_ids)
   end
@@ -23,8 +20,6 @@ class PrioritySearchController < ApplicationController
 
   def priority_result
     city_ids = params[:city_ids].map(&:to_i)
-    Rails.logger.debug("sending_priority_controller: #{city_ids.inspect}")
-
     @cities = City.where(id: city_ids)
 
     respond_to do |format|
