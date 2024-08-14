@@ -1,32 +1,38 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  # static pages
   root 'static#home'
+  get 'about', to: 'static#about', as: 'about'
+  get 'contact', to: 'static#contact', as: 'contact'
+  get 'city-map', to: 'static#map', as: 'city_map'
 
-  get 'about', to: 'static#about'
-  get 'contact', to: 'static#contact'
-  get 'map', to: 'static#map'
+  # City filter
+  get 'find-city', to: 'city_filter#convenience_filter', as: 'find_city'
+  post 'find-city', to: 'city_filter#convenience_filter_submit', as: 'submit_city_filter'
 
-  get 'filter', to: 'dashboard#convenience_filter', as: 'filter'
-  post 'filter', to: 'dashboard#convenience_filter_submit', as: 'filter_submit'
-  get 'search', to: 'dashboard#search_by_priority', as: 'search'
-  post 'search', to: 'dashboard#search_by_priority_submit', as: 'search_submit'
-  get 'search/cities', to: 'dashboard#priority_result', as: 'priority_result'
+  # Priority Search
+  get 'city-search', to: 'priority_search#priority_rank', as: 'city_search'
+  post 'city-search', to: 'priority_search#priority_rank_submit', as: 'submit_city_search'
+  get 'city-search/results', to: 'priority_search#priority_result', as: 'city_search_results'
 
-  get 'search/cities/:id', to: 'cities#show', as: 'priority_result_detail'
-  get 'search-by-name', to: 'dashboard#search_by_name', as: 'search_by_name'
-  get 'saved-cities', to: 'dashboard#search_by_name_result', as: 'saved_cities'
-  get 'search-by-name/cities/:id', to: 'cities#show', as: 'search_by_name_result_detail'
+  # Search by Name
+  get 'search-by-name', to: 'city_name_search#search_by_name', as: 'search_by_name'
 
-  post '/cities/add/:id', to: 'favorite_cities#add', as: 'add_city'
-  delete '/cities/add/:id', to: 'favorite_cities#remove', as: 'remove_city'
+  # Saved City
+  get 'saved-cities', to: 'favorite_cities#list', as: 'saved_cities'
+  post 'saved-cities/:id', to: 'favorite_cities#add', as: 'add_favorite_city'
+  delete 'saved-cities/:id', to: 'favorite_cities#remove', as: 'remove_favorite_city'
 
-  get 'comparison', to: 'comparison#index', as: 'comparison'
-  get 'comparison/export', to: 'comparison#export', as: 'export_comparison'
+  # Compare City
+  get 'compare-cities', to: 'comparison#index', as: 'compare_cities'
+  get 'compare-cities/export', to: 'comparison#export', as: 'export_comparison'
 
-  resources :cities, only: [:show]
+  # City Detail
+  get 'city/:id', to: 'cities#show', as: 'city_detail'
 
+  # Reviews
   resources :cities do
-    resources :reviews
+    resources :reviews, only: [:index, :create, :update, :destroy, :new]
   end
 end
