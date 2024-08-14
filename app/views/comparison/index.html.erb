@@ -3,7 +3,7 @@
     <a href="/"><img src="<%= asset_path('logo.png') %>" alt="CityFinder logo" class="logo"></a>
     <%= render 'shared/nav' %>
     <div class="row">
-      <h1 class="sub-title">Compared Below Cities</h1>
+      <h1 class="sub-title">Compare the Cities You Selected</h1>
       <div class="favorite-list">
         <%= render 'shared/city_list', cities: @cities %>
         <% unless user_signed_in? %>

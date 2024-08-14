@@ -162,11 +162,11 @@
 
     .saved-city {
         padding: 0 1.5rem;
-        height: 80%;
+        width: 100%;
+        overflow-x: scroll;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center; /* Centers the content vertically */
     }
 
     .saved-city .cityList {

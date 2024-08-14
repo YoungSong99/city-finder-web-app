@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   post 'find-city', to: 'city_filter#convenience_filter_submit', as: 'submit_city_filter'
 
   # Priority Search
-  get 'city-search', to: 'priority_search#priority_rank', as: 'city_search'
-  post 'city-search', to: 'priority_search#priority_rank_submit', as: 'submit_city_search'
-  get 'city-search/results', to: 'priority_search#priority_result', as: 'city_search_results'
+  get 'city-search', to: 'city_priority_search#priority_rank', as: 'city_search'
+  post 'city-search', to: 'city_priority_search#priority_rank_submit', as: 'submit_city_search'
+  get 'city-search/results', to: 'city_priority_search#priority_result', as: 'city_search_results'
 
   # Search by Name
   get 'search-by-name', to: 'city_name_search#search_by_name', as: 'search_by_name'
