@@ -1,4 +1,4 @@
-class PrioritySearchController < ApplicationController
+class CityPrioritySearchController < ApplicationController
 
   def priority_rank
     @greeting = ["Good Choice", "I like that", "Awesome"].sample
