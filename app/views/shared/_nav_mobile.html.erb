@@ -1,31 +1,31 @@
 <div class="nav-mobile">
   <ul>
     <li>
-      <%= link_to city_map_path do %>
+      <%= link_to city_map_path, class: ('active' if current_page?(city_map_path)) do %>
         <i class="fa-regular fa-map"></i>
         <div>Map</div>
       <% end %>
     </li>
     <li>
-      <%= link_to find_city_path do %>
+      <%= link_to find_city_path, class: ('active' if current_page?(find_city_path)) do %>
         <i class="fa-solid fa-magnifying-glass-location"></i>
         <div>Priority Search</div>
       <% end %>
     </li>
     <li>
-      <%= link_to search_by_name_path do %>
+      <%= link_to search_by_name_path, class: ('active' if current_page?(search_by_name_path)) do %>
         <i class="fa-solid fa-magnifying-glass"></i>
         <div>Search by Name</div>
       <% end %>
     </li>
     <li>
-      <%= link_to saved_cities_path do %>
+      <%= link_to saved_cities_path, class: ('active' if current_page?(saved_cities_path)) do %>
         <i class="fa-solid fa-thumbtack"></i>
         <div>Saved Cities</div>
       <% end %>
     </li>
     <li>
-      <%= link_to compare_cities_path do %>
+      <%= link_to compare_cities_path, class: ('active' if current_page?(compare_cities_path)) do %>
         <i class="fa-solid fa-chart-area"></i>
         <div>Compare</div>
       <% end %>

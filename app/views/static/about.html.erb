@@ -1,6 +1,69 @@
-<main class="homepage">
+<main class="about">
   <%= render 'shared/static_nav' %>
   <section>
-    <h1>Coming Soon</h1>
+    <div>
+      <p class="tag-color">
+        <span class="tag-label">STEP 1</span>
+      </p>
+      <h2>
+        Filter the city that
+        <br/>
+        best matches your unique needs.
+      </h2>
+      <p>
+        Choose criteria like the distance from your work, proximity to a Metra station, availability of grocery stores,
+        gyms, and vibrant community spaces. Your perfect city is just a few clicks away!
+      </p>
+    </div>
+    <img src="<%= asset_path('step1.png') %>" alt="city filter by convenience"/>
+  </section>
+  <section>
+    <img src="<%= asset_path('step2.png') %>" alt="city filter by priority"/>
+    <div>
+      <p class="tag-color">
+        <span class="tag-label">STEP 2</span>
+      </p>
+      <h2>
+        Rank Cities Based on
+        <br/>
+        What Matters to You
+      </h2>
+      <p>
+        Whether it's the sale price, rent price, school rating, safety, or appreciation value, rank cities according to
+        your priorities. We'll sort the results to show you the cities that best match your preferences.
+      </p>
+    </div>
+  </section>
+  <section>
+    <div>
+      <p class="tag-color">
+        <span class="tag-label">STEP 3</span>
+      </p>
+      <h2>
+        Discover<br>Your Ideal City
+      </h2>
+      <p>
+        Dive into detailed information about each city, so you can make an informed decision. We’ve got all the details
+        you need, right at your fingertips!
+      </p>
+    </div>
+    <img src="<%= asset_path('step3.png') %>" alt="city result"/>
+  </section>
+  <section>
+    <img src="<%= asset_path('step4.png') %>" alt="city filter by priority"/>
+    <div>
+      <p class="tag-color">
+        <span class="tag-label">STEP 4</span>
+      </p>
+      <h2>
+        Compare & Save
+        <br/>
+        Your Favorites
+      </h2>
+      <p>
+        Create comparison area charts and data tables to easily see how cities stack up against each other. You can even save your data to a CSV file for future reference. Making decisions has never been easier!
+      </p>
+    </div>
   </section>
 </main>
+<%= render 'shared/footer' %>

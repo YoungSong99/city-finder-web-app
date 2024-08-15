@@ -44,6 +44,8 @@
 
 .footer {
     margin-top: auto;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 .copyright {
@@ -121,7 +123,7 @@
     .side_mobile_city {
         display: block;
         position: absolute;
-        height: 45vh;
+        height: 65vh;
         padding: 0;
         top: 5rem;
         left: 50%;

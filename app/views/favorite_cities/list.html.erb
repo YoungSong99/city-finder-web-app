@@ -1,19 +1,21 @@
 <div class="app">
   <div class="saved-city">
-    <h1>Saved Cities</h1>
-    <% if user_signed_in? %>
-      <%= render 'shared/favorite_city_list', favorite_cities: current_user.cities %>
-    <% else %>
-      <div class="favorite-list">
-        <%= render 'shared/favorite_city_list', favorite_cities: @saved_cities %>
+    <div class="title-list">
+      <h1 class="sub-title">Saved Cities</h1>
+      <% if user_signed_in? %>
+        <%= render 'shared/favorite_city_list', favorite_cities: current_user.cities %>
+      <% else %>
+        <div class="favorite-list">
+          <%= render 'shared/favorite_city_list', favorite_cities: @saved_cities %>
           <div class="overlay">
             <div class="overlay-message">
               <i class="fa-solid fa-lock"></i><br>
               Login to unlock this feature
             </div>
           </div>
-      </div>
-    <% end %>
+        </div>
+      <% end %>
+    </div>
     <%= link_to 'Compare Cities', compare_cities_path, class: 'btn primary large' %>
   </div>
   <%= render 'shared/nav_mobile' %>

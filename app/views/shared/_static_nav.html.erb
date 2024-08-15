@@ -2,10 +2,13 @@
   <%= render 'shared/logo' %>
   <ul>
     <li>
-      <%= link_to 'How to use', about_path %>
+      <%= link_to 'How to use', about_path, class: ('active' if current_page?(about_path)) %>
     </li>
     <li>
-      <%= link_to 'Contact', contact_path %>
+      <%= link_to 'Find your city', find_city_path, class: ('active' if current_page?(find_city_path)) %>
+    </li>
+    <li>
+      <%= link_to 'Contact', contact_path, class: ('active' if current_page?(contact_path)) %>
     </li>
     <li>
       <% if user_signed_in? %>

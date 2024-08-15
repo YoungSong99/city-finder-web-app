@@ -33,6 +33,6 @@ Rails.application.routes.draw do
 
   # Reviews
   resources :cities do
-    resources :reviews, only: [:index, :create, :update, :destroy, :new]
+    resources :reviews, only: [:index, :create, :update, :destroy, :new, :edit]
   end
 end

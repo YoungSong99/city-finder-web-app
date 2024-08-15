@@ -63,6 +63,10 @@
     background-color: transparent;
 }
 
+.static-nav a.active {
+    color: var(--color-brand--2);
+}
+
 /* CSS Modules feature */
 .static-nav a:global(.active) {
     color: var(--color-brand--2);
