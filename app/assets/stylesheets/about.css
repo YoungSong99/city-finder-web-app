@@ -50,7 +50,15 @@
         width: 90%;
         grid-template-columns: 1fr;
         border-bottom: 1px solid rgba(236, 236, 236, 0.5);
-        gap: 0;
+        gap: 1rem;
         padding-bottom: 2rem;
+    }
+
+    .about section:last-child {
+        border-bottom: none;
+    }
+
+    .about .form {
+        max-height: 100%;
     }
 }
