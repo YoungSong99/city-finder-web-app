@@ -42,18 +42,18 @@
             <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
           <% end %>
 
-          <div class="field row">
+          <div class="field">
             <%= f.label :password %>
             <%= f.password_field :password, required: false, autocomplete: "new-password" %>
             <small>leave it blank if you don't want to change it</small>
           </div>
 
-          <div class="field row">
+          <div class="field">
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, required: false, autocomplete: "new-password" %>
           </div>
 
-          <div class="field row">
+          <div class="field">
             <%= f.label :current_password %>
             <%= f.password_field :current_password, required: true, autocomplete: "current-password" %>
             <small>we need your current password to confirm your changes</small>
@@ -68,9 +68,8 @@
         </div>
 
         <div class="password">
-          <%= link_to "I want to delete my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?"}, method: :delete %>
+          <%= link_to "I want to delete my account", cancel_user_registration_path(resource_name), data: { confirm: "Are you sure?🥺", turbo_confirm: "Are you sure?🥺"}, method: :delete %>
         </div>
-
       <% end %>
     </div>
   </div>

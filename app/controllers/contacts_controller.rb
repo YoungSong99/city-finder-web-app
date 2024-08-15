@@ -1,13 +1,25 @@
 class ContactsController < ApplicationController
   def new
+    @contact = Contact.new
   end
 
   def create
-    contact_params = params.require(:contact).permit(:name, :email, :message, :subject)
+    non_sensitive_data = params.require(:contact).permit(:category, :message)
 
-    ContactMailer.contact_email(contact_params).deliver_now
+    session[:contact_data] = {
+      name: params[:contact][:name],
+      email: params[:contact][:email]
+    }
 
-    flash[:notice] = 'Your message has been sent.'
-    redirect_to new_contact_path
+    @contact = Contact.new(non_sensitive_data.merge(session[:contact_data]))
+
+    if @contact.save
+      session.delete(:contact_data)
+      flash[:notice] = "We're excited to hear from you. Let's keep making CityFinder even better together!"
+      redirect_to new_contact_path
+    else
+      flash[:alert] = "Oh no! Something went wrong with your message. Please give it another go—we're here to help you find the perfect city!"
+      render :new
+    end
   end
 end

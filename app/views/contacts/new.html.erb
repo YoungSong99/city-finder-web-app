@@ -8,12 +8,13 @@
         Hear from you!
       </h2>
       <p>
-        Got some thoughts to share? Whether it’s a bright idea, a bug that’s bugging you, or just a friendly hello, I’m all ears! Your feedback helps make CityFinder better for everyone.
+        Got some thoughts to share? Whether it’s a bright idea, a bug that’s bugging you, or just a friendly hello, I’m
+        all ears! Your feedback helps make CityFinder better for everyone.
       </p>
     </div>
     <div class="form-container form">
-      <%= form_with url: contact_path, id: "contactForm", scope: :contact, html: { class: "form" }, local: true do |form| %>
-        <div class="row">
+      <%= form_with model: @contact, id: "contactForm", html: { class: "form" }, local: true do |form| %>
+        <div class="field">
           <%= form.label :category, "How can I help you today?" %>
           <%= form.select :category,
                           [["I have a suggestion 💡", "suggestion"],
@@ -23,22 +24,22 @@
                           {},
                           { id: "category", onchange: "updatePlaceholder()", class: "select" } %>
         </div>
-        <div class="row">
+        <div class="field">
           <%= form.label :message, "Your Message" %>
           <%= form.text_area :message, rows: 4, placeholder: "What would you like to share?", id: "message" %>
         </div>
-        <div class="row">
+        <div class="field">
           <%= form.label :name, "Your Name" %>
           <%= form.text_field :name, placeholder: "Your name...", required: true %>
         </div>
-        <div class="row">
+        <div class="field">
           <%= form.label :email, "Your Email" %>
           <%= form.email_field :email, placeholder: "Your email address...", required: true %>
         </div>
-        <%= form.submit "Send Message", class: "btn primary large inactive", disabled: true %>
+        <%= form.submit "Send Message", class: "btn primary large" %>
       <% end %>
-    </div>
-  </section>
+      </div>
+      </section>
 </main>
 <%= render 'shared/footer' %>
 
