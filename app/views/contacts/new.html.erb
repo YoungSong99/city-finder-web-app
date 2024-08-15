@@ -8,13 +8,13 @@
         Hear from you!
       </h2>
       <p>
-        Whether it’s constructive feedback or just a quick hello, I’m all ears!  Your input helps make CityFinder better for everyone.
+        Got some thoughts to share? Whether it’s a bright idea, a bug that’s bugging you, or just a friendly hello, I’m all ears! Your feedback helps make CityFinder better for everyone.
       </p>
     </div>
     <div class="form-container form">
       <%= form_with url: contact_path, id: "contactForm", scope: :contact, html: { class: "form" }, local: true do |form| %>
         <div class="row">
-          <%= form.label :category, "How can I help you?" %>
+          <%= form.label :category, "How can I help you today?" %>
           <%= form.select :category,
                           [["I have a suggestion 💡", "suggestion"],
                            ["I found a bug 🐜", "bug"],
@@ -24,15 +24,15 @@
                           { id: "category", onchange: "updatePlaceholder()", class: "select" } %>
         </div>
         <div class="row">
-          <%= form.label :message, "Message" %>
-          <%= form.text_area :message, rows: 4, placeholder: "Please enter your message here..." %>
+          <%= form.label :message, "Your Message" %>
+          <%= form.text_area :message, rows: 4, placeholder: "What would you like to share?", id: "message" %>
         </div>
         <div class="row">
-          <%= form.label :name, "Name" %>
+          <%= form.label :name, "Your Name" %>
           <%= form.text_field :name, placeholder: "Your name...", required: true %>
         </div>
         <div class="row">
-          <%= form.label :email, "Email" %>
+          <%= form.label :email, "Your Email" %>
           <%= form.email_field :email, placeholder: "Your email address...", required: true %>
         </div>
         <%= form.submit "Send Message", class: "btn primary large inactive", disabled: true %>
@@ -41,6 +41,7 @@
   </section>
 </main>
 <%= render 'shared/footer' %>
+
 <script>
     function updatePlaceholder() {
         var category = document.getElementById("category").value;
@@ -48,19 +49,19 @@
 
         switch (category) {
             case "suggestion":
-                messageBox.placeholder = "Please enter your suggestion here...";
+                messageBox.placeholder = "Got a suggestion? I'd love to hear it!";
                 break;
             case "bug":
-                messageBox.placeholder = "Please describe the bug you found...";
+                messageBox.placeholder = "Uh-oh, found a bug? Please tell me all about it!";
                 break;
             case "incorrect_data":
-                messageBox.placeholder = "Please explain the incorrect data...";
+                messageBox.placeholder = "Spotted something off? Let me know the details!";
                 break;
             case "say_hi":
-                messageBox.placeholder = "Feel free to say hi!";
+                messageBox.placeholder = "Just dropping by? Say hello!";
                 break;
             default:
-                messageBox.placeholder = "Please enter your message here...";
+                messageBox.placeholder = "What would you like to share?";
         }
     }
 </script>
