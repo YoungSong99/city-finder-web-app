@@ -1,0 +1,66 @@
+<main class="about">
+  <%= render 'shared/static_nav' %>
+  <section>
+    <div>
+      <h2>
+        I'd love to
+        <br/>
+        Hear from you!
+      </h2>
+      <p>
+        Whether it’s constructive feedback or just a quick hello, I’m all ears!  Your input helps make CityFinder better for everyone.
+      </p>
+    </div>
+    <div class="form-container form">
+      <%= form_with url: contact_path, id: "contactForm", scope: :contact, html: { class: "form" }, local: true do |form| %>
+        <div class="row">
+          <%= form.label :category, "How can I help you?" %>
+          <%= form.select :category,
+                          [["I have a suggestion 💡", "suggestion"],
+                           ["I found a bug 🐜", "bug"],
+                           ["I found incorrect data 📊", "incorrect_data"],
+                           ["I just want to say hi 👋", "say_hi"]],
+                          {},
+                          { id: "category", onchange: "updatePlaceholder()", class: "select" } %>
+        </div>
+        <div class="row">
+          <%= form.label :message, "Message" %>
+          <%= form.text_area :message, rows: 4, placeholder: "Please enter your message here..." %>
+        </div>
+        <div class="row">
+          <%= form.label :name, "Name" %>
+          <%= form.text_field :name, placeholder: "Your name...", required: true %>
+        </div>
+        <div class="row">
+          <%= form.label :email, "Email" %>
+          <%= form.email_field :email, placeholder: "Your email address...", required: true %>
+        </div>
+        <%= form.submit "Send Message", class: "btn primary large inactive", disabled: true %>
+      <% end %>
+    </div>
+  </section>
+</main>
+<%= render 'shared/footer' %>
+<script>
+    function updatePlaceholder() {
+        var category = document.getElementById("category").value;
+        var messageBox = document.getElementById("message");
+
+        switch (category) {
+            case "suggestion":
+                messageBox.placeholder = "Please enter your suggestion here...";
+                break;
+            case "bug":
+                messageBox.placeholder = "Please describe the bug you found...";
+                break;
+            case "incorrect_data":
+                messageBox.placeholder = "Please explain the incorrect data...";
+                break;
+            case "say_hi":
+                messageBox.placeholder = "Feel free to say hi!";
+                break;
+            default:
+                messageBox.placeholder = "Please enter your message here...";
+        }
+    }
+</script>
