@@ -68,9 +68,8 @@
         </div>
 
         <div class="password">
-          <%= link_to "I want to delete my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?"}, method: :delete %>
+          <%= link_to "I want to delete my account", cancel_user_registration_path(resource_name), data: { confirm: "Are you sure?🥺", turbo_confirm: "Are you sure?🥺"}, method: :delete %>
         </div>
-
       <% end %>
     </div>
   </div>
