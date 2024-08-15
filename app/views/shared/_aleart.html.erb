@@ -1,0 +1,20 @@
+<% if notice.present? %>
+  <div class="notice">
+    <div>
+      <i class="fa-solid fa-circle-check"></i>
+      <%= notice %>
+    </div>
+    <span class="closebtn" onclick="this.closest('.notice').style.display='none';">&times;</span>
+  </div>
+<% end %>
+
+
+<% if alert.present? %>
+  <div class="alert">
+    <div>
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <%= alert %>
+    </div>
+    <span class="closebtn" onclick="this.closest('.alert').style.display='none';">&times;</span>
+  </div>
+<% end %>

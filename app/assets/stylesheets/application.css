@@ -28,6 +28,8 @@
     --color-light--1: #aaa;
     --color-light--2: #ececec;
     --color-light--3: #d6dee0;
+    --color-danger--0: #f44336;
+    --color-notice--0: #047243;
 }
 
 * {
