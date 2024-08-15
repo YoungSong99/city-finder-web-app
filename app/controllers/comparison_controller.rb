@@ -3,7 +3,7 @@ class ComparisonController < ApplicationController
 
   def index
     sample_city_names = ['Chicago', 'Mendota', 'Cary', 'Winnetka']
-    @cities = user_signed_in? ? current_user.favorite_cities : City.where(city_name: sample_city_names)
+    @cities = user_signed_in? ? current_user.cities : City.where(city_name: sample_city_names)
 
     @city_totals = @cities.map do |city|
       {

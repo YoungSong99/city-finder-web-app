@@ -49,3 +49,8 @@
 .nav-mobile a:hover {
     color: var(--color-brand--2);
 }
+
+
+.nav-mobile a.active i {
+    color: var(--color-brand--2);
+}
