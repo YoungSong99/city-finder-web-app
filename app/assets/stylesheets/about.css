@@ -36,3 +36,21 @@
 .about section a {
     margin-top: 2rem;
 }
+
+@media screen and (max-width: 800px) {
+    .about h2 {
+        font-size: 2.5rem;
+    }
+
+    .about {
+        padding: 0.5rem 1rem;
+    }
+
+    .about section {
+        width: 90%;
+        grid-template-columns: 1fr;
+        border-bottom: 1px solid rgba(236, 236, 236, 0.5);
+        gap: 0;
+        padding-bottom: 2rem;
+    }
+}
