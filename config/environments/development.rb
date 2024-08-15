@@ -89,4 +89,17 @@ Rails.application.configure do
 
   # Allow POST authenticity on Codespaces in dev
   config.action_controller.forgery_protection_origin_check = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.example.com',
+    port: 587,
+    domain: 'cityfinder.online',
+    user_name: 'cityfinder.online@gmail.com',
+    password: ENV["GOOGLE_EMAIL_PWD"],
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    open_timeout: 5,
+    read_timeout: 5
+  }
 end

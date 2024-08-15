@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   # static pages
   root 'static#home'
   get 'about', to: 'static#about', as: 'about'
-  get 'contact', to: 'static#contact', as: 'contact'
+  get 'contact', to: 'contacts#new', as: 'contact'
+  post 'contact', to: 'contacts#create'
   get 'city-map', to: 'static#map', as: 'city_map'
 
   # City filter
@@ -35,4 +36,7 @@ Rails.application.routes.draw do
   resources :cities do
     resources :reviews, only: [:index, :create, :update, :destroy, :new, :edit]
   end
+
+  resources :contacts, only: [:new, :create]
+
 end

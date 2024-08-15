@@ -57,7 +57,6 @@
         </div>
       </div>
 
-      <% Rails.logger.debug("City IDs in form: #{@city_ids.inspect}") %>
       <%= form.hidden_field :city_ids, value: @city_ids.join(',') %>
       <%= form.submit 'Next', class: 'btn primary large' %>
     <% end %>
