@@ -49,10 +49,6 @@ rails server
    - **Write Reviews**: Users can write reviews about cities they have lived in.
 
 
-## Previews
-![preview.png](preview.png)
-
-
 ## Feedback
 Thank you for using CityFinder! We hope it helps you find the perfect city to call home.
 If you have any questions or suggestions for improvement, feel free to contact me on [LinkedIn](https://www.linkedin.com/in/youngsong-us/)
