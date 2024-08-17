@@ -43,6 +43,7 @@
 
 .static-nav-mobile {
     display: none;
+    z-index: 1000;
 }
 
 .static-nav ul {
