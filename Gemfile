@@ -19,6 +19,7 @@ gem "rack-cors"
 gem 'simple_form'
 gem "chartkick"
 gem "mapkick-rb"
+gem "meta-tags"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

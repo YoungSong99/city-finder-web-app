@@ -221,6 +221,8 @@ GEM
     mapkick-rb (0.1.5)
     marcel (1.0.4)
     matrix (0.4.2)
+    meta-tags (2.22.0)
+      actionpack (>= 6.0.0, < 8.1)
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.23.1)
@@ -469,6 +471,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   mapkick-rb
+  meta-tags
   pg (~> 1.1)
   pry-rails
   puma
