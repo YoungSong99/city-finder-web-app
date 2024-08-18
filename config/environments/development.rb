@@ -92,14 +92,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.example.com',
-    port: 587,
-    domain: 'cityfinder.online',
-    user_name: 'cityfinder.online@gmail.com',
-    password: ENV["GOOGLE_EMAIL_PWD"],
-    authentication: 'plain',
-    enable_starttls_auto: true,
-    open_timeout: 5,
-    read_timeout: 5
+    :user_name => ENV['MAILTRAP_USERNAME'],
+    :password => ENV['MAILTRAP_PWD'],
+    :address => 'sandbox.smtp.mailtrap.io',
+    :host => 'sandbox.smtp.mailtrap.io',
+    :port => '2525',
+    :authentication => :login
   }
 end
