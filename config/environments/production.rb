@@ -89,13 +89,12 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :domain => 'cityfinder.online',
-    :user_name => ENV['MAILTRAP_USERNAME'],
-    :password => ENV['MAILTRAP_PWD'],
-    :address => 'sandbox.smtp.mailtrap.io',
-    :host => 'sandbox.smtp.mailtrap.io',
-    :port => '2525',
-    :authentication => :login
+    address:        'sandbox.smtp.mailtrap.io',
+    port:           2525,
+    domain:         'cityfinder.online',
+    user_name:      ENV['MAILTRAP_USERNAME'],
+    password:       ENV['MAILTRAP_PWD'],
+    authentication: :login
   }
 
   # Enable DNS rebinding protection and other `Host` header attacks.
