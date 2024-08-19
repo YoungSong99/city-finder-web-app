@@ -26,7 +26,6 @@
     align-items: center;
     width: 100%;
     min-width: 5rem;
-
     background-color: var(--color-dark--2);
     border-radius: 7px;
     padding: 1rem 2rem;
@@ -91,6 +90,49 @@
 .deleteBtn:hover {
     background-color: var(--color-brand--1);
     color: var(--color-dark--1);
+}
+
+.custom-tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.custom-tooltip.add::after {
+    content: 'Save';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-dark--0);
+    color: var(--color-light--2);
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+}
+
+.custom-tooltip.remove::after {
+    content: 'Remove';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-dark--0);
+    color: var(--color-light--2);
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+}
+
+.custom-tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 .deleteBtn-lg {

@@ -4,7 +4,7 @@
       <span class="emoji">🇺🇸</span>
       <h3 class="name"><%= link_to favorite_city.city_name, city_detail_path(favorite_city) %></h3>
       <div id="<%= dom_id(favorite_city) %>_btn">
-        <%= button_to '-', remove_favorite_city_path(favorite_city), method: :delete, remote: true, data: { turbo: false }, class: 'deleteBtn' %>
+        <%= button_to '-', remove_favorite_city_path(favorite_city), method: :delete, remote: true, data: { turbo: false }, class: 'deleteBtn custom-tooltip remove' %>
       </div>
     </li>
   <% end %>
