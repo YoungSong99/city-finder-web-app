@@ -37,6 +37,13 @@
     margin-top: 2rem;
 }
 
+.video {
+    width: clamp(80rem, 80%, 90rem);
+    margin: 6rem auto;
+    display: flex;
+    justify-content: center;
+}
+
 @media screen and (max-width: 800px) {
     .about h2 {
         font-size: 2.5rem;
@@ -52,6 +59,13 @@
         border-bottom: 1px solid rgba(236, 236, 236, 0.5);
         gap: 1rem;
         padding-bottom: 2rem;
+    }
+
+    .video {
+        width: 90%;
+        margin: 6rem auto;
+        display: flex;
+        justify-content: center;
     }
 
     .about section:last-child {
