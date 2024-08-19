@@ -26,48 +26,6 @@ class FavoriteCitiesController < ApplicationController
     end
   end
 
-  def add_all_mobile
-    city_ids = params[:city_ids] || []
-
-    if city_ids.empty?
-      redirect_to root_path, alert: "No cities selected to add."
-      return
-    end
-
-    city_ids.each do |city_id|
-      city_id = city_id.to_i
-      unless current_user.favorite_cities.exists?(city_id: city_id)
-        current_user.favorite_cities.create(city_id: city_id)
-      end
-    end
-
-    respond_to do |format|
-      format.html { redirect_to saved_cities_path, notice: "Your selected cities have been successfully added to your favorites!" }
-      format.js
-    end
-  end
-
-  def add_all_desktop
-    city_ids = params[:city_ids] || []
-
-    if city_ids.empty?
-      redirect_to root_path, alert: "No cities selected to add."
-      return
-    end
-
-    city_ids.each do |city_id|
-      city_id = city_id.to_i
-      unless current_user.favorite_cities.exists?(city_id: city_id)
-        current_user.favorite_cities.create(city_id: city_id)
-      end
-    end
-
-    respond_to do |format|
-      format.html { redirect_to search_by_name_path, notice: "Your selected cities have been successfully added to your favorites!" }
-      format.js
-    end
-  end
-
   def remove
     city_id = params[:id].to_i
     @the_city = City.find(city_id)
