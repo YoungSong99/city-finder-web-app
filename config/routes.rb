@@ -20,14 +20,12 @@ Rails.application.routes.draw do
   # Search by Name
   get 'search-by-name', to: 'city_name_search#search_by_name', as: 'search_by_name'
 
-
   # Compare City
   get 'compare-cities', to: 'comparison#index', as: 'compare_cities'
   get 'compare-cities/export', to: 'comparison#export', as: 'export_comparison'
 
   # City Detail
   get 'city/:id', to: 'cities#show', as: 'city_detail'
-
 
   resources :cities do
     resources :reviews, only: [:index, :create, :update, :destroy, :new, :edit]
