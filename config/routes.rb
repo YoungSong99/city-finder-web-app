@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # static pages
   root 'static#home'
   get 'about', to: 'static#about', as: 'about'
+  get 'contact', to: 'contacts#new', as: 'contact'
+  post 'contact', to: 'contacts#create'
   get 'city-map', to: 'static#map', as: 'city_map'
 
   # City filter
@@ -20,8 +22,6 @@ Rails.application.routes.draw do
 
   # Saved City
   get 'saved-cities', to: 'favorite_cities#list', as: 'saved_cities'
-  post 'saved-cities/add_all/m', to: 'favorite_cities#add_all_mobile', as: 'add_all_favorite_cities_mobile'
-  post 'saved-cities/add_all', to: 'favorite_cities#add_all_desktop', as: 'add_all_favorite_cities_desktop'
   post 'saved-cities/:id', to: 'favorite_cities#add', as: 'add_favorite_city'
   delete 'saved-cities/:id', to: 'favorite_cities#remove', as: 'remove_favorite_city'
 
@@ -29,10 +29,14 @@ Rails.application.routes.draw do
   get 'compare-cities', to: 'comparison#index', as: 'compare_cities'
   get 'compare-cities/export', to: 'comparison#export', as: 'export_comparison'
 
-  resources :contacts, only: [:new, :create]
+  # City Detail
+  get 'city/:id', to: 'cities#show', as: 'city_detail'
 
   # Reviews
-  resources :cities, only: [:show] do
-    resources :reviews, except: [:show]
+  resources :cities do
+    resources :reviews, only: [:index, :create, :update, :destroy, :new, :edit]
   end
+
+  resources :contacts, only: [:new, :create]
+
 end

@@ -5,9 +5,6 @@
     <div class="outlet">
       <h1 class="sub-title">Find Your Top 5 Cities in Illinois</h1>
       <%= render 'shared/city_list', cities: @cities %>
-      <div>
-        <%= link_to "Save My Result", add_all_favorite_cities_desktop_path(city_ids: @cities.map(&:id)), method: :post, class: "btn primary large" %>
-      </div>
     </div>
     <%= render 'shared/footer' %>
   </div>
@@ -17,7 +14,6 @@
     <div class="cityList-mobile">
       <h1 class="sub-title">Your Top 5 Cities in Illinois</h1>
       <%= render 'shared/city_list', cities: @cities %>
-      <%= link_to "Save My Result", add_all_favorite_cities_mobile_path(city_ids: @cities.map(&:id)), method: :post, class: "btn primary large" %>
     </div>
   </div>
   <%= render 'shared/nav_mobile' %>

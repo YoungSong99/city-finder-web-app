@@ -2,7 +2,7 @@
   <% cities.each do |city| %>
     <li class="cityItem" id="<%= dom_id(city) %>_item">
       <span class="emoji">🇺🇸</span>
-      <h3 class="name"><%= link_to city.city_name, city_path(city) %></h3>
+      <h3 class="name"><%= link_to city.city_name, city_detail_path(city) %></h3>
       <div id="<%= dom_id(city) %>_btn">
         <% if user_signed_in? %>
           <% if current_user.favorite_cities.exists?(city_id: city.id) %>
