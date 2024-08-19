@@ -8,7 +8,47 @@
       CityFinder helps you discover the best neighborhood to live in with your priorities in mind.<br>Never settle for
       less, find the neighborhood that truly matches your lifestyle and needs.
     </h2>
+    <div id="review">
+      <div class="review-quote" id="review1">
+        "CityFinder is an insightful tool that highlights growth potential in key areas,<br>aligning perfectly with my
+        belief—location is key when choosing a home."
+        <div class="reviewer">
+          Simon<br>
+          <span>Real Estate Developer</span>
+        </div>
+      </div>
+      <div class="review-quote" id="review2">
+        "CityFinder helped us quickly find a safe, family-friendly city with great schools<br>when we had to move
+        suddenly. The app matched our kids’ needs and grocery preferences perfectly."
+        <div class="reviewer">
+          Samira<br>
+          <span>Software Developer</span>
+        </div>
+      </div>
+      <div class="review-quote" id="review2">
+        "I’ve used CityFinder a few times to explore where to buy a house, and I love how many<br>criteria are available
+        to sort the cities. They even include communities for different language speakers!"
+        <div class="reviewer">
+          Aleksei<br>
+          <span>Storyteller and Innovator</span>
+        </div>
+      </div>
+    </div>
     <%= link_to 'Find Your City', find_city_path, class: 'cta' %>
   </section>
   <%= render 'shared/footer' %>
 </main>
+
+<script>
+    const texts = document.querySelectorAll('.review-quote');
+    let currentIndex = 0;
+
+    function showNextText() {
+        texts[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % texts.length;
+        texts[currentIndex].classList.add('active');
+    }
+
+    texts[currentIndex].classList.add('active');
+    setInterval(showNextText, 8000);
+</script>
