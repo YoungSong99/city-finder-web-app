@@ -154,6 +154,19 @@ a.ctaLink.bl:visited {
     opacity: 0.7;
 }
 
+.cta.bl {
+    background-color: transparent;
+    color: var(--color-light--2);
+    border: 1px solid var(--color-light--2);
+    margin-left: 1rem;
+}
+
+.bl:hover {
+    background-color: var(--color-dark--0);
+    color: var(--color-light--2);
+}
+
+
 @media screen and (max-width: 800px) {
     #review {
         margin: 4rem 0 7rem 0;
