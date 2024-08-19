@@ -1,22 +1,37 @@
 # CityFinder
 
-## Overview
-**CityFinder** is a tool designed to make the home-finding process easier. It allows users to compare cities based on current property prices, crime rates, school quality, and property value appreciation rates, enabling them to make informed decisions.
+## Description
+**CityFinder** is a comprehensive tool designed to simplify the home-finding process. It empowers users to compare cities based on key metrics such as current property prices, crime rates, school quality, and property value appreciation rates. With CityFinder, users can make well-informed decisions tailored to their personal preferences and needs.
 
+## Table of Contents
+- [Data utilization](#data utilization)
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Contributing](#Contributing)
+- [License](#License)
 
-## Usage Instructions
+## Data utilization
+CityFinder offers two approaches for data utilization:
 
-**Step 1: Fetch Data for Desired Cities**
+### Option 1: Using Data from Your Own Cities
 
-Use the web scraping code available [here]( https://github.com/YoungSong99/city-finder-web-scraping ), which utilizes Python's BeautifulSoup to scrape information from NeighborhoodScout.
-Open the Excel file in the repository and enter the names of the cities you want to fetch data for.
+**Step 1: Web Scraping**
+
+Utilize the web scraping script available [here]( https://github.com/YoungSong99/city-finder-web-scraping ), which leverages Python's BeautifulSoup to collect data from NeighborhoodScout and Greatschool.
+Populate the provided Excel file in the repository with the city names for which you wish to gather data.
 
 **Step 2: ETL City Data**
 
-Load the data obtained in Step 1 to the server using Pentaho Data Integration.
+Transfer the extracted data to your server using Pentaho Data Integration.
 Run the transformation files available [here]( https://github.com/YoungSong99/city-finder-data-ETL).
 
-**Step 3: Connect Web App and Database**
+
+### Option 2: Using Illinois City Data
+Simply use the SQL dump file located in the Data folder to load pre-existing data into your connected database.
+
+## Installation
+To set up CityFinder locally, follow these steps:
+
 1) Clone the repository:
 ```bash
 git clone https://github.com/YoungSong99/city-finder-web-app.git
@@ -37,18 +52,24 @@ rails db:migrate
 rails server
 ```
 
-## Main Features
+## Usage
+1. Start the Rails server:
+   `rails server`
 
-1. **City Information**
-   - **Simple Search by City Name**: Users can search for data by entering a city name.
-   - **Sequential Search by User Preferences**: Users can search for cities based on their preferences.
-   - **Download City Data**: Users can select cities they want to compare and download the data as an Excel file.
+2. Open your browser and navigate to http://localhost:3000
+   Follow the on-screen instructions to use the application
 
-2. **Review Feature**
-   - **City Reviews**: Users can read reviews about the pros and cons of living in a city and see the recommended family type for that city.
-   - **Write Reviews**: Users can write reviews about cities they have lived in.
+## Contributing
+We welcome contributions to CityFinder! To contribute, please follow these steps:
 
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature-branch`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature-branch`)
+5. Open a pull request
 
-## Feedback
-Thank you for using CityFinder! We hope it helps you find the perfect city to call home.
+## License
+CityFinder is distributed under the MIT License. See the LICENSE file for more information.
+
+## Contact
 If you have any questions or suggestions for improvement, feel free to contact me on [LinkedIn](https://www.linkedin.com/in/youngsong-us/)
