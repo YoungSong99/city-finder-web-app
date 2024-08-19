@@ -8,10 +8,6 @@ Rails.application.routes.draw do
   post 'contact', to: 'contacts#create'
   get 'city-map', to: 'static#map', as: 'city_map'
 
-  # City filter
-  get 'find-city', to: 'city_filter#convenience_filter', as: 'find_city'
-  post 'find-city', to: 'city_filter#convenience_filter_submit', as: 'submit_city_filter'
-
   # Priority Search
   get 'city-search', to: 'city_priority_search#priority_rank', as: 'city_search'
   post 'city-search', to: 'city_priority_search#priority_rank_submit', as: 'submit_city_search'
@@ -27,12 +23,14 @@ Rails.application.routes.draw do
   # City Detail
   get 'city/:id', to: 'cities#show', as: 'city_detail'
 
-  resources :cities do
+  resources :cities, only: [:show] do
+    collection do
+      get 'filter', to: 'cities#filter', as: 'filter'
+      post 'filter', to: 'cities#filter_submit', as: 'filter_submit'
+    end
     resources :reviews, only: [:index, :create, :update, :destroy, :new, :edit]
   end
-
   resources :favorite_cities, only: [:index, :create, :destroy]
-
   resources :contacts, only: [:new, :create]
 
 end

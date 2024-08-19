@@ -1,0 +1,17 @@
+<div class="app">
+  <div class="sidebar">
+    <%= render 'shared/logo' %>
+    <%= render 'shared/nav' %>
+    <div class="outlet">
+      <h1 class="sub-title">Find Your Top 5 Cities in Illinois</h1>
+      <%= render 'forms/convenience_filter_form' %>
+    </div>
+    <%= render 'shared/footer' %>
+  </div>
+  <%= render 'shared/mapbox' %>
+  <div class="side_mobile">
+    <%= render 'forms/convenience_filter_form' %>
+  </div>
+  <%= render 'shared/nav_mobile' %>
+  <%= render 'shared/user_nav' %>
+</div>

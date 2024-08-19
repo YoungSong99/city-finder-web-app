@@ -24,7 +24,7 @@
       <%= form.hidden_field :city_ids, value: (@city_ids || []).join(',') %>
       <div class="buttons">
         <%= form.submit 'Search', class: 'btn primary' %>
-        <%= link_to 'Back', find_city_path, class: 'btn back' %>
+        <%= link_to 'Back', filter_cities_path, class: 'btn back' %>
       </div>
     <% end %>
   </div>
