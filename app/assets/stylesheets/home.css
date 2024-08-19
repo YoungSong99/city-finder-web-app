@@ -30,8 +30,9 @@
     width: 90%;
     font-size: 1.9rem;
     color: var(--color-light--1);
-    margin-bottom: 2.5rem;
+    /*margin-bottom: 2.5rem;*/
     font-weight: 400;
+    line-height: 1.3;
 }
 
 .static-nav {
@@ -107,4 +108,80 @@ a.ctaLink.bl:visited {
 .homepage a.cta:hover {
     background-color: #409756;
     color: var(--color-light--2);
+}
+
+#review {
+    position: relative;
+    width: 60%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    margin: 3rem 0;
+}
+
+.review-quote {
+    position: absolute;
+    background-color: transparent;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    font-size: 1.5rem;
+    font-weight: 400;
+    gap: 0.5rem;
+}
+
+.review-quote.active {
+    opacity: 1;
+    background-color: transparent;
+}
+
+.reviewer {
+    opacity: 0.9;
+    line-height: 1;
+}
+
+.reviewer span {
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+.cta.bl {
+    background-color: transparent;
+    color: var(--color-light--2);
+    border: 1px solid var(--color-light--2);
+    margin-left: 1rem;
+}
+
+.bl:hover {
+    background-color: var(--color-dark--0);
+    color: var(--color-light--2);
+}
+
+
+@media screen and (max-width: 800px) {
+    #review {
+        margin: 4rem 0;
+        font-size: 1rem;
+        width: 90%;
+    }
+
+    .cta.bl {
+        margin-left: 0;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 90%;
+    }
 }

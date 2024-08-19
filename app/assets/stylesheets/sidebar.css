@@ -58,7 +58,6 @@
     color: var(--color-light--1);
 }
 
-
 @media screen and (max-width: 800px) {
     .sidebar {
         display: none;
