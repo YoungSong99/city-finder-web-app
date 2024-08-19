@@ -6,14 +6,15 @@
       <div id="<%= dom_id(city) %>_btn">
         <% if user_signed_in? %>
           <% if current_user.favorite_cities.exists?(city_id: city.id) %>
-            <%= button_to '-', remove_favorite_city_path(city), method: :delete, remote: true, data: { turbo: false }, class: 'deleteBtn custom-tooltip remove' %>
+            <%= button_to '-', favorite_city_path(id: city.id), method: :delete, remote: true, data: { turbo: false }, class: 'deleteBtn custom-tooltip remove' %>
           <% else %>
-            <%= button_to '+', add_favorite_city_path(city), method: :post, remote: true, data: { turbo: false }, class: 'deleteBtn custom-tooltip add' %>
+            <%= button_to '+', favorite_cities_path(id: city.id), method: :post, remote: true, data: { turbo: false }, class: 'deleteBtn custom-tooltip add' %>
           <% end %>
         <% else %>
-          <%= button_to '+', add_favorite_city_path(city), method: :post, remote: true, data: { turbo: false }, class: 'deleteBtn custom-tooltip add' %>
+          <%= button_to '+', favorite_cities_path(id: city.id), method: :post, remote: true, data: { turbo: false }, class: 'deleteBtn custom-tooltip add' %>
         <% end %>
       </div>
     </li>
   <% end %>
+
 </ul>

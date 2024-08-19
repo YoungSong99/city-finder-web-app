@@ -20,10 +20,6 @@ Rails.application.routes.draw do
   # Search by Name
   get 'search-by-name', to: 'city_name_search#search_by_name', as: 'search_by_name'
 
-  # Saved City
-  get 'saved-cities', to: 'favorite_cities#list', as: 'saved_cities'
-  post 'saved-cities/:id', to: 'favorite_cities#add', as: 'add_favorite_city'
-  delete 'saved-cities/:id', to: 'favorite_cities#remove', as: 'remove_favorite_city'
 
   # Compare City
   get 'compare-cities', to: 'comparison#index', as: 'compare_cities'
@@ -32,10 +28,12 @@ Rails.application.routes.draw do
   # City Detail
   get 'city/:id', to: 'cities#show', as: 'city_detail'
 
-  # Reviews
+
   resources :cities do
     resources :reviews, only: [:index, :create, :update, :destroy, :new, :edit]
   end
+
+  resources :favorite_cities, only: [:index, :create, :destroy]
 
   resources :contacts, only: [:new, :create]
 

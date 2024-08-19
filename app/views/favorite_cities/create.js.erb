@@ -1,10 +1,8 @@
 var FavoriteAddBtn = $("#<%= dom_id(@the_city) %>_btn");
 var FavoriteAddItem = $("#<%= dom_id(@the_city) %>_item")
 
-console.log("#<%= dom_id(@the_city) %>_btn")
-
 FavoriteAddBtn.replaceWith(
-    '<%= button_to '-', remove_favorite_city_path(@the_city), method: :delete, remote: true, data: { turbo: false }, class: 'deleteBtn custom-tooltip remove' %>'
+    '<%= button_to '-', favorite_city_path(id: @the_city.id), method: :delete, remote: true, data: { turbo: false }, class: 'deleteBtn custom-tooltip remove' %>'
 )
 
 if ($("ul.favoriteCityList").length) {
