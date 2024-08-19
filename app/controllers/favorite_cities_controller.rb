@@ -1,38 +1,44 @@
 class FavoriteCitiesController < ApplicationController
-  def list
+  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :find_city, only: [:create, :destroy]
+
+  def index
     sample_city_names = ['Chicago', 'Mendota', 'Cary', 'Winnetka']
     @saved_cities = user_signed_in? ? current_user.favorite_cities : City.where(city_name: sample_city_names)
   end
 
-  def add
+  def create
+    unless current_user.favorite_cities.exists?(city_id: @the_city.id)
+      current_user.favorite_cities.create(city_id: @the_city.id)
+    end
+
+    respond_to_format
+  end
+
+  def destroy
+    favorite_city = current_user.favorite_cities.find_by(city_id: @the_city.id)
+    favorite_city&.destroy
+
+    respond_to_format
+  end
+
+  private
+
+  def authenticate_user!
     unless user_signed_in?
+      flash[:alert] = "Welcome to CityFinder!<br>Log in to save your favorite cities and explore more features.😉".html_safe
       respond_to do |format|
-        format.html { redirect_to new_user_session_path, alert: "Welcome to CityFinder!<br>Log in to save your favorite cities and explore more features.😉".html_safe }
+        format.html { redirect_to new_user_session_path }
         format.js { render js: "alert('Welcome to CityFinder!\\nLog in to save your favorite cities and explore more features.😉'); window.location.href = '#{new_user_session_path}';" }
       end
-      return
-    end
-
-    city_id = params[:id].to_i
-    @the_city = City.find(city_id)
-
-    unless current_user.favorite_cities.exists?(city_id: city_id)
-      current_user.favorite_cities.create(city_id: city_id)
-    end
-
-    respond_to do |format|
-      format.html
-      format.js
     end
   end
 
-  def remove
-    city_id = params[:id].to_i
-    @the_city = City.find(city_id)
+  def find_city
+    @the_city = City.find(params[:id])
+  end
 
-    favorite_city = current_user.favorite_cities.find_by(city_id: city_id)
-    favorite_city.destroy if favorite_city
-
+  def respond_to_format
     respond_to do |format|
       format.html
       format.js
