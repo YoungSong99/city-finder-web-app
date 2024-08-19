@@ -4,13 +4,13 @@
 **CityFinder** is a comprehensive tool designed to simplify the home-finding process. It empowers users to compare cities based on key metrics such as current property prices, crime rates, school quality, and property value appreciation rates. With CityFinder, users can make well-informed decisions tailored to their personal preferences and needs.
 
 ## Table of Contents
-- [Data utilization](#data utilization)
+- [Data utilization](#DataUtilization)
 - [Installation](#Installation)
 - [Usage](#Usage)
 - [Contributing](#Contributing)
 - [License](#License)
 
-## Data utilization
+## Data Utilization
 CityFinder offers two approaches for data utilization:
 
 ### Option 1: Using Data from Your Own Cities
