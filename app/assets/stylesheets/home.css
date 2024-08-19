@@ -184,4 +184,8 @@ a.ctaLink.bl:visited {
         gap: 1rem;
         width: 90%;
     }
+
+    .btn.primary{
+        margin-right: 0;
+    }
 }

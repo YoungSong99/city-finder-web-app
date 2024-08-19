@@ -66,8 +66,6 @@
         <p><span class='emoji-sm'>🛒</span><b><%= @the_city.grocery_cities.count %></b> Grocery</p>
         (Check Local Grocery)
       <% end %>
-
-
       <% if @the_city.gym_cities.count > 0 %>
         <p><span class='emoji-sm'>🏋</span><b><%= @the_city.gym_cities.count %></b> Gym</p>
         (
@@ -79,7 +77,6 @@
         (Check the Local Gym)
       <% end %>
     </div>
-
     <div class="row">
       <% @the_city.metras.each do |metra| %>
         <p class="tag-color">
@@ -100,7 +97,15 @@
       <%= render 'shared/rating_by_city', city: @the_city %>
     </div>
     <div class="buttons">
-      <%= link_to 'Add Review', new_city_review_path(@the_city), class: 'btn primary' %>
+      <% if user_signed_in? %>
+        <% if current_user.favorite_cities.exists?(city_id: @the_city.id) %>
+          <%= link_to 'Remove This City', remove_favorite_city_path(@the_city), method: :delete, remote: true, data: { turbo: false }, class: 'btn primary' %>
+        <% else %>
+          <%= link_to 'Save This City', add_favorite_city_path(@the_city), method: :post, remote: true, data: { turbo: false }, class: 'btn primary' %>
+        <% end %>
+      <% else %>
+        <%= link_to 'Save This City', add_favorite_city_path(@the_city), method: :post, remote: true, data: { turbo: false }, class: 'btn primary' %>
+      <% end %>
       <%= link_to 'Back', '#', class: 'btn back', onclick: 'window.history.back(); return false;' %>
     </div>
   </div>
