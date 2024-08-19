@@ -10,6 +10,7 @@
     </h2>
     <div id="review">
       <div class="review-quote" id="review1">
+        <div>⭐️⭐️⭐️⭐️⭐️</div>
         "CityFinder is an insightful tool that highlights growth potential in key areas,<br>aligning perfectly with my
         belief—location is key when choosing a home."
         <div class="reviewer">
@@ -18,14 +19,16 @@
         </div>
       </div>
       <div class="review-quote" id="review2">
+        <div>⭐️⭐️⭐️⭐️⭐️</div>
         "CityFinder helped us quickly find a safe, family-friendly city with great schools<br>when we had to move
         suddenly. The app matched our kids’ needs and grocery preferences perfectly."
         <div class="reviewer">
-          Samira<br>
+          Vidhi<br>
           <span>Software Developer</span>
         </div>
       </div>
       <div class="review-quote" id="review2">
+        <div>⭐️⭐️⭐️⭐️⭐️</div>
         "I’ve used CityFinder a few times to explore where to buy a house, and I love how many<br>criteria are available
         to sort the cities. They even include communities for different language speakers!"
         <div class="reviewer">
@@ -39,8 +42,8 @@
       <%= link_to 'How To Use', about_path, class: 'cta bl' %>
     </div>
   </section>
-  <%= render 'shared/footer' %>
 </main>
+<%= render 'shared/footer' %>
 
 <script>
     const texts = document.querySelectorAll('.review-quote');
@@ -53,5 +56,5 @@
     }
 
     texts[currentIndex].classList.add('active');
-    setInterval(showNextText, 8000);
+    setInterval(showNextText, 5000);
 </script>
