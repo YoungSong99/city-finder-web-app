@@ -13,7 +13,7 @@
       </p>
     </div>
     <div class="form-container form">
-    <%= form_with scope: :contact_form, url:contact_path, id: "contactForm", method: :post, class: "form", local: true do |form| %>
+    <%= form_with scope: :contact_form, url:contacts_path, id: "contactForm", method: :post, class: "form", local: true do |form| %>
         <div class="field">
           <%= form.label :category, "How can I help you today?" %>
           <%= form.select :category,
