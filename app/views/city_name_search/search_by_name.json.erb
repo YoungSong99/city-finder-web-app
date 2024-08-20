@@ -1,9 +1,0 @@
-<%= @saved_cities.map do |city|
-  {
-    latitude: city.latitude,
-    longitude: city.longitude,
-    label: city.city_name,
-    tooltip: raw(render(partial: 'shared/tooltip', locals: { city: city }, formats: [:html])),
-    url: favorite_cities_path(city, format: :json)
-  }
-end.to_json.html_safe %>
