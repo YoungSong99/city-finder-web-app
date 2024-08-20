@@ -1,7 +1,7 @@
 <div class="nav">
   <ul>
     <li>
-      <%= link_to 'Search by Priority', filter_cities_path, class: ('active' if current_page?(filter_cities_path) || current_page?(city_search_url) || current_page?(city_search_results_path)) %>
+      <%= link_to 'Search by Priority', filter_cities_path, class: ('active' if current_page?(filter_cities_path) || current_page?(rank_cities_path) || current_page?(results_cities_path)) %>
     </li>
     <li>
       <%= link_to 'City Comparison', search_by_name_path, class: ('active' if current_page?(search_by_name_path) || current_page?(compare_cities_path)) %>

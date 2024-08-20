@@ -1,6 +1,6 @@
 <div class="form-container">
   <div class="form">
-    <%= form_with url: submit_city_search_path, method: :post, data: { turbo: false }, class: "form" do |form| %>
+    <%= form_with url: rank_submit_cities_path, method: :post, data: { turbo: false }, class: "form" do |form| %>
       <h1><%= @greeting %>, <%= user_signed_in? ? current_user.username.capitalize : 'Explorer' %>!
         <span class="emoji">👍</span>
         <br>What matters most to you?
