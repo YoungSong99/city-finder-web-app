@@ -8,8 +8,8 @@
       CityFinder helps you discover the best neighborhood to live in with your priorities in mind.<br>
       Never settle for less, find the neighborhood that truly matches your lifestyle and needs.
     </h2>
-    <div id="review">
-      <div class="review-quote" id="review1">
+    <div id="review" data-controller="review-carousel">
+      <div class="review-quote" data-review-carousel-target="quote">
         <div>⭐️⭐️⭐️⭐️⭐️</div>
         "CityFinder is an insightful tool that highlights growth potential in key areas,<br>
         aligning perfectly with my belief—location is key when choosing a home."
@@ -18,7 +18,7 @@
           <span>Real Estate Developer</span>
         </div>
       </div>
-      <div class="review-quote" id="review2">
+      <div class="review-quote" data-review-carousel-target="quote">
         <div>⭐️⭐️⭐️⭐️⭐️</div>
         "CityFinder made it easy for us to quickly find a safe, family-friendly city with great schools.<br>
         The app matched our kids’ needs and grocery preferences perfectly."
@@ -27,7 +27,7 @@
           <span>Software Developer</span>
         </div>
       </div>
-      <div class="review-quote" id="review2">
+      <div class="review-quote" data-review-carousel-target="quote">
         <div>⭐️⭐️⭐️⭐️⭐️</div>
         "I’ve explored potential locations with CityFinder a few times, and the variety of criteria available<br>
         to filter cities is impressive. They even consider diverse language-speaking communities!"
@@ -44,17 +44,3 @@
   </section>
 </main>
 <%= render 'shared/footer' %>
-
-<script>
-    const texts = document.querySelectorAll('.review-quote');
-    let currentIndex = 0;
-
-    function showNextText() {
-        texts[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % texts.length;
-        texts[currentIndex].classList.add('active');
-    }
-
-    texts[currentIndex].classList.add('active');
-    setInterval(showNextText, 5000);
-</script>
