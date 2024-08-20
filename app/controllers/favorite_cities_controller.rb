@@ -26,7 +26,7 @@ class FavoriteCitiesController < ApplicationController
 
   def authenticate_user!
     unless user_signed_in?
-      flash[:alert] = "Welcome to CityFinder!<br>Log in to save your favorite cities and explore more features.😉".html_safe
+      flash[:notice] = "Welcome to CityFinder! Log in to save your favorite cities and explore more features.😉".html_safe
       respond_to do |format|
         format.html { redirect_to new_user_session_path }
         format.js { render js: "alert('Welcome to CityFinder!\\nLog in to save your favorite cities and explore more features.😉'); window.location.href = '#{new_user_session_path}';" }

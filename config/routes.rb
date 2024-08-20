@@ -2,11 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'static#home'
-  get 'about', to: 'static#about', as: 'about'
-  get 'contact', to: 'contacts#new', as: 'contact'
-  post 'contact', to: 'contacts#create'
-  get 'city-map', to: 'static#map', as: 'city_map'
-
+  draw(:static)
+  
   resources :cities, only: [:show] do
     collection do
       get 'filter', to: 'cities#filter', as: 'filter'
