@@ -1,0 +1,40 @@
+<div class="app">
+  <div class="sidebar">
+    <%= render 'shared/logo' %>
+    <%= render 'shared/nav' %>
+    <div class="row">
+      <h1 class="sub-title">Compare the Cities You Selected</h1>
+      <%= render 'forms/search_by_name_form' %>
+      <% if @the_city.present? %>
+        <div class="search_result">
+          <%= render 'shared/city_list', cities: @the_city %>
+        </div>
+      <% end %>
+      <div class="margin-top">
+        <h2 class="sub-title">Your Saved Cities</h2>
+        <% if user_signed_in? && current_user.favorite_cities.any? %>
+          <%= render 'shared/favorite_city_list', favorite_cities: current_user.cities %>
+        <% else %>
+          <h3 class="center">Start by adding a city to your list</h3>
+        <% end %>
+        <%= link_to 'Compare Cities', compare_cities_path, class: 'btn primary large' %>
+      </div>
+    </div>
+    <%= render 'shared/footer' %>
+  </div>
+  <% if user_signed_in? && current_user.favorite_cities.any? %>
+    <%= render 'shared/mapbox_saved_city' %>
+  <% else %>
+    <%= render 'shared/mapbox' %>
+  <% end %>
+  <%= render 'shared/user_nav' %>
+  <div class="side_mobile_search">
+    <%= render 'forms/search_by_name_form' %>
+    <% if @the_city.present? %>
+      <div class="search_result">
+        <%= render 'shared/city_list', cities: @the_city %>
+      </div>
+    <% end %>
+  </div>
+  <%= render 'shared/nav_mobile' %>
+</div>

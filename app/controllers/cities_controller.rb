@@ -48,9 +48,28 @@ class CitiesController < ApplicationController
     end
   end
 
+  def search
+    @q = City.ransack(params[:q])
+    @the_city = @q.result(distinct: true) if params[:q].present?
+    load_saved_cities
+    respond_to do |format|
+      format.html
+      format.js
+      format.json
+    end
+  end
+
   helper_method :display_stars
 
   private
+
+  def load_saved_cities
+    if user_signed_in?
+      @saved_cities = City.where(id: current_user.favorite_cities.pluck(:city_id))
+    else
+      @saved_cities = City.where(city_name: 'Chicago')
+    end
+  end
 
   def load_convenience_filter_data
     @grocery_names = Grocery.pluck(:name)

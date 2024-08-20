@@ -24,7 +24,8 @@ Rails.application.routes.draw do
       post 'filter', to: 'cities#filter_submit', as: 'filter_submit'
       get 'rank', to: 'cities#rank', as: 'rank'
       post 'rank', to: 'cities#rank_submit', as: 'rank_submit'
-      get 'rank/results', to: 'cities#rank_result', as: 'results'
+      get 'results', to: 'cities#rank_result', as: 'results'
+      get 'search', to: 'cities#search', as: 'search'
     end
     resources :reviews, only: [:index, :create, :update, :destroy, :new, :edit]
   end
