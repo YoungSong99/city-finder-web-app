@@ -185,6 +185,10 @@ a.ctaLink.bl:visited {
         width: 100%;
     }
 
+    .homepage .buttons {
+        padding: 0 2rem;
+    }
+
     .btn.primary{
         margin-right: 0;
     }
