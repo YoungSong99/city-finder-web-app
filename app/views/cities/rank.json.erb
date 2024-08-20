@@ -4,6 +4,6 @@
     longitude: city.longitude,
     label: city.city_name,
     tooltip: raw(render(partial: 'shared/tooltip', locals: { city: city }, formats: [:html])),
-    url: city_detail_path(city, format: :json)
+    url: city_path(city, format: :json)
   }
 end.to_json.html_safe %>
