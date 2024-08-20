@@ -104,6 +104,35 @@ class City < ApplicationRecord
       .where('earth_distance(ll_to_earth(?, ?), ll_to_earth(cities.latitude, cities.longitude)) < ?', lat, lng, distance_threshold)
   end
 
+  def self.filter_by_priorities(city_ids, priorities)
+    cities = City.where(id: city_ids)
+                 .joins(:crime_rates, :school_grades, :appreciation_values, :prices)
+
+    if priorities.any?(&:present?)
+      order_clause = build_order_clause(priorities)
+      cities = cities.order(order_clause)
+    end
+
+    cities
+  end
+
+  def self.build_order_clause(priorities)
+    priority_mapping = {
+      'School' => 'school_grades.score_compared_to_il DESC',
+      'Safety' => 'crime_rates.crime_index DESC',
+      'Appreciation' => 'appreciation_values.last_12months DESC',
+      'Sales_low' => 'prices.median_home_value ASC',
+      'Sales_high' => 'prices.median_home_value DESC',
+      'rent_low' => 'prices.rental_value ASC',
+      'rent_high' => 'prices.rental_value DESC'
+    }
+
+    valid_priorities = priorities.compact.map { |priority| priority_mapping[priority] }.compact
+    order_clause = valid_priorities.join(', ')
+
+    order_clause.presence || 'city_name ASC'
+  end
+
   # Ransack configuration
   def self.ransackable_associations(auth_object = nil)
     %w(appreciation_values crime_rates school_grades language_cities gym_cities prices metras grocery_cities)

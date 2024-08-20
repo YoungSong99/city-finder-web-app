@@ -1,6 +1,6 @@
 <div class="form-container">
   <div class="form">
-    <%= form_with url: submit_city_search_path, method: :post, data: { turbo: false }, class: "form" do |form| %>
+    <%= form_with url: rank_submit_cities_path, method: :post, data: { turbo: false }, class: "form" do |form| %>
       <h1><%= @greeting %>, <%= user_signed_in? ? current_user.username.capitalize : 'Explorer' %>!
         <span class="emoji">👍</span>
         <br>What matters most to you?
@@ -24,7 +24,7 @@
       <%= form.hidden_field :city_ids, value: (@city_ids || []).join(',') %>
       <div class="buttons">
         <%= form.submit 'Search', class: 'btn primary' %>
-        <%= link_to 'Back', find_city_path, class: 'btn back' %>
+        <%= link_to 'Back', filter_cities_path, class: 'btn back' %>
       </div>
     <% end %>
   </div>

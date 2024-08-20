@@ -8,7 +8,7 @@
     </div>
     <%= render 'shared/footer' %>
   </div>
-  <%= js_map city_search_path(format: :json, city_ids: params[:city_ids]),
+  <%= js_map rank_cities_path(format: :json, city_ids: params[:city_ids]),
              id: "cities-map",
              markers: { label: 'city_name' },
              tooltips: { hover: false, html: true },

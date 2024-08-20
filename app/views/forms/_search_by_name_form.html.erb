@@ -1,4 +1,4 @@
-<%= search_form_for @q, url: search_by_name_path, method: :get do |form| %>
+<%= search_form_for @q, url: search_cities_path, method: :get do |form| %>
   <div class="search-bar">
     <%= form.text_field :city_name_cont, placeholder: "Search by City Name", class: 'search search-field' %>
     <%= form.submit 'Search', class: 'btn back' %>
