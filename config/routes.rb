@@ -1,16 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  # static pages
   root 'static#home'
   get 'about', to: 'static#about', as: 'about'
   get 'contact', to: 'contacts#new', as: 'contact'
   post 'contact', to: 'contacts#create'
   get 'city-map', to: 'static#map', as: 'city_map'
-
-  # Compare City
-  get 'compare-cities', to: 'comparison#index', as: 'compare_cities'
-  get 'compare-cities/export', to: 'comparison#export', as: 'export_comparison'
 
   resources :cities, only: [:show] do
     collection do
@@ -23,6 +18,10 @@ Rails.application.routes.draw do
     end
     resources :reviews, only: [:index, :create, :update, :destroy, :new, :edit]
   end
+
+  get 'compare-cities', to: 'comparison#index', as: 'compare_cities'
+  get 'compare-cities/export', to: 'comparison#export', as: 'export_comparison'
+
   resources :favorite_cities, only: [:index, :create, :destroy]
   resources :contacts, only: [:new, :create]
 end
