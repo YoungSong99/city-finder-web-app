@@ -34,5 +34,9 @@ module RailsTemplate
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Custom 404, 500
+    config.exceptions_app = self.routes
+    config.action_dispatch.show_exceptions = true
   end
 end
