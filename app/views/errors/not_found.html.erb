@@ -1,0 +1,17 @@
+<main class="about">
+  <%= render 'shared/static_nav' %>
+  <section class="error_page">
+    <div class="image">
+      <img src="<%= asset_path('space.png') %>" alt="CityFinder logo" class="logo">
+    </div>
+    <div class="message">
+      <h2>Are You Lost?</h2>
+      <p>Looks like the page you were looking for is not found.</p>
+      <div class="buttons">
+        <%= link_to 'Report the issue', contact_path, class: 'cta error-report' %>
+        <%= link_to 'Back', '#', class: 'btn back', onclick: 'window.history.back(); return false;' %>
+      </div>
+    </div>
+  </section>
+</main>
+<%= render 'shared/footer' %>
