@@ -1,10 +1,16 @@
 <main class="about">
   <%= render 'shared/static_nav' %>
-  <section>
-    <div>
-      <h2>
-        "500 Error"
-      </h2>
+  <section class="error_page">
+    <div class="image">
+      <i class="fa-solid fa-plug-circle-exclamation"></i>
+    </div>
+    <div class="message">
+      <h2>Internal Server Error</h2>
+      <p>We apologize for the inconvenience.<br>Our team is working to resolve the issue as quickly as possible. </p>
+      <div class="buttons">
+        <%= link_to 'Report the issue', contact_path, class: 'cta error-report' %>
+        <%= link_to 'Back', '#', class: 'btn back', onclick: 'window.history.back(); return false;' %>
+      </div>
     </div>
   </section>
 </main>
