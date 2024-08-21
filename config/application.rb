@@ -37,6 +37,6 @@ module RailsTemplate
 
     # Custom 404, 500
     config.exceptions_app = self.routes
-    config.action_dispatch.show_exceptions = false
+    config.action_dispatch.show_exceptions = :all
   end
 end
