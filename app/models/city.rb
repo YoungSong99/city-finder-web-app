@@ -17,7 +17,7 @@
 #
 
 class City < ApplicationRecord
-  include Csvable, Ransackable, Filterable, Rankable
+  include Csvable, Ransackable, Filterable, Rankable, Scorable
 
   has_many :crime_rates, class_name: "CrimeRate", foreign_key: "city_id", dependent: :destroy
   has_many :reviews, class_name: "Review", foreign_key: "city_id", dependent: :destroy
@@ -55,9 +55,4 @@ class City < ApplicationRecord
     reviews.count
   end
 
-  private
-
-  def address_changed?
-    city_name_changed? || state_changed?
-  end
 end
