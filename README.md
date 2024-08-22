@@ -32,25 +32,39 @@ Simply use the SQL dump file located in the Data folder to load pre-existing dat
 ## Installation
 To set up CityFinder locally, follow these steps:
 
-1) Clone the repository:
-```bash
-git clone https://github.com/YoungSong99/city-finder-web-app.git
-cd cityfinder
-```
-2) Install dependencies:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/YoungSong99/city-finder-web-app.git
+   cd cityfinder
+   
+2. **Install dependencies:**
 
-```bash
-bundle install
-```
-3) Set up the database:
-```bash
-rails db:create
-rails db:migrate
-```
-4) Run the application:
-```bash
-rails server
-```
+   ```bash
+   bundle install
+   
+3. **Set up the database:**
+
+   a. Create the database:
+      ```bash
+      rails db:create
+      ```
+
+   b. Create the necessary PostgreSQL extensions:
+      ```bash
+      psql -d city_finder_development -c "CREATE EXTENSION IF NOT EXISTS cube;"
+      psql -d city_finder_development -c "CREATE EXTENSION IF NOT EXISTS earthdistance;"
+      ```
+      - Creating the cube and earthdistance extensions in PostgreSQL is necessary to calculate distances between the user's workplace and cities.
+      - Using `IF NOT EXISTS` in the SQL commands prevents errors if the extensions are already present.
+
+   c. Run migrations:
+      ```bash
+      rails db:migrate
+      ```
+
+4. **Run the application**:
+   ```bash
+   rails server
 
 ## Usage
 1. Start the Rails server:
