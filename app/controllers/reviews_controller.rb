@@ -2,6 +2,8 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_city
   before_action :set_review, only: [:edit, :update, :destroy, :show]
+  before_action :authorize_review, only: [:edit, :update, :destroy]
+
 
   def index
     @reviews = @city.reviews
@@ -55,6 +57,10 @@ class ReviewsController < ApplicationController
 
   def set_review
     @review = Review.find(params[:id])
+  end
+
+  def authorize_review
+    authorize @review
   end
 
   def display_stars(review)
