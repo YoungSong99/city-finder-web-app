@@ -83,7 +83,7 @@ We welcome contributions to CityFinder! To contribute, please follow these steps
 5. Open a pull request
 
 ## License
-CityFinder is distributed under the MIT License. See the LICENSE file for more information.
+CityFinder is distributed under the MIT License. See the [LICENSE](./LICENSE.txt) file for more information.
 
 ## Contact
 If you have any questions or suggestions for improvement, feel free to contact me on [LinkedIn](https://www.linkedin.com/in/youngsong-us/)
