@@ -13,7 +13,6 @@ class ContactsController < ApplicationController
       flash[:notice] = "We're excited to hear from you. Let's keep making CityFinder even better together!"
     rescue => e
       flash[:alert] = "Oh no! Something went wrong with your message. Please give it another go—we're here to help you find the perfect city!"
-      Rails.logger.error("Email delivery failed: #{e.message}")
     end
     redirect_to new_contact_path
   end
