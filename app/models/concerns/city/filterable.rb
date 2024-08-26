@@ -2,6 +2,8 @@ module City::Filterable
   extend ActiveSupport::Concern
 
   class_methods do
+    # Filters cities based on various user-provided parameters.
+    # The method handles multiple filtering criteria, including distance, convenience options, and specific amenities.
     def filter_cities(params)
       cities = City.joins(:crime_rates, :school_grades, :appreciation_values, :prices)
 
@@ -33,6 +35,8 @@ module City::Filterable
     end
 
     def apply_distance_filter(cities, params)
+      # Applies a distance filter to the list of cities based on the user's location and desired distance range.
+
       address = params[:address].strip if params[:address].present?
       city_name = params[:city_name].strip if params[:city_name].present?
       state = "IL"
