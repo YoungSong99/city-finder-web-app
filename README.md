@@ -87,7 +87,8 @@ For detailed information on API endpoints, and usage examples, please visit our 
 ## Troubleshooting
 Encountered a bug or issue? We’ve got you covered:
 
-* **Bugs & Issues**: Please report any bugs or issues by opening a GitHub Issue.
+* **Bugs & Issues**: Please report any bugs or issues by opening a [GitHub Issue](https://github.com/YoungSong99/city-finder-web-app/issues).
+* **Common Issues and FAQs**: [This page](https://github.com/YoungSong99/city-finder-web-app/discussions/142) covers frequently asked questions and troubleshooting tips to help you resolve problems quickly.
 * **Questions & Suggestions**: Have a question or an idea for improvement? Share your thoughts with the community in our [Discussions section](https://github.com/YoungSong99/city-finder-web-app/discussions) .
 
 
@@ -100,6 +101,7 @@ We welcome contributions to CityFinder! To contribute, please follow these steps
 3. Commit your changes (`git commit -m 'Add some feature'`)
 4. Push to the branch (`git push origin feature-branch`)
 5. Open a pull request
+
 
 ## License
 CityFinder is distributed under the MIT License. See the [LICENSE](./LICENSE.txt) file for more information.
