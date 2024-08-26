@@ -4,11 +4,12 @@
 **CityFinder** is a comprehensive tool designed to simplify the home-finding process. It empowers users to compare cities based on key metrics such as current property prices, crime rates, school quality, and property value appreciation rates. With CityFinder, users can make well-informed decisions tailored to their personal preferences and needs.
 
 ## Table of Contents
-- [Data utilization](#DataUtilization)
-- [Installation](#Installation)
-- [Usage](#Usage)
-- [Contributing](#Contributing)
-- [License](#License)
+- [Data Utilization](#data-utilization)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Database ERD](#database-erd)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Data Utilization
 CityFinder offers two approaches for data utilization:
@@ -72,6 +73,9 @@ To set up CityFinder locally, follow these steps:
 
 2. Open your browser and navigate to http://localhost:3000
    Follow the on-screen instructions to use the application
+
+## Database ERD
+![cityfinder_erd](data/cityfinder_erd.png)
 
 ## Contributing
 We welcome contributions to CityFinder! To contribute, please follow these steps:
