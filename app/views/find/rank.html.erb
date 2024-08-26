@@ -8,14 +8,7 @@
     </div>
     <%= render 'shared/footer' %>
   </div>
-  <%= js_map rank_cities_path(format: :json, city_ids: params[:city_ids]),
-             id: "cities-map",
-             markers: { label: 'city_name' },
-             tooltips: { hover: false, html: true },
-             zoom: 7,
-             controls: true,
-             refresh: 300
-  %>
+  <%= render 'rank_map' %>
   <div class="side_mobile">
     <%= render 'forms/priority_search_form' %>
   </div>

@@ -1,0 +1,8 @@
+<%= js_map url_for(step: :rank, controller: :find, action: :show, format: :json, city_ids: params[:city_ids]),
+           id: "cities-map",
+           markers: { label: 'city_name' },
+           tooltips: { hover: false, html: true },
+           zoom: 7,
+           controls: true,
+           refresh: 300
+%>

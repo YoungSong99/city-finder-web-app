@@ -43,13 +43,13 @@ class ReviewsController < ApplicationController
     redirect_to city_reviews_path(@review.city), notice: 'Review was successfully destroyed.'
   end
 
+  helper_method :display_stars
+
   private
 
   def review_params
     params.require(:review).permit(:pros, :cons, :ratings, { recommend_family_type: [] }, :zipcode)
   end
-
-  helper_method :display_stars
 
   def set_city
     @city = City.find(params[:city_id])

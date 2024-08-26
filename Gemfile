@@ -21,6 +21,7 @@ gem "chartkick"
 gem "mapkick-rb"
 gem "meta-tags"
 gem "pundit"
+gem "wicked"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
