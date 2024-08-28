@@ -1,4 +1,5 @@
 class FindController < ApplicationController
+  # Could be a good place for a comment
   include Wicked::Wizard
   steps :filter, :rank, :result
 
