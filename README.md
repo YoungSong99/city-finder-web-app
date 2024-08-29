@@ -69,9 +69,30 @@ To set up CityFinder locally, follow these steps:
       rails db:migrate
       ```
 
-4. **Run the application**:
+4. **Set Up Environment Variables**:
+
+   1) Create a .env file in the root directory of your project.
+   2) Add the following environment variables to the .env file:
+   ```bash
+   # Secret Key for your application
+   SECRET_KEY=YOUR_SECRET_KEY
+   
+   # Mapbox API Key
+   MAPBOX_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
+   
+   # Mailtrap Credentials
+   MAILTRAP_USERNAME=YOUR_USERNAME
+   MAILTRAP_PASSWORD=YOUR_PASSWORD
+   ```
+   - Services:    
+     - Mapbox: Sign up for Mapbox  to get your access token.
+     - Mailtrap: Sign up for Mailtrap  to get your username and password.
+
+
+5. **Run the application**:
    ```bash
    rails server
+   ```
 
 ## Usage
 1. Start the Rails server:
