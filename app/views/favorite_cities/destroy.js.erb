@@ -1,5 +1,5 @@
-var FavoriteDeleteBtn = $("#favorite_<%= dom_id(@the_city) %>_btn");
-var FavoriteDeleteItem = $("#favorite_<%= dom_id(@the_city) %>_item")
+var FavoriteDeleteBtn = $("#<%= dom_id(@the_city) %>_btn");
+var FavoriteDeleteItem = $("#<%= dom_id(@the_city) %>_item");
 
 FavoriteDeleteBtn.replaceWith(
     '<%= button_to '+', favorite_cities_path(id: @the_city.id), method: :post, remote: true, data: { turbo: false }, class: 'deleteBtn custom-tooltip add' %>'
