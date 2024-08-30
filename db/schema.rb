@@ -48,12 +48,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_22_053112) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "family_types", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "favorite_cities", force: :cascade do |t|
     t.integer "user_id"
     t.integer "city_id"
